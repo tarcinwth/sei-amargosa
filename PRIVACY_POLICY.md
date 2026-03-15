@@ -1,16 +1,20 @@
-# Política de Privacidade — SEI Pro ![SEI Pro](/img/icon-32.png)
+# Política de Privacidade — SEI Amargosa
 
-**Versão:** 2.0  
-**Data de Vigência:** 14 de janeiro de 2026  
-**Última Atualização:** 14 de janeiro de 2026
+<p align="center">
+  <img src="dist/icons/amargosa/icon-128.png" alt="SEI Amargosa Logo" width="64">
+</p>
+
+**Versão:** 1.0  
+**Data de Vigência:** 15 de março de 2026  
+**Última Atualização:** 15 de março de 2026
 
 ---
 
 ## 1. Introdução
 
-Esta Política de Privacidade descreve, de forma clara e transparente, as práticas de tratamento de dados da extensão de navegador **SEI Pro**, em conformidade com a Lei nº 13.709, de 14 de agosto de 2018 — Lei Geral de Proteção de Dados Pessoais (LGPD) — e com as melhores práticas de segurança da informação.
+Esta Política de Privacidade descreve, de forma clara e transparente, as práticas de tratamento de dados da extensão de navegador **SEI Amargosa**, em conformidade com a Lei nº 13.709, de 14 de agosto de 2018 — Lei Geral de Proteção de Dados Pessoais (LGPD) — e com as melhores práticas de segurança da informação.
 
-O SEI Pro é uma extensão de navegador gratuita e de código aberto, licenciada sob AGPL-3.0, que adiciona funcionalidades avançadas ao Sistema Eletrônico de Informações (SEI), tanto na página inicial quanto na tela de processos e no editor de textos.
+O SEI Amargosa é uma extensão de navegador gratuita e de código aberto, desenvolvida especificamente para a **Prefeitura Municipal de Amargosa - Bahia**. Trata-se de um fork do projeto [SEI Pro](https://github.com/SEI-Pro/sei-pro), licenciado sob AGPL-3.0, que adiciona funcionalidades avançadas ao Sistema Eletrônico de Informações (SEI).
 
 **Esta extensão foi desenvolvida com o princípio de "Privacy by Design" (Privacidade desde a Concepção), priorizando a proteção dos dados dos usuários desde sua arquitetura inicial.**
 
@@ -20,7 +24,7 @@ O SEI Pro é uma extensão de navegador gratuita e de código aberto, licenciada
 
 ### 2.1. Compromisso Fundamental
 
-**O SEI Pro NÃO coleta, NÃO transmite, NÃO armazena remotamente e NÃO processa nenhum dado pessoal ou informação dos usuários.**
+**O SEI Amargosa NÃO coleta, NÃO transmite, NÃO armazena remotamente e NÃO processa nenhum dado pessoal ou informação dos usuários.**
 
 Esta declaração é feita de forma inequívoca e abrange:
 
@@ -34,7 +38,7 @@ Esta declaração é feita de forma inequívoca e abrange:
 
 ### 2.2. Ausência de Servidor de Coleta
 
-O SEI Pro **não possui** infraestrutura de servidor para coleta de dados. Não há:
+O SEI Amargosa **não possui** infraestrutura de servidor para coleta de dados. Não há:
 
 - Servidores de analytics ou telemetria
 - Endpoints de API próprios para recebimento de dados
@@ -45,8 +49,8 @@ O SEI Pro **não possui** infraestrutura de servidor para coleta de dados. Não 
 
 Esta política atende aos princípios da LGPD estabelecidos no art. 6º da Lei nº 13.709/2018:
 
-| Princípio | Aplicação no SEI Pro |
-|-----------|---------------------|
+| Princípio | Aplicação no SEI Amargosa |
+|-----------|---------------------------|
 | **Finalidade** | A extensão tem propósito único e específico: aprimorar a experiência de uso do SEI |
 | **Adequação** | Não há coleta de dados, eliminando riscos de tratamento inadequado |
 | **Necessidade** | A extensão opera com o mínimo absoluto: zero dados coletados |
@@ -60,7 +64,7 @@ Esta política atende aos princípios da LGPD estabelecidos no art. 6º da Lei n
 
 ### 3.1. Funcionamento do Armazenamento
 
-O SEI Pro armazena **exclusivamente no dispositivo do usuário** determinadas configurações e preferências necessárias para o funcionamento das funcionalidades da extensão.
+O SEI Amargosa armazena **exclusivamente no dispositivo do usuário** determinadas configurações e preferências necessárias para o funcionamento das funcionalidades da extensão.
 
 Este armazenamento utiliza as seguintes tecnologias nativas do navegador:
 
@@ -109,7 +113,7 @@ Para ambientes com requisitos elevados de segurança, recomenda-se:
 
 ### 4.1. Natureza das Integrações
 
-O SEI Pro oferece **funcionalidades opcionais** que, quando habilitadas pelo usuário, podem se comunicar com serviços externos de terceiros. Estas integrações:
+O SEI Amargosa oferece **funcionalidades opcionais** que, quando habilitadas pelo usuário, podem se comunicar com serviços externos de terceiros. Estas integrações:
 
 - São **desativadas por padrão**
 - Requerem **ação deliberada do usuário** para ativação
@@ -163,7 +167,7 @@ Administradores de TI podem, através de políticas de grupo ou configurações 
 
 ### 5.1. Permissões Solicitadas
 
-O SEI Pro solicita permissões ao navegador para operar. Estas permissões são necessárias exclusivamente para o funcionamento das funcionalidades da extensão:
+O SEI Amargosa solicita permissões ao navegador para operar. Estas permissões são necessárias exclusivamente para o funcionamento das funcionalidades da extensão:
 
 | Permissão | Justificativa | Uso |
 |-----------|---------------|-----|
@@ -187,9 +191,9 @@ A extensão opera sob o princípio do menor privilégio:
 
 ### 6.1. Transparência do Código-Fonte
 
-O SEI Pro é um projeto de **código aberto**, permitindo total transparência:
+O SEI Amargosa é um projeto de **código aberto**, permitindo total transparência:
 
-- **Repositório:** [https://github.com/sei-pro/sei-pro](https://github.com/sei-pro/sei-pro)
+- **Repositório:** [https://github.com/tarcinwth/sei-amargosa](https://github.com/tarcinwth/sei-amargosa)
 - **Licença:** AGPL-3.0 (GNU Affero General Public License v3.0)
 - **Commits:** Histórico completo de alterações disponível publicamente
 - **Issues:** Canal aberto para reporte de problemas e sugestões
@@ -205,16 +209,15 @@ A natureza open source permite:
 
 ### 6.3. Distribuição Oficial
 
-A extensão é distribuída exclusivamente através de canais oficiais:
+A extensão será distribuída exclusivamente através de canais oficiais:
 
-- **Chrome Web Store:** [Link da Chrome Web Store]
-- **Microsoft Edge Add-ons:** [Link da Microsoft Edge Add-ons]
+- **Chrome Web Store:** (em breve)
 
 ---
 
 ## 7. Direitos do Titular (LGPD)
 
-Embora o SEI Pro não colete dados pessoais, em respeito à LGPD e à transparência, informamos sobre os direitos dos titulares previstos no art. 18 da Lei nº 13.709/2018:
+Embora o SEI Amargosa não colete dados pessoais, em respeito à LGPD e à transparência, informamos sobre os direitos dos titulares previstos no art. 18 da Lei nº 13.709/2018:
 
 ### 7.1. Direitos Assegurados
 
@@ -233,7 +236,7 @@ Para esclarecimentos sobre esta Política de Privacidade ou sobre práticas de t
 
 ## 8. Proteção de Crianças e Adolescentes
 
-O SEI Pro é uma ferramenta de produtividade destinada ao uso profissional no âmbito da Administração Pública. A extensão:
+O SEI Amargosa é uma ferramenta de produtividade destinada ao uso profissional no âmbito da Administração Pública. A extensão:
 
 - Não é direcionada a menores de 18 anos
 - Não coleta dados de nenhum usuário, incluindo menores
@@ -245,7 +248,7 @@ O SEI Pro é uma ferramenta de produtividade destinada ao uso profissional no â
 
 ### 9.1. Medidas Técnicas
 
-O SEI Pro adota as seguintes medidas de segurança:
+O SEI Amargosa adota as seguintes medidas de segurança:
 
 - **Ausência de transmissão de dados:** não há dados a serem interceptados
 - **Código aberto:** permite auditoria e identificação de vulnerabilidades
@@ -276,19 +279,19 @@ Em caso de identificação de vulnerabilidade ou incidente de segurança:
 
 ### 10.1. Desenvolvedor
 
-**Nome:** Pedro Henrique Soares  
-**Vínculo:** Servidor Público Federal — Agência Nacional de Transportes Aquaviários (ANTAQ)  
-**Função:** Desenvolvimento voluntário, sem fins lucrativos
+**Nome:** Tarcio Rodrigues  
+**Vínculo:** Prefeitura Municipal de Amargosa - Bahia  
+**Função:** Desenvolvimento para otimização do workflow no SEI
 
 ### 10.2. Canais de Contato
 
-- **Repositório GitHub:** [https://github.com/sei-pro/sei-pro](https://github.com/sei-pro/sei-pro)
-- **Issues:** [https://github.com/sei-pro/sei-pro/issues](https://github.com/sei-pro/sei-pro/issues)
-- **Comunidade:** [Fórum ParticiPEN](https://www.gov.br/participamaisbrasil/sei-pro)
+- **Repositório GitHub:** [https://github.com/tarcinwth/sei-amargosa](https://github.com/tarcinwth/sei-amargosa)
+- **Issues:** [https://github.com/tarcinwth/sei-amargosa/issues](https://github.com/tarcinwth/sei-amargosa/issues)
+- **Website:** [https://www.amargosa.ba.gov.br](https://www.amargosa.ba.gov.br)
 
 ### 10.3. Suporte Institucional
 
-Questões relacionadas a compatibilidade ou uso institucional podem ser direcionadas aos canais de suporte do projeto ou discutidas no fórum da comunidade ParticiPEN.
+Questões relacionadas a compatibilidade ou uso institucional podem ser direcionadas aos canais de suporte da Prefeitura de Amargosa ou através do repositório GitHub.
 
 ---
 
@@ -314,8 +317,7 @@ Alterações substanciais serão comunicadas através de:
 
 | Versão | Data | Principais Alterações |
 |--------|------|----------------------|
-| 2.0 | 14/01/2026 | Reformulação completa para adequação à LGPD; declaração explícita de não coleta de dados; detalhamento de integrações externas |
-| 1.0 | 02/08/2020 | Versão inicial (modelo genérico) |
+| 1.0 | 15/03/2026 | Versão inicial adaptada para SEI Amargosa - Prefeitura Municipal de Amargosa |
 
 ---
 
@@ -331,11 +333,11 @@ Esta Política de Privacidade é regida pela legislação brasileira, em especia
 
 ### 12.2. Foro Competente
 
-Fica eleito o foro da comarca de Brasília/DF para dirimir eventuais questões oriundas desta Política de Privacidade.
+Fica eleito o foro da comarca de Amargosa/BA para dirimir eventuais questões oriundas desta Política de Privacidade.
 
 ### 12.3. Aceitação
 
-A instalação e uso da extensão SEI Pro implica na aceitação integral desta Política de Privacidade. Caso não concorde com os termos aqui estabelecidos, recomenda-se não instalar ou desinstalar a extensão.
+A instalação e uso da extensão SEI Amargosa implica na aceitação integral desta Política de Privacidade. Caso não concorde com os termos aqui estabelecidos, recomenda-se não instalar ou desinstalar a extensão.
 
 ---
 
@@ -354,7 +356,7 @@ A instalação e uso da extensão SEI Pro implica na aceitação integral desta 
 
 ---
 
-**SEI Pro** — Extensão de código aberto para o Sistema Eletrônico de Informações  
-Desenvolvido pela comunidade, para a comunidade.
+**SEI Amargosa** — Extensão de código aberto para o Sistema Eletrônico de Informações  
+Desenvolvido com orgulho para a Prefeitura Municipal de Amargosa - Bahia
 
 *Este documento foi elaborado em conformidade com a Lei nº 13.709/2018 (LGPD) e com as melhores práticas de segurança da informação.*
