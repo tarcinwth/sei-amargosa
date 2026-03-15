@@ -180,7 +180,11 @@ Contribuições são bem-vindas! Para contribuir:
 
 ## 📝 Licença
 
-Este projeto está licenciado sob a [Licença MIT](LICENSE).
+Este projeto é um fork do [SEI Pro](https://github.com/SEI-Pro/sei-pro) e está licenciado sob a **GNU Affero General Public License v3.0 (AGPL-3.0)**.
+
+A AGPL-3.0 é uma licença de software livre que garante que você pode usar, estudar, modificar e distribuir este software livremente, desde que mantenha a mesma licença para versões derivadas.
+
+Veja o arquivo [LICENSE](LICENSE) para o texto completo da licença.
 
 **Copyright © 2025 Prefeitura Municipal de Amargosa - BA**
 
