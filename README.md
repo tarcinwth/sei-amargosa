@@ -1,137 +1,198 @@
-# Bem vindo ao SEI Pro ![SEI Pro](/img/icon-32.png)
+﻿# SEI Amargosa
 
-**SEI Pro!** adiciona ao [Sistema Eletrônico de Informações (SEI)](https://softwarepublico.gov.br/social/sei) diversas funções avançadas na página inicial e no editor de textos:
+<p align= center>
+  <img src=dist/icons/amargosa/icon-128.png alt=SEI Amargosa Logo width=128>
+</p>
 
-**Compatível com a versão 4.0 do SEI**
+<p align=center>
+  <strong>Extensão avançada para o SEI - Prefeitura Municipal de Amargosa/BA</strong>
+</p>
 
-## Como começar?
+<p align=center>
+  <a href=https://www.amargosa.ba.gov.br>
+    <img src=https://img.shields.io/badge/Município-Amargosa-blue alt=Município>
+  </a>
+  <a href=#>
+    <img src=https://img.shields.io/badge/Versão-1.0.0-green alt=Versão>
+  </a>
+  <a href=#>
+    <img src=https://img.shields.io/badge/SEI-4.0%2B-orange alt=SEI Versão>
+  </a>
+</p>
 
-Instale a extensão para seu navegador preferido:
+---
 
-<img src="https://edent.github.io/SuperTinyIcons/images/svg/chrome.svg" width="24" title="Chrome"> Google Chrome em:
+## 📋 Sobre
 
-> [https://chrome.google.com/webstore/detail/sei-pro/pdbbapplhjopafpgidbgceccbbmehcjj](https://chrome.google.com/webstore/detail/sei-pro/pdbbapplhjopafpgidbgceccbbmehcjj)
+O **SEI Amargosa** é uma extensão do navegador baseada no [SEI Pro](https://github.com/SEI-Pro/sei-pro), desenvolvida especificamente para atender às necessidades da **Prefeitura Municipal de Amargosa - Bahia**. A extensão adiciona funcionalidades avançadas de gestão de processos administrativos eletrônicos, mantendo a identidade visual do município.
 
-<img src="https://edent.github.io/SuperTinyIcons/images/svg/edge.svg" width="24" title="Edge"> Microsoft Edge em:
+### 🎯 Objetivo
 
-> [https://microsoftedge.microsoft.com/addons/detail/sei-pro/gkhfbbbminanojfklpfmloaglckmlfne](https://microsoftedge.microsoft.com/addons/detail/sei-pro/gkhfbbbminanojfklpfmloaglckmlfne)
+Facilitar o trabalho dos servidores públicos municipais com ferramentas adicionais que aumentam a produtividade no SEI (Sistema Eletrônico de Informações).
 
-<img src="https://edent.github.io/SuperTinyIcons/images/svg/firefox.svg" width="24" title="Firefox"> Mozilla Firefox em:
+---
 
-> [https://addons.mozilla.org/pt-BR/firefox/addon/sei-pro/](https://addons.mozilla.org/pt-BR/firefox/addon/sei-pro/)
+## ✨ Funcionalidades Principais
 
-## Funcionalidades disponíveis
+### 📊 Painéis de Informação na Árvore de Documentos
 
-- ![Estilo Avançado](/img/icon-estiloavancado.png) [Alterar o layout do SEI (Estilo Avançado + Modo Noturno)](./pages/ESTILOAVANCADO.md)
-- ![Estilo Tabela](/img/icon-projetos.png) [Gerenciar projetos](./pages/PROJETOS.md) [MOMENTANEAMENTE DESCONTINUADA]
-- ![Favoritos](/img/icon-favoritos.png) [Gerenciar processos favoritos](./pages/FAVORITOS.md)
-- ![Gerenciar Prazos](/img/icon-controleprazo.png) [Controle de Prazos](./pages/PRAZOS.md)
-- ![Enumerar Normas (Legística)](/img/icon-legistica.png) [Enumerar Normas (Legística)](./pages/LEGISTICA.md)
-- ![Agrupar lista](/img/icon-agruparlista.png) [Agrupar  lista de processos por data de recebimento, envio, último acesso, marcadores, tipo, responsável, ponto de controle, unidade de envio e acompanhamento especial](./pages/AGRUPAR.md)
-- ![Inserir Documento Externo (HTML)](/img/icon-inserirhtml.png) [Inserir documento externo (HTML, Google Docs e Google Planilhas)](./pages/INSERIRDOC.md)
-- ![Estilo Tabela](/img/icon-estilotabela.png) [Adicionar estilo a tabela](./pages/ESTILOTABELA.md)
-- ![Link de Legislação](/img/icon-linklegis.png) [Adicionar link de legislação](./pages/LINKLEGIS.md)
-- ![Letras Maiúsculas](/img/icon-letramaiusc.png) [Primeira letra maiúscula (exceto artigos e preposições)](./pages/LETRAMAIUSC.md)
-- ![Referência Documentos](/img/icon-refdocumentos.png) [Inserir referência de documentos do processo](./pages/REFDOCUMENTOS.md)
-- ![Nota Rodapé](/img/icon-notarodape.png) [Inserir nota de rodapé](./pages/NOTARODAPE.md)
-- ![Sumário](/img/icon-sumario.png) [Inserir sumário](./pages/SUMARIO.md)
-- ![Dados do Processo](/img/icon-dadosprocesso.png) [Inserir dados do processo](./pages/DADOSPROCESSO.md)
-- ![Link Curto](/img/icon-linkcurto.png) [Gerar link curto do TinyUrl](./pages/LINKCURTO.md)
-- ![Código QR (QRCode)](/img/icon-qrcode.png) [Gerar código QR (QRCode)](./pages/QRCODE.md)
-- ![Redimensionar Imagens](/img/icon-redimensionaimg.png) [Redimensionar imagens](./pages/REDIMENSIONAIMG.md)
-- ![Quebra de Página](/img/icon-quebrapagina.png) [Inserir quebra de página](./pages/QUEBRAPAGINA.md)
-- ![Título da página](/img/icon-titulopagina.png) [Alterar título da página](./pages/TITULOPAGINA.md)
-- ![Abrir, editar e remover hiperlinks](/img/icon-abrirlink.png) [Abrir, editar e remover hiperlinks](./pages/ABRIRLINKS.md)
-- ![Inserir Equações](/img/icon-equacoes.png) [Inserir equações (fórmulas matemáticas)](./pages/EQUACOES.md)
-- ![Menu rápido na árvore de documentos](/img/icon-menurapido.png) [Menu e ícones rápidos na árvore de documentos](./pages/MENURAPIDO.md)
-- ![Tabela Rápida](/img/icon-tabelarapida.png) [Tabela rápida](./pages/TABELARAPIDA.md)
-- ![Copiar formatação de texto](/img/icon-copiarformatacao.png) [Copiar formatação do texto](./pages/COPIARFORMATACAO.md)
-- ![Aumentar fonte](/img/icon-aumentarfonte.png) [Aumentar ou reduzir o tamanho da fonte](./pages/AUMENTARFONTE.md)
-- ![Alinhar texto](/img/icon-alinhartexto.png) [Alinhar o texto à esquerda, ao centro, à direita ou justificadamente](./pages/ALINHARTEXTO.md)
-- ![Verificar Integridade Hashcode](/img/icon-hashcode.png) [Verificar código de integridade (Hashcode)](./pages/HASHCODE.md)
-- ![Adicionar link documento público](/img/icon-docpublico.png) [Adicionar link de documento público](./pages/DOCPUBLICO.md)
-- ![Adicionar valores padronizados](/img/icon-valdefault.png) [Adicionar valores padronizados ao criar um novo documento](./pages/VALDEFAULT.md)
-- ![Alinhar texto](/img/icon-linkpermanente.png) [Pesquisar link permanente](./pages/LINKPERMANENTE.md)
-- ![Aumentar fonte](/img/icon-playvideo.png) [Reproduzir vídeo na visualização de documentos](./pages/PLAYVIDEO.md)
-- ![Alinhar texto](/img/icon-listaprocessos.png) [Exportar informações de processos em planilha CSV](./pages/LISTAPROCESSOS.md)
-- ![Alinhar texto](/img/icon-marcaminuta.png) [Adicionar marca d'água de minuta ao documento](./pages/MARCAMINUTA.md)
-- ![Sigilo Documento](/img/icon-sigilodoc.png) [Adicionar marca de sigilo e tarjas pretas de confidencialidade (LGPD)](./pages/SIGILODOC.md)
-- ![Duplicar Documento](/img/icon-duplicardoc.png) [Duplicar documentos com 1 click](./pages/DUPLICARDOC.md)
-- ![Enviar documentos](/img/icon-uploaddocs.png) [Enviar múltiplos documentos externos](./pages/UPLOADDOCS.md)
-- ![Menu Suspenso](/img/icon-menususpenso.png) [Menu Suspenso](./pages/MENUSUSPENSO.md)
-- ![Ordenar Tabelas](/img/icon-ordernartabela.png) [Ordenar tabelas ao clicar no seu cabeçalho](./pages/ORDENARTABELA.md)
-- ![Enviar documentos](/img/icon-historicoproc.png) [Histórico de processos visitados](./pages/HISTORICOPROC.md)
-- ![Enviar documentos](/img/icon-infoarvore.png) [Informações adicionais na árvore do processo](./pages/INFOARVORE.md)
-- ![Enviar documentos](/img/icon-notaarvore.png) [Anotação diretamente pela árvore do processo](./pages/NOTAARVORE.md)
-- ![Remover paginação de processos](/img/icon-removerpaginacao.png) [Remover paginação de processos](./pages/REMOVEPAGINACAO.md)
-- ![Dividir as informações do documento na árvore do processo em duas linhas](/img/icon-dividirinformacoes.png) [Dividir as informações do documento na árvore do processo em duas linhas](./pages/DIVIDIRLINHASARVORE.md)
-- ![SEI Redimensionar automaticamente a árvore do processo pela sua largura total](/img/icon-resizearvore.png) [Redimensionar automaticamente a árvore do processo pela sua largura total](./pages/RESIZEARVORE.md)
-- ![Utilizar caixas de seleção inteligentes](/img/icon-cursor.png) [Utilizar caixas de seleção inteligentes](./pages/SUBSTITUIRSELECAO.md)
-- ![Ações em Lote](/img/icon-acoeslote.png) [Ações em Lote](./pages/ACOESEMLOTE.md)
-- ![Rolagem Infinita](/img/icon-rolageminfinita.png) [Rolagem infinita na pesquisa de processos](./pages/ROLAGEMINFINITA.md)
-- ![URL Amigável](/img/icon-urlamigavel.png) [Utilizar endereços amigáveis em processos e documentos](./pages/URLAMIGAVEL.md)
-- ![Documentos não assinados](/img/icon-docsnaoassinados.png) [Alertar sobre documentos não assinados ao enviar um processo](./pages/DOCSNAOASSINADOS.md)
-- ![Cores marcadores](/img/icon-coresmarcadores.png) [Permitir cores personalizadas em Marcadores](./pages/CORESMARCADORES.md)
-- ![Parágrafos Numerados](/img/icon-paragrafosnumerados.png) [Visualizar parágrafos numerados no visualizador de documentos](./pages/PARAGRAFOSNUMERADOS.md)
-- ![Certidão Sigilo](/img/icon-certidaosigilo.png) [Gerar Certidão de Documento Oficial com Sigilo (LGPD)](./pages/CERTIDAOSIGILO.md)
-- ![Editar Imagens](/img/icon-editarimagens.png) [Enviar múltiplas imagens, formatar e editar opções avançadas](./pages/EDITARIMAGENS.md)
-- ![Qualidade Imagens](/img/icon-qualidadeimagens.png) [Reduzir a qualidade das imagens inseridas nos documentos](./pages/QUALIDADEIMAGENS.md)
-- ![Teclas Atalho](/img/icon-teclasatalho.png) [Adicionar teclas de atalhos no editor de documentos](./pages/TECLASATALHO.md)
-- ![Referencia Interna](/img/icon-referenciainterna.png) [Adicionar referências internas](./pages/REFERENCIAINTERNA.md)
-- ![Ferramentas IA](/img/icon-ferramentasia.png) [Ferramentas de Inteligência Artificial (ChatGPT)](./pages/FERRAMENTASIA.md)
-- ![Mover ícone de excluir](/img/icon-movericone.png) [Mover ícone de excluir documentos para o final da lista](./pages/MOVERICONE.md)
-- ![Autopreencher senha](/img/icon-autopreenchersenha.png) [Autopreencher senha no login (SEI >= 4.0)](./pages/AUTOPREENCHERSENHA.md)
-- ![Numerar documentos](/img/icon-numerardocsarvore.png) [Numerar documentos na árvore do processo](./pages/NUMERARDOCSARVORE.md)
-- ![Contador de processos não recebidos](/img/icon-contadorprocessoicone.png) [Contador de processos não recebidos no ícone do SEI](./pages/CONTADORPROCESSOICONE.md)
-- ![Mostrar especificação do processo](/img/icon-especificacaoprocesso.png) [Mostrar especificação do processo na tabela de controle de processos](./pages/ESPECIFICACAOPROCESSO.md)
-- ![Mostrar nomes de usuários](/img/icon-nomesusuarios.png) [Mostrar nomes de usuários na tabela de controle de processos](./pages/NOMESUSUARIOS.md)
-- ![Marcar processo não visualizado](/img/icon-naolido.png) [Permitir marcar processos como "Não Visualizado"](./pages/NAOLIDO.md)
-- ![Comparador de Documentos](/img/icon-comparardocumentos.png) [Comparador de Documentos](./pages/COMPARARDOCUMENTOS.md)
-- ![Reabertura programada de processos](/img/icon-reabrirprocessos.png) [Reabertura programada de processos](./pages/REABRIRPROCESSOS.md)
-- ![Ditado no editor de documentos](/img/icon-ditado.png) [Ditado no editor de documentos](./pages/DITADO.md)
-- ![Escrita interativa](/img/icon-escritainterativa.png) [Escrita interativa no editor de documentos](./pages/ESCRITAINTERATIVA.md)
-- ![Revisão de texto](/img/icon-revisardoc.png) [Revisão de texto no editor de documentos](./pages/REVISARDOC.md)
-- ![Documentos em Lote](/img/icon-acoeslote.png) [Documentos em Lote](./pages/DOCUMENTOSEMLOTE.md)
+- **📋 Especificação do Processo** - Visualização direta da especificação do processo aberto, com função de cópia e edição rápida
+- **🔢 Número do Processo** - Exibição do número completo do processo com opção de copiar para a área de transferência  
+- **👤 Atribuição** - Visualização dos responsáveis pelo processo
+- **📝 Anotações** - Acesso rápido às anotações do processo
 
+### 🛠️ Ferramentas Avançadas (do SEI Pro)
 
-Você ainda pode [Desativar funções da extensão](./pages/DESATIVARFUNCOES.md) que não deseja utilizar.
+- **📁 Gestão de Documentos** - Funções avançadas para manipulação de documentos
+- **🔍 Pesquisa Aprimorada** - Busca otimizada dentro do SEI
+- **⚡ Atalhos de Produtividade** - Acesso rápido às funções mais utilizadas
+- **🎨 Interface Personalizada** - Identidade visual da Prefeitura de Amargosa
 
-## Encontrou um erro?
+### 🔐 Compatibilidade
 
-Caso deseja reportar um erro, acesse [Issue](https://github.com/pedrohsoaresadv/sei-pro/issues) no [Projeto GitHub](https://github.com/pedrohsoaresadv/sei-pro/) e adicione sua requisição.
+- ✅ SEI versão 3.x e 4.x
+- ✅ Navegadores: Google Chrome, Microsoft Edge, Brave
+- ✅ Sistemas operacionais: Windows, macOS, Linux
 
-## Deseja contribuir?
+---
 
-Envie sua sugestão de nova funcionalidade em [https://seipro.changecrab.com/suggestions](https://seipro.changecrab.com/suggestions)
-Vote nas sugestões que mais queria ver no SEI Pro!
+## 🚀 Instalação
 
-## SEI Pro no ParticiPEN
+### Chrome Web Store (Em breve)
 
-Participe da Comunidade do Processo Eletrônico Nacional (ParticiPEN), espaço criado para compartilhar ideias, experiências e discussões técnicas.
-[https://participen.processoeletronico.gov.br/c/modulos-comunidade/sei-pro/39](https://participen.processoeletronico.gov.br/c/modulos-comunidade/sei-pro/39)
+A extensão será disponibilizada oficialmente na Chrome Web Store. Aguarde a aprovação.
 
-## Comunidade SEI Lab
+### Instalação Manual (Modo Desenvolvedor)
 
-Participe do laboratorio de ideias sobre inovações para o SEI, automações e boas práticas.
+1. **Baixe o código fonte:**
+   `ash
+   git clone https://github.com/tarcinwth/sei-amargosa.git
+   `
 
-> <img src="https://github.com/pedrohsoaresadv/sei-pro/raw/master/img/whatsapp.png" data-canonical-src="https://github.com/pedrohsoaresadv/sei-pro/raw/master/img/whatsapp.png" width="16"/> [https://bit.ly/Comunidade_SEI_Lab](https://bit.ly/Comunidade_SEI_Lab)
+2. **Acesse a página de extensões do Chrome:**
+   - Digite chrome://extensions/ na barra de endereços
+   - Ou acesse: Menu → Mais ferramentas → Extensões
 
+3. **Ative o Modo Desenvolvedor:**
+   - No canto superior direito, ative a chave Modo do desenvolvedor
 
-## Novidades e dicas
+4. **Carregue a extensão:**
+   - Clique em Carregar sem compactação
+   - Selecione a pasta dist/ do projeto
 
-Receba em primeira mão sobre novidades e atualizações do SEI Pro. 
+5. **Pronto!** A extensão SEI Amargosa está instalada e ativa.
 
-Inscreva-se na nossa Lista de e-mail: [http://eepurl.com/hjHh45](http://eepurl.com/hjHh45)
+---
 
-## Histórico de versões
+## 📖 Como Usar
 
-Confira nosso [Histórico de versões](./pages/HISTORICO.md)
+### Painéis de Informação
 
-## Licença
+Após abrir um processo no SEI, os novos painéis aparecerão automaticamente na **árvore de documentos** (lado esquerdo da tela):
 
-AGPL-3.0
+#### 📋 Especificação
+- Mostra a **descrição completa** do processo
+- **Clique no texto** para copiar para a área de transferência
+- **Clique no ícone ✏️** para editar a especificação (abre página de consulta/alteração)
 
-## Política de Privacidade
+#### 🔢 Número do Processo
+- Exibe o **número SEI completo** (formato: NNNNNNN.NNNNNNN/AAAA-NN)
+- **Clique no número** para copiar para a área de transferência
+- Útil para colar em outros sistemas ou documentos
 
-Confira nossa Declaração de Não Coleta de Dadosm em confomidade com a Lei nº 13.709/2018 (LGPD) e com as melhores práticas de segurança da informação: [Política de Privacidade](./PRIVACY_POLICY.md)
+---
 
+## 🏛️ Prefeitura Municipal de Amargosa
+
+<p align=center>
+  <strong>Amargosa - Bahia</strong><br>
+  <a href=https://www.amargosa.ba.gov.br>www.amargosa.ba.gov.br</a>
+</p>
+
+Amargosa é um município brasileiro do estado da Bahia, localizado na região do Vale do Jiquiriçá. Conhecida como a Princesa do Vale, possui rica história e cultura.
+
+---
+
+## 🛠️ Desenvolvimento
+
+### Tecnologias Utilizadas
+
+- **JavaScript** - Lógica principal da extensão
+- **jQuery** - Manipulação do DOM
+- **JMESPath** - Consultas em objetos JSON
+- **Moment.js** - Manipulação de datas
+- **Font Awesome** - Ícones
+
+### Estrutura do Projeto
+
+`
+sei-amargosa/
+├── dist/                    # Código compilado (extensão)
+│   ├── css/                 # Estilos
+│   ├── html/                # Páginas HTML
+│   ├── icons/               # Ícones
+│   │   └── amargosa/        # Ícones da marca
+│   ├── js/                  # Scripts JavaScript
+│   │   ├── sei-pro-arvore.js    # Lógica da árvore de documentos
+│   │   ├── sei-functions-pro.js # Funções auxiliares
+│   │   └── ...
+│   └── manifest.json        # Configuração da extensão
+├── src/                     # Código fonte (opcional)
+└── README.md               # Este arquivo
+`
+
+### Fork do SEI Pro
+
+Este projeto é um fork do [SEI Pro](https://github.com/SEI-Pro/sei-pro), mantido pela comunidade. Adaptações específicas foram feitas para atender às necessidades da Prefeitura de Amargosa, incluindo:
+
+- Novos painéis de informação na árvore de documentos
+- Identidade visual personalizada
+- Otimizações para o workflow municipal
+
+---
+
+## 🤝 Contribuição
+
+Contribuições são bem-vindas! Para contribuir:
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (git checkout -b feature/nova-funcionalidade)
+3. Commit suas alterações (git commit -m 'Adiciona nova funcionalidade')
+4. Push para a branch (git push origin feature/nova-funcionalidade)
+5. Abra um Pull Request
+
+---
+
+## 📝 Licença
+
+Este projeto está licenciado sob a [Licença MIT](LICENSE).
+
+**Copyright © 2025 Prefeitura Municipal de Amargosa - BA**
+
+---
+
+## 👨‍💻 Desenvolvedor
+
+**Tarcio Rodrigues**
+- GitHub: [@tarcinwth](https://github.com/tarcinwth)
+
+---
+
+## 📞 Suporte
+
+Para suporte, dúvidas ou sugestões:
+- 🐛 **Issues:** [Abrir issue no GitHub](https://github.com/tarcinwth/sei-amargosa/issues)
+- 📧 **Email:** Contate através do [site da prefeitura](https://www.amargosa.ba.gov.br)
+
+---
+
+## 🙏 Agradecimentos
+
+- [SEI Pro](https://github.com/SEI-Pro/sei-pro) - Extensão base mantida pela comunidade
+- [Processo Eletrônico Nacional](https://www.gov.br/gestao/pt-br/assuntos/processo-eletronico-nacional) - Sistema SEI
+
+---
+
+<p align=center>
+  <strong>🌟 Desenvolvido com orgulho para os servidores de Amargosa 🌟</strong>
+</p>
