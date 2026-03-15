@@ -1,22 +1,22 @@
-﻿# SEI Amargosa
+# SEI Amargosa
 
-<p align= center>
-  <img src=dist/icons/amargosa/icon-128.png alt=SEI Amargosa Logo width=128>
+<p align="center">
+  <img src="dist/icons/amargosa/icon-128.png" alt="SEI Amargosa Logo" width="128">
 </p>
 
-<p align=center>
+<p align="center">
   <strong>Extensão avançada para o SEI - Prefeitura Municipal de Amargosa/BA</strong>
 </p>
 
-<p align=center>
-  <a href=https://www.amargosa.ba.gov.br>
-    <img src=https://img.shields.io/badge/Município-Amargosa-blue alt=Município>
+<p align="center">
+  <a href="https://www.amargosa.ba.gov.br">
+    <img src="https://img.shields.io/badge/Município-Amargosa-blue" alt="Município">
   </a>
-  <a href=#>
-    <img src=https://img.shields.io/badge/Versão-1.0.0-green alt=Versão>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Versão-1.0.0-green" alt="Versão">
   </a>
-  <a href=#>
-    <img src=https://img.shields.io/badge/SEI-4.0%2B-orange alt=SEI Versão>
+  <a href="#">
+    <img src="https://img.shields.io/badge/SEI-4.0%2B-orange" alt="SEI Versão">
   </a>
 </p>
 
@@ -56,6 +56,21 @@ Facilitar o trabalho dos servidores públicos municipais com ferramentas adicion
 
 ---
 
+## ⚡ Melhorias de Performance
+
+### Otimizações Implementadas
+
+Esta versão do SEI Amargosa inclui melhorias significativas de performance em relação ao SEI Pro original:
+
+- **🔄 Eliminação de recarregamentos desnecessários** - Corrigido o problema de múltiplos recarregamentos na página inicial ao exibir a especificação do processo
+- **⚡ Carregamento assíncrono otimizado** - Implementação de AJAX eficiente para buscar dados sem travar a interface
+- **🎯 Fluidez aprimorada** - Redução de operações bloqueantes que prejudicavam a experiência do usuário
+- **💾 Cache inteligente** - Reutilização de dados já carregados para evitar requisições redundantes
+
+Estas melhorias garantem uma experiência mais fluida e responsiva para os servidores públicos de Amargosa.
+
+---
+
 ## 🚀 Instalação
 
 ### Chrome Web Store (Em breve)
@@ -65,20 +80,20 @@ A extensão será disponibilizada oficialmente na Chrome Web Store. Aguarde a ap
 ### Instalação Manual (Modo Desenvolvedor)
 
 1. **Baixe o código fonte:**
-   `ash
+   ```bash
    git clone https://github.com/tarcinwth/sei-amargosa.git
-   `
+   ```
 
 2. **Acesse a página de extensões do Chrome:**
-   - Digite chrome://extensions/ na barra de endereços
+   - Digite `chrome://extensions/` na barra de endereços
    - Ou acesse: Menu → Mais ferramentas → Extensões
 
 3. **Ative o Modo Desenvolvedor:**
-   - No canto superior direito, ative a chave Modo do desenvolvedor
+   - No canto superior direito, ative a chave "Modo do desenvolvedor"
 
 4. **Carregue a extensão:**
-   - Clique em Carregar sem compactação
-   - Selecione a pasta dist/ do projeto
+   - Clique em "Carregar sem compactação"
+   - Selecione a pasta `dist/` do projeto
 
 5. **Pronto!** A extensão SEI Amargosa está instalada e ativa.
 
@@ -96,7 +111,7 @@ Após abrir um processo no SEI, os novos painéis aparecerão automaticamente na
 - **Clique no ícone ✏️** para editar a especificação (abre página de consulta/alteração)
 
 #### 🔢 Número do Processo
-- Exibe o **número SEI completo** (formato: NNNNNNN.NNNNNNN/AAAA-NN)
+- Exibe o **número SEI completo** (formato: `NNNNNNN.NNNNNNN/AAAA-NN`)
 - **Clique no número** para copiar para a área de transferência
 - Útil para colar em outros sistemas ou documentos
 
@@ -104,12 +119,12 @@ Após abrir um processo no SEI, os novos painéis aparecerão automaticamente na
 
 ## 🏛️ Prefeitura Municipal de Amargosa
 
-<p align=center>
+<p align="center">
   <strong>Amargosa - Bahia</strong><br>
-  <a href=https://www.amargosa.ba.gov.br>www.amargosa.ba.gov.br</a>
+  <a href="https://www.amargosa.ba.gov.br">www.amargosa.ba.gov.br</a>
 </p>
 
-Amargosa é um município brasileiro do estado da Bahia, localizado na região do Vale do Jiquiriçá. Conhecida como a Princesa do Vale, possui rica história e cultura.
+Amargosa é um município brasileiro do estado da Bahia, localizado na região do Vale do Jiquiriçá. Conhecida como a "Princesa do Vale", possui rica história e cultura.
 
 ---
 
@@ -125,7 +140,7 @@ Amargosa é um município brasileiro do estado da Bahia, localizado na região d
 
 ### Estrutura do Projeto
 
-`
+```
 sei-amargosa/
 ├── dist/                    # Código compilado (extensão)
 │   ├── css/                 # Estilos
@@ -139,7 +154,7 @@ sei-amargosa/
 │   └── manifest.json        # Configuração da extensão
 ├── src/                     # Código fonte (opcional)
 └── README.md               # Este arquivo
-`
+```
 
 ### Fork do SEI Pro
 
@@ -147,7 +162,7 @@ Este projeto é um fork do [SEI Pro](https://github.com/SEI-Pro/sei-pro), mantid
 
 - Novos painéis de informação na árvore de documentos
 - Identidade visual personalizada
-- Otimizações para o workflow municipal
+- **Melhorias de performance** - Otimizações que eliminam recarregamentos e travamentos
 
 ---
 
@@ -156,9 +171,9 @@ Este projeto é um fork do [SEI Pro](https://github.com/SEI-Pro/sei-pro), mantid
 Contribuições são bem-vindas! Para contribuir:
 
 1. Faça um fork do projeto
-2. Crie uma branch para sua feature (git checkout -b feature/nova-funcionalidade)
-3. Commit suas alterações (git commit -m 'Adiciona nova funcionalidade')
-4. Push para a branch (git push origin feature/nova-funcionalidade)
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
+3. Commit suas alterações (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
 5. Abra um Pull Request
 
 ---
@@ -193,6 +208,6 @@ Para suporte, dúvidas ou sugestões:
 
 ---
 
-<p align=center>
+<p align="center">
   <strong>🌟 Desenvolvido com orgulho para os servidores de Amargosa 🌟</strong>
 </p>
