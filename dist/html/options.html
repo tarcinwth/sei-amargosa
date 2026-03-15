@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="pt-br">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configura&ccedil;&otilde;es Gerais</title>
     <script src="../js/lib/jquery-3.4.1.min.js"></script>
     <script src="../js/lib/jquery-ui.min.js"></script>
@@ -12,18 +13,21 @@
 </head>
 <body class="SEIPro">
     <div class="panel heading">
+        <h1>
+            <img class="icon-space" src="../icons/amargosa/icon-32.png">
+            <span class="title"><span class="name-space"></span><span style="opacity:0.6;font-weight:400;margin:0 8px;">/</span>Configurações</span>
+        </h1>
         <div class="importExport">
-            <button id="export" class="button-flat"><i class="fa fa-download"></i> Baixar <span class="btn_text">Configura&ccedil;&otilde;es</span> </button>
-			<span class="importBtn">
+            <button id="export" class="button-flat"><i class="fa fa-download"></i> <span class="btn_text">Baixar</span></button>
+            <span class="importBtn">
                 <input type="file" id="selectFiles" value="Import" style="display: none" />
-				<button id="import" class="button-flat"><i class="fa fa-file-upload"></i> Carregar <span class="btn_text">Configura&ccedil;&otilde;es</span></button>
-			</span>
-			<button class="save button-flat button-light" style="float:right" style="width: 100px"><i class="fas fa-save"></i> Salvar</button>
+                <button id="import" class="button-flat"><i class="fa fa-file-upload"></i> <span class="btn_text">Carregar</span></button>
+            </span>
+            <button class="save button-flat button-light"><i class="fas fa-save"></i> Salvar</button>
             <div id="alertaBoxPro" style="display: none;"></div>
         </div>
-        <h1><img class="icon-space" src="../icons/icon-32.png" style="vertical-align: middle;margin-right: 10px;"> <span class="title"><span class="name-space"></span> | Configura&ccedil;&otilde;es</span></h1>
     </div>
-    <div class="panel options-panel options-profile" id="options-tabs">
+    <div class="options-panel options-profile" id="options-tabs">
         <ul>
             <li><a href="#options-functions"><i class="fas fa-cog"></i> Geral</a></li>
             <li><a href="#options-database"><i class="fas fa-database"></i> Base de Dados</a></li>

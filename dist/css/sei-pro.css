@@ -1,3 +1,64 @@
+/* ============================================================
+   SEI AMARGOSA — Prefeitura Municipal de Amargosa / BA
+   Identidade Visual v1.0.0
+   ============================================================ */
+
+:root {
+    /* --- Paleta principal de Amargosa --- */
+    --amg-primary:        #1a5276;   /* Azul institucional escuro */
+    --amg-primary-mid:    #2e86c1;   /* Azul médio (hover, destaques) */
+    --amg-primary-light:  #d6eaf8;   /* Azul claro (fundos, badges) */
+    --amg-primary-border: #1f618d;   /* Azul borda */
+
+    --amg-accent:         #1e8449;   /* Verde (natureza, sucesso) */
+    --amg-accent-mid:     #27ae60;   /* Verde médio */
+    --amg-accent-light:   #d5f5e3;   /* Verde claro */
+
+    --amg-gold:           #d4ac0d;   /* Dourado do brasão */
+    --amg-gold-light:     #fef9e7;   /* Dourado claro */
+
+    --amg-danger:         #c0392b;   /* Vermelho alerta */
+    --amg-warning:        #e67e22;   /* Laranja aviso */
+    --amg-info:           #2980b9;   /* Azul informativo */
+
+    /* --- Neutros --- */
+    --amg-text:           #192734;
+    --amg-text-muted:     #5d6d7e;
+    --amg-border:         #d0dce8;
+    --amg-bg:             #f4f8fb;
+    --amg-surface:        #ffffff;
+
+    /* --- Dark mode OFF por padrão (ativado pela classe body.dark-mode) --- */
+    --amg-dm-bg:          #0d1b2a;
+    --amg-dm-surface:     #162130;
+    --amg-dm-primary:     #2e86c1;
+    --amg-dm-text:        #e8f4f8;
+    --amg-dm-border:      #1f3a52;
+}
+
+/* Dark mode — sobrescreve variáveis */
+body.dark-mode {
+    --amg-primary:        #2e86c1;
+    --amg-primary-mid:    #5dade2;
+    --amg-primary-light:  #1a3a52;
+    --amg-primary-border: #2e86c1;
+    --amg-accent:         #27ae60;
+    --amg-accent-mid:     #52be80;
+    --amg-accent-light:   #1a3a2a;
+    --amg-gold:           #f1c40f;
+    --amg-text:           #e8f4f8;
+    --amg-text-muted:     #85929e;
+    --amg-border:         #1f3a52;
+    --amg-bg:             #0d1b2a;
+    --amg-surface:        #162130;
+}
+
+/* ============================================================
+   SUBSTITUIÇÃO DAS CORES GENÉRICAS PELAS DE AMARGOSA
+   ============================================================ */
+
+/* Cor primária: #4285F4, #4285f4, #017fff, #007FFF → --amg-primary-mid */
+
 .fab {
     font-weight: bold !important;
     font-family: "Font Awesome 5 Brands" !important;
@@ -40,7 +101,7 @@
     text-align: center;
 }
 .newLink .fa-layers-counter {
-    background: #017fff;
+    background: var(--amg-primary-mid);
     top: -5px;
     transform: scale(0.6);
     box-shadow: 0px 0px 0px 3px rgb(255 255 255);
@@ -105,10 +166,10 @@ i.amareloColor {
 	color: #F7E157 !important;
 }
 i.verdeColor {
-	color: #9CB639 !important;
+	color: var(--amg-accent-mid) !important;
 }
 i.azulColor {
-	color: #4285F4 !important;
+	color: var(--amg-primary-mid) !important;
 }
 i.rosaColor {
 	color: #ea48cc !important;
@@ -279,7 +340,7 @@ a.newLink.iconStarAtiv {
 }
 a.newLink_confirm,
 a.newLink_confirm:hover {
-    background-color: #007fff !important;
+    background-color: var(--amg-primary-mid) !important;
     color: #fff !important;
 }
 a.newLink_confirm i,
@@ -288,7 +349,7 @@ a.newLink_confirm:hover i {
 }
 .content_btnsave i {
     font-size: 11pt !important;
-    color: #4285f4 !important;
+    color: var(--amg-primary-mid) !important;
 }
 .botaoSEI.newLink,
 .botaoSEI.newLink i {
@@ -741,10 +802,10 @@ a.btn.disabled, fieldset:disabled a.btn { pointer-events: none; }
     transition: all 0.3s ease-in 0s; 
 }
 .onoffswitch-checkbox:checked + .onoff-switch-label {
-    background-color: #007FFF;
+    background-color: var(--amg-primary-mid);
 }
 .onoffswitch-checkbox:checked + .onoff-switch-label, .onoffswitch-checkbox:checked + .onoff-switch-label:before {
-   border-color: #007FFF;
+   border-color: var(--amg-primary-mid);
 }
 .onoffswitch-checkbox:checked + .onoff-switch-label:before {
     right: 0px; 
@@ -823,20 +884,20 @@ td.celStatusAtividade a.iconAtividade:first-child {
     border: 1px solid #ED4A35 !important;
 }
 .atividadesProgresso_analise .ui-progressbar-value {
-    background: #4285F4 !important;
-    border: 1px solid #365ea0 !important;
+    background: var(--amg-primary-mid) !important;
+    border: 1px solid var(--amg-primary) !important;
 }
 #atividadesAnaliseGerencialPro .atividadesProgresso_analise .ui-progressbar-value {
-    background: #9CB639 !important;
-    border: 1px solid #9CB639 !important;
+    background: var(--amg-accent-mid) !important;
+    border: 1px solid var(--amg-accent-mid) !important;
 }
 #atividadesAnaliseGerencialPro .atividadesProgresso_atraso .ui-progressbar-value {
     background: #ad2222 !important;
     border: 1px solid #ad2222 !important;
 }
 .atividadesProgressoPeriodo .ui-progressbar-value {
-    background: #9CB639 !important;
-    border: 1px solid #9CB639 !important;
+    background: var(--amg-accent-mid) !important;
+    border: 1px solid var(--amg-accent-mid) !important;
 }
 .txtAtividadesProgresso {
     position: absolute;
@@ -863,8 +924,8 @@ td.celStatusAtividade a.iconAtividade:first-child {
     margin: 5px;
 }
 #atividadesDistribuicaoPro .atividadesProgressoEntregue.ui-progressbar .ui-progressbar-value {
-    background: #4285F4 !important;
-    border: 1px solid #365ea0 !important;
+    background: var(--amg-primary-mid) !important;
+    border: 1px solid var(--amg-primary) !important;
 }
 .tableFavoritos {
     position: relative;
@@ -884,8 +945,8 @@ div.selectProgressoBar {
     background: #ccc;
 }
 .selectProgressoBar .ui-progressbar-value {
-    background: #4285F4 !important;
-    border: 1px solid #365ea0 !important;
+    background: var(--amg-primary-mid) !important;
+    border: 1px solid var(--amg-primary) !important;
 }
 div.progressPrescricao {
     height: 8px !important;
@@ -1043,14 +1104,14 @@ div.atividadesProgressoBar {
 span.info[contentEditable="true"] {
     background-color: #eef4f9;
     border-radius: 5px;
-    border: 2px solid #4285f4;
+    border: 2px solid var(--amg-primary-mid);
     padding: 0 30px 0 0;
     box-shadow: 0px 0px 2px 0px rgb(66 133 244 / 75%);
     max-width: 99%;
     min-height: 25px;
 }
 .info_checklist.edit {
-    border: 2px solid #4285f4;
+    border: 2px solid var(--amg-primary-mid);
     box-shadow: 0px 0px 2px 0px rgb(66 133 244 / 75%);
 }
 .tagsinput {
@@ -1279,7 +1340,7 @@ td.tdfav_dates.info_dates_follow_empty:hover .info_dates_fav:after {
     cursor: pointer;
 }
 #listIconsFontAwesome span.iconList:hover {
-    background-color: #4285f4 !important;
+    background-color: var(--amg-primary-mid) !important;
 }
 #listIconsFontAwesome span.iconList:hover i,
 #listIconsFontAwesome span.iconList:hover .iconListTxt {
@@ -1415,7 +1476,7 @@ i.iconSwitch {
   margin: -3px 0 0 -3px;
 }
 .dateboxDisplay .circle {
-  stroke: #017fff99;
+  stroke: var(--amg-primary-mid)99;
   fill: none;
   stroke-width: 5.8;
   stroke-linecap: round;
@@ -1595,7 +1656,7 @@ i.iconSwitch {
     color: #505050;
 }
 .ratingWhy span.answer.selected {
-    background-color: #017fff;
+    background-color: var(--amg-primary-mid);
     color: #fff;
 }
 .moreCommentBoxDiv textarea,
@@ -1831,7 +1892,7 @@ table.moreInfoBox td:first-child,
     content: "\f144";
     font-family: 'Font Awesome 5 Pro';
     padding-right: 10px;
-    color: #4285f4;
+    color: var(--amg-primary-mid);
 }
 .kanban-container .kanban-board[data-id="_pausadas"],
 .kanban-container .kanban-board[data-id="_pausadas"] .kanban-board-header {
@@ -1851,7 +1912,7 @@ table.moreInfoBox td:first-child,
     content: "\f058";
     font-family: 'Font Awesome 5 Pro';
     padding-right: 10px;
-    color: #9cb639;
+    color: var(--amg-accent-mid);
 }
 .kanban-container .kanban-board[data-id="_avaliadas"],
 .kanban-container .kanban-board[data-id="_avaliadas"] .kanban-board-header {
@@ -2130,7 +2191,7 @@ table.moreInfoBox td:first-child,
 }
 .kanban-item-priority {
     float: right;
-    background: #4285f4;
+    background: var(--amg-primary-mid);
     color: #fff;
     width: 20px;
     height: 20px;
@@ -2141,7 +2202,6 @@ table.moreInfoBox td:first-child,
     background: #a2a9a9;
 }
 .kanban-item-priority span {
-    vertical-align: sub;
     color: #fff;
     height: 16px;
     width: 20px;
@@ -2230,6 +2290,7 @@ table.moreInfoBox td:first-child,
     margin-top: 2px;
     background: rgba(255, 255, 255, 0.9);
     -webkit-transform: scale(1);
+    transform: scale(1);
     border-radius: 8px;
     overflow: hidden; 
 }
@@ -2304,7 +2365,7 @@ table.moreInfoBox td:first-child,
 }
 .dz-infoupload .text {
     background: #fff;
-    color: #017fff;
+    color: var(--amg-primary-mid);
     display: block;
     padding: 10px 0;
     cursor: pointer;
@@ -2346,7 +2407,7 @@ span.action-doc {
     vertical-align: super;
 }
 span.action-doc:hover {
-    background: #017fff;
+    background: var(--amg-primary-mid);
     text-decoration: none !important;
 }
 span.action-doc:hover i {
@@ -2658,7 +2719,7 @@ td.editCellLoading:after {
     content: "\f2f1" !important;
     position: absolute;
     font-family: 'Font Awesome 5 Pro';
-    color: #017fff !important;
+    color: var(--amg-primary-mid) !important;
     animation: fa-spin 2s linear infinite;
     margin-left: 10px;
     font-weight: 600;
@@ -2820,7 +2881,7 @@ td.editCellSEI.editCellLoading:after,
 td.editCellNew.editCellLoading:after,
 td.editCellSelect.editCellLoading:after {
     content: "\f2f1" !important;
-    color: #017fff !important;
+    color: var(--amg-primary-mid) !important;
 }
 .editDisabled td:hover:after,
 td.inEdit:hover:after {
@@ -2862,21 +2923,21 @@ div#divInfraBarraSistemaE.barSuspenso:before {
 .tableOptionConfig tr[data-key="tipo_processo"] td:first-child:before {
     content: "\f07c";
     font-family: 'Font Awesome 5 Pro';
-    color: #017fff;
+    color: var(--amg-primary-mid);
     margin-right: 10px;
     font-weight: 600;
 }
 .tableOptionConfig tr[data-key="etiquetas"] td:first-child:before {
     content: "\f02b";
     font-family: 'Font Awesome 5 Pro';
-    color: #017fff;
+    color: var(--amg-primary-mid);
     margin-right: 10px;
     font-weight: 600;
 }
 .tableOptionConfig tr[data-key="checklist"] td:first-child:before {
     content: "\f14a";
     font-family: 'Font Awesome 5 Pro';
-    color: #017fff;
+    color: var(--amg-primary-mid);
     margin-right: 10px;
     font-size: 12pt;
     font-weight: 600;
@@ -2917,9 +2978,49 @@ div#divInfraBarraSistemaE.barSuspenso:before {
 .panelDadosArvorePro, 
 .panelDadosArvore, 
 .stickDadosArvore {
-    border-top: 1px solid rgb(218, 218, 218) !important;
-    padding: 1.2em 0.2em 1.2em 1.2em !important;
-    width: calc(100% - 1.4em) !important;
+    /* AMG v1: visual unificado com border-left colorida */
+    border-top: 1px solid rgba(208, 220, 232, 0.6) !important;
+    border-left: 3px solid var(--amg-primary-light, #d6eaf8) !important;
+    padding: 1.0em 0.4em 1.0em 1.0em !important;
+    width: calc(100% - 1.7em) !important;
+    transition: border-left-color 0.15s ease;
+}
+.panelDadosArvorePro:hover,
+.panelDadosArvore:hover {
+    border-left-color: var(--amg-primary-mid, #2e86c1) !important;
+}
+/* Tramitação — identidade forte */
+.panelDadosArvore[data-type="timeline_amg"] {
+    border-left-color: var(--amg-primary-mid, #2e86c1) !important;
+}
+/* Marcador e acompanhamento — âmbar */
+.panelDadosArvore[data-type="marcador"],
+.panelDadosArvore[data-type="acompanhamento_especial"] {
+    border-left-color: var(--amg-gold, #d4ac0d) !important;
+}
+/* Especificação e tipo — verde */
+.panelDadosArvore[data-type="descricao"],
+.panelDadosArvore[data-type="tipo_procedimento"] {
+    border-left-color: var(--amg-accent-mid, #27ae60) !important;
+}
+/* Notas — cor neutra destacada */
+.stickDadosArvore {
+    border-left-color: var(--amg-primary-mid, #2e86c1) !important;
+}
+/* Label dos painéis com peso correto */
+.panelDadosArvorePro label.newLink,
+.panelDadosArvore label.newLink {
+    font-weight: 500 !important;
+    font-size: 10.5pt !important;
+    color: var(--amg-text, #192734) !important;
+    letter-spacing: 0.1px;
+}
+/* Ícone alinhado com o label */
+.panelDadosArvorePro .iconDadosProcesso,
+.panelDadosArvore .iconDadosProcesso {
+    color: var(--amg-primary-mid, #2e86c1) !important;
+    width: 18px !important;
+    text-align: center;
 }
 .stickDadosArvore {
     transition: all 300ms linear;
@@ -2965,7 +3066,7 @@ div#divInfraBarraSistemaE.barSuspenso:before {
 }
 .stickDadosArvore .checkListStickNote,
 .stickDadosArvore .priorityStickNote {
-    color: #4285f4 !important;
+    color: var(--amg-primary-mid) !important;
 }
 .stickDadosArvore.priority .priorityStickNote {
     color: #e46e64 !important;
@@ -3051,7 +3152,7 @@ div#divInfraBarraSistemaE.barSuspenso:before {
 }
 .info_checklist {
     display: block;
-    color: #4285f4;
+    color: var(--amg-primary-mid);
     margin-top: 20px;
     font-size: 11pt;
     background: #eef4f9;
@@ -3059,7 +3160,7 @@ div#divInfraBarraSistemaE.barSuspenso:before {
     padding: 5px 8px;
 }
 .info_checklist .info_checklist_head {
-    color: #4285f4;
+    color: var(--amg-primary-mid);
     font-weight: bold;
     margin-bottom: 10px;
     display: flex;
@@ -3089,7 +3190,7 @@ div#divInfraBarraSistemaE.barSuspenso:before {
     background: #cfe0f8;
 }
 .info_checklist .checklist_progress.ui-progressbar .ui-progressbar-value {
-    background: #4285f4;
+    background: var(--amg-primary-mid);
     border: none;
 }
 .info_checklist .info_checklist_new {
@@ -3402,10 +3503,10 @@ div#chartAtivActions .chosen-container {
     margin-left: 20px;
 }
 .kanban-pinboard .newLink_active {
-    background-color: #4285f4 !important;
+    background-color: var(--amg-primary-mid) !important;
 }
 .kanban-pinboard .newLink_active:hover i {
-    color: #4285f4 !important;
+    color: var(--amg-primary-mid) !important;
 }
 .kanban-pinboard .newLink_active i {
     color: #fff !important;
@@ -3415,10 +3516,10 @@ div#chartAtivActions .chosen-container {
 }
 .kanban-item a.newLink .fa-pencil-alt,
 .kanban-item a.newLink .fa-play-circle {
-    color: #4285f4;
+    color: var(--amg-primary-mid);
 }
 .kanban-item a.newLink .fa-check-circle {
-    color: #9cb639;
+    color: var(--amg-accent-mid);
 }
 .kanban-item a.newLink .fa-star-half-alt {
     color: #e3b044;
@@ -3528,7 +3629,6 @@ ul.sm-nowrap {
     display: none !important;
 }
 #newFiltro {
-    display: inline-block; 
     vertical-align: top; 
     float: right; 
     text-align: right; 
@@ -3819,8 +3919,8 @@ input[type="currency"]{
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background-color: #4285F4;
-    color: #4285F4;
+    background-color: var(--amg-primary-mid);
+    color: var(--amg-primary-mid);
     animation: dot-flashing 1s infinite linear alternate;
     animation-delay: 0.5s;
 }
@@ -3835,8 +3935,8 @@ input[type="currency"]{
     width: 7px;
     height: 7px;
     border-radius: 5px;
-    background-color: #4285F4;
-    color: #4285F4;
+    background-color: var(--amg-primary-mid);
+    color: var(--amg-primary-mid);
     animation: dot-flashing 1s infinite alternate;
     animation-delay: 0s;
 }
@@ -3845,15 +3945,15 @@ input[type="currency"]{
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background-color: #4285F4;
-    color: #4285F4;
+    background-color: var(--amg-primary-mid);
+    color: var(--amg-primary-mid);
     animation: dot-flashing 1s infinite alternate;
     animation-delay: 1s;
 }
 
 @keyframes dot-flashing {
     0% {
-        background-color: #4285F4;
+        background-color: var(--amg-primary-mid);
     }
     50%, 100% {
         background-color: rgba(152, 128, 255, 0.2);
@@ -3910,6 +4010,17 @@ div[id*="_addTag"]:has(.tag-input) {
 }
 .especifProc {
     text-align: center;
+    /* AMG v1: transição suave — sem piscar */
+    opacity: 1;
+    transition: opacity 0.15s ease;
+}
+/* estado inicial ao inserir — invisível */
+.especifProc.especifProc-enter {
+    opacity: 0;
+}
+/* estado final — visível (classe adicionada via JS após reflow) */
+.especifProc.especifProc-enter.especifProc-visible {
+    opacity: 1;
 }
 #projetosGanttDiv i.iconPopup {
     margin-top: 7px;
@@ -3957,7 +4068,7 @@ div#dialogBoxDocLote p {
     content: "\f2f1";
     font-family: 'Font Awesome 5 Pro';
     margin: 0 10px;
-    color: #007fff;
+    color: var(--amg-primary-mid);
     animation: fa-spin 2s linear infinite;
     font-weight: bold;
     display: inline-block;
@@ -4388,4 +4499,409 @@ div#dialogBoxDocLote p {
 .chosen-container .chosen-results li {
     float: initial !important;
     padding: 5px 6px !important;
+}
+
+/* ============================================================
+   SEI AMARGOSA — Estilos específicos do município
+   ============================================================ */
+
+/* Barra superior do SEI com cores de Amargosa */
+body.seiSlim .infraCorBarraSuperior,
+body.seiSlim #divInfraBarraSistemaPadraoE,
+body.seiSlim #divInfraBarraSistemaE {
+    background-color: var(--amg-primary) !important;
+    border-bottom: 3px solid var(--amg-gold) !important;
+}
+
+/* Menu lateral com tom de Amargosa */
+body.seiSlim #infraMenu,
+body.seiSlim .infraMenu {
+    border-right: 2px solid var(--amg-primary-light) !important;
+}
+
+/* Links e destaques do menu */
+body.seiSlim #infraMenu a:hover,
+body.seiSlim .infraMenu a:hover {
+    color: var(--amg-primary-mid) !important;
+    background-color: var(--amg-primary-light) !important;
+}
+
+/* Botões de ação principais */
+.btn-primary,
+.infraButton,
+input[type="submit"].infraButton {
+    background-color: var(--amg-primary-mid) !important;
+    border-color: var(--amg-primary) !important;
+    color: #fff !important;
+}
+.btn-primary:hover,
+.infraButton:hover {
+    background-color: var(--amg-primary) !important;
+    border-color: var(--amg-primary) !important;
+}
+
+/* Badge de identificação do município no canto da barra */
+.amg-badge-municipio {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+.amg-badge-municipio::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--amg-gold);
+    border-radius: 50%;
+}
+
+/* Tarja de identidade na página inicial */
+#amg-header-identity {
+    background: linear-gradient(135deg, var(--amg-primary) 0%, var(--amg-primary-mid) 100%);
+    border-bottom: 3px solid var(--amg-gold);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    border-radius: 0 0 6px 6px;
+}
+#amg-header-identity .amg-title {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+#amg-header-identity .amg-sub {
+    color: rgba(255,255,255,0.75);
+    font-size: 11px;
+    margin-top: 2px;
+}
+#amg-header-identity .amg-date {
+    color: rgba(255,255,255,0.8);
+    font-size: 11px;
+    text-align: right;
+}
+
+/* Indicador de secretaria na linha da tabela de processos */
+.amg-sec-saude    { border-left: 4px solid #1e8449 !important; }
+.amg-sec-educacao { border-left: 4px solid #e67e22 !important; }
+.amg-sec-admin    { border-left: 4px solid var(--amg-primary-mid) !important; }
+.amg-sec-obras    { border-left: 4px solid #7d6608 !important; }
+.amg-sec-social   { border-left: 4px solid #8e44ad !important; }
+.amg-sec-outros   { border-left: 4px solid #95a5a6 !important; }
+
+/* Dark mode — ajustes de identidade */
+body.dark-mode #amg-header-identity {
+    background: linear-gradient(135deg, var(--amg-dm-surface) 0%, var(--amg-dm-primary) 100%);
+    border-bottom-color: var(--amg-gold);
+}
+body.dark-mode .btn-primary,
+body.dark-mode .infraButton {
+    background-color: var(--amg-primary-mid) !important;
+    border-color: var(--amg-primary-border) !important;
+}
+body.dark-mode body {
+    background-color: var(--amg-dm-bg) !important;
+    color: var(--amg-dm-text) !important;
+}
+
+
+/* ============================================================
+   AMG — Timeline de Tramitação na Árvore
+   ============================================================ */
+
+.amg-timeline-painel {
+    padding-bottom: 4px;
+}
+
+.amg-timeline-corpo {
+    padding: 4px 4px 4px 8px !important;
+}
+
+/* cada etapa da timeline */
+.amg-tl-etapa {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 2px;
+}
+
+/* ponto da etapa */
+.amg-tl-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--amg-border, #d0dce8);
+    border: 2px solid var(--amg-primary-mid, #2e86c1);
+    flex-shrink: 0;
+    margin-top: 4px;
+    margin-right: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+/* etapa atual — destaque */
+.amg-tl-etapa-atual .amg-tl-dot {
+    background: var(--amg-primary-mid, #2e86c1);
+    border-color: var(--amg-primary, #1a5276);
+    width: 12px;
+    height: 12px;
+    box-shadow: 0 0 0 3px rgba(46, 134, 193, 0.2);
+}
+
+/* linha vertical entre etapas */
+.amg-tl-linha {
+    position: absolute;
+    left: 4px;
+    top: 14px;
+    width: 2px;
+    height: calc(100% - 4px);
+    background: var(--amg-border, #d0dce8);
+    z-index: 0;
+}
+
+/* conteúdo da etapa */
+.amg-tl-conteudo {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    min-width: 0;
+}
+
+.amg-tl-unidade {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--amg-text, #192734);
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+}
+
+.amg-tl-etapa-atual .amg-tl-unidade {
+    color: var(--amg-primary, #1a5276);
+    font-weight: 700;
+}
+
+.amg-tl-data {
+    font-size: 10px;
+    color: var(--amg-text-muted, #5d6d7e);
+    margin-top: 1px;
+}
+
+.amg-tl-mais {
+    font-size: 10px;
+    color: var(--amg-text-muted, #5d6d7e);
+    font-style: italic;
+    padding: 2px 0 8px 18px;
+}
+
+.amg-tl-vazio {
+    font-size: 11px;
+    color: var(--amg-text-muted, #5d6d7e);
+    display: block;
+    padding: 4px 0;
+}
+
+/* Dark mode */
+body.dark-mode .amg-tl-unidade {
+    color: var(--amg-dm-text, #e8f4f8);
+}
+body.dark-mode .amg-tl-etapa-atual .amg-tl-unidade {
+    color: var(--amg-primary-mid, #2e86c1);
+}
+body.dark-mode .amg-tl-dot {
+    border-color: var(--amg-primary-mid, #2e86c1);
+    background: var(--amg-dm-surface, #162130);
+}
+body.dark-mode .amg-tl-etapa-atual .amg-tl-dot {
+    background: var(--amg-primary-mid, #2e86c1);
+}
+body.dark-mode .amg-tl-linha {
+    background: var(--amg-dm-border, #1f3a52);
+}
+
+
+/* ============================================================
+   AMG v1 — Botões de ação da barra de comandos
+   ============================================================ */
+.botaoSEI.newLink,
+.botaoSEI.newLink i {
+    transition: background 0.12s ease, color 0.12s ease !important;
+}
+.botaoSEI.newLink:hover {
+    background-color: var(--amg-primary-light, #d6eaf8) !important;
+    border-radius: 5px !important;
+    color: var(--amg-primary, #1a5276) !important;
+}
+.botaoSEI.newLink:hover i {
+    color: var(--amg-primary, #1a5276) !important;
+}
+/* Altura consistente com botões nativos */
+.seiSlim .botaoSEI.newLink {
+    min-height: 30px;
+    display: inline-flex !important;
+    align-items: center;
+    border-radius: 4px;
+}
+
+/* ============================================================
+   AMG v1 — Highlight de processo novo (polling)
+   ============================================================ */
+tr.amg-proc-novo {
+    animation: amg-highlight-novo 3s ease forwards;
+}
+@keyframes amg-highlight-novo {
+    0%   { background-color: #d6eaf8; }
+    70%  { background-color: rgba(214, 234, 248, 0.4); }
+    100% { background-color: transparent; }
+}
+
+/* ============================================================
+   AMG v1 — Toast de notificação
+   ============================================================ */
+#amg-toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999999;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   AMG — Identidade visual avançada (sei-pro.css)
+   ============================================================ */
+
+/* ── Filtros ativos com cor de Amargosa ── */
+a.newLink.filterIfraTable.newLink_active,
+a.newLink.filterTableProcessos.newLink_active {
+    background: var(--amg-primary-light, #d6eaf8) !important;
+    border-left: 3px solid var(--amg-primary-mid, #2e86c1) !important;
+    border-radius: 5px;
+}
+a.newLink.filterIfraTable.newLink_active i,
+a.newLink.filterTableProcessos.newLink_active i {
+    color: var(--amg-primary, #1a5276) !important;
+}
+
+/* ── Selects e inputs com borda Amargosa ── */
+.selectPro,
+select.selectPro {
+    border-color: var(--amg-primary-light, #d6eaf8) !important;
+}
+.selectPro:focus,
+select.selectPro:focus {
+    border-color: var(--amg-primary-mid, #2e86c1) !important;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(46,134,193,0.15);
+}
+
+/* ── Linha de processo selecionada com tom Amargosa ── */
+.seiSlim tr.infraTrMarcada {
+    background-color: var(--amg-primary-light, #d6eaf8) !important;
+    border-left: 3px solid var(--amg-primary-mid, #2e86c1);
+}
+.seiSlim tr.infraTrSelecionada {
+    background-color: rgba(214, 234, 248, 0.6) !important;
+}
+
+/* ── Urgente com visual mais agressivo ── */
+tr.urgentePro {
+    background-color: #fff1f0 !important;
+    border-left: 4px solid #c0392b !important;
+}
+tr.urgentePro td:first-child {
+    border-left: 4px solid #c0392b;
+}
+
+/* ── Linha de processo não visualizado ── */
+.seiSlim a.processoNaoVisualizado,
+.seiSlim .processoNaoVisualizado a {
+    font-weight: 600 !important;
+}
+
+/* ── Numeração/paginação da lista ── */
+.seiSlim caption.infraCaption,
+.seiSlim caption.infraCaption span,
+.seiSlim caption.infraCaption a {
+    color: var(--amg-text-muted, #5d6d7e) !important;
+}
+
+/* ── chosen dropdown com cor Amargosa ── */
+.chosen-container-active .chosen-single,
+.chosen-container-active .chosen-choices {
+    border-color: var(--amg-primary-mid, #2e86c1) !important;
+    box-shadow: 0 0 0 2px rgba(46,134,193,0.15) !important;
+}
+.chosen-results li.highlighted {
+    background: var(--amg-primary, #1a5276) !important;
+    color: #fff !important;
+}
+
+/* ── Botão de ação da barra (ícone colorido) ── */
+.seiSlim .iconBoxSlim.botaoSEI .botaoSEI_iconBox i {
+    transition: color 0.12s ease;
+}
+.seiSlim .iconBoxSlim.botaoSEI:hover .botaoSEI_iconBox i {
+    color: #ffffff !important;
+}
+
+/* ── Título da página principal ── */
+.seiSlim .titlePanelHome,
+.seiSlim div.infraBarraLocalizacao:not(.titlePanelHome),
+.seiSlim .titlePanel {
+    color: var(--amg-primary, #1a5276) !important;
+    border-bottom: 2px solid var(--amg-primary-light, #d6eaf8);
+    padding-bottom: 8px;
+}
+
+/* ── Aba ativa no painel (processos recebidos/gerados) ── */
+.seiSlim caption.infraCaption td {
+    border-bottom: 2px solid var(--amg-primary-mid, #2e86c1) !important;
+    color: var(--amg-primary, #1a5276) !important;
+}
+
+/* ── Link do número do processo na tabela ── */
+.seiSlim #tblProcessosRecebidos a[href*="procedimento_trabalhar"],
+.seiSlim #tblProcessosGerados a[href*="procedimento_trabalhar"],
+.seiSlim #tblProcessosDetalhado a[href*="procedimento_trabalhar"] {
+    color: var(--amg-primary, #1a5276) !important;
+    font-weight: 500;
+}
+.seiSlim #tblProcessosRecebidos a[href*="procedimento_trabalhar"]:not(:visited),
+.seiSlim #tblProcessosGerados a[href*="procedimento_trabalhar"]:not(:visited) {
+    color: var(--amg-danger, #c0392b) !important;
+}
+
+/* ── Scrollbar com tons de Amargosa (Chrome/Edge) ── */
+body::-webkit-scrollbar,
+#divInfraAreaTelaE::-webkit-scrollbar {
+    width: 6px;
+}
+body::-webkit-scrollbar-track,
+#divInfraAreaTelaE::-webkit-scrollbar-track {
+    background: #f4f8fb;
+}
+body::-webkit-scrollbar-thumb,
+#divInfraAreaTelaE::-webkit-scrollbar-thumb {
+    background: var(--amg-primary-mid, #2e86c1);
+    border-radius: 3px;
+}
+body::-webkit-scrollbar-thumb:hover,
+#divInfraAreaTelaE::-webkit-scrollbar-thumb:hover {
+    background: var(--amg-primary, #1a5276);
 }

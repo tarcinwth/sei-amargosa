@@ -36,7 +36,7 @@ function handleClientLoadPro(TimeOut = 3000) {
         setTimeout(function(){ 
             handleClientLoadPro(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload handleClientLoadPro'); 
-        }, 500);
+        }, 150);
     }
 }
 
@@ -585,7 +585,7 @@ function insertGroupTable(TimeOut = 9000) {
         setTimeout(function(){ 
             insertGroupTable(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload insertGroupTable'); 
-        }, 500);
+        }, 150);
     }
 }
 function initChosenFilterHome(TimeOut = 9000) {
@@ -608,7 +608,7 @@ function initChosenFilterHome(TimeOut = 9000) {
         setTimeout(function(){ 
             initChosenFilterHome(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initChosenFilterHome'); 
-        }, 500);
+        }, 150);
     }
 }
 function removeCacheGroupTable(this_) {
@@ -824,7 +824,7 @@ function initDadosProcesso(TimeOut = 9000) {
         setTimeout(function(){ 
             initDadosProcesso(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initDadosProcesso'); 
-        }, 500);
+        }, 150);
     }
 }
 
@@ -959,7 +959,7 @@ function initNewTabProcesso(TimeOut = 9000) {
         setTimeout(function(){ 
             initNewTabProcesso(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initNewTabProcesso'); 
-        }, 500);
+        }, 150);
     }
 }
 function getNewTabProcesso() { 
@@ -1161,7 +1161,7 @@ function initPanelFavorites(TimeOut = 9000) {
         setTimeout(function(){ 
             initPanelFavorites(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initPanelFavorites'); 
-        }, 500);
+        }, 150);
     }
 }
 function checkLoadConfigSheets(TimeOut = 9000) {
@@ -1179,7 +1179,7 @@ function checkLoadConfigSheets(TimeOut = 9000) {
         setTimeout(function(){ 
             checkLoadConfigSheets(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload checkLoadConfigSheets'); 
-        }, 500);
+        }, 150);
     }
 }
 function orderDivPanel(html, idOrder, name) {
@@ -1386,7 +1386,7 @@ function initTableSorterHome(TimeOut = 1000) {
             if (typeof $().tablesorter === 'undefined' && TimeOut == 1000) { $.getScript(parent.URL_SPRO+"js/lib/jquery.tablesorter.combined.min.js") }
             initTableSorterHome(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initTableSorterHome'); 
-        }, 500);
+        }, 150);
     }
 }
 function setTableSorterHome() {
@@ -1597,7 +1597,7 @@ function observeAreaTela(TimeOut = 9000) {
         setTimeout(function(){ 
             observeAreaTela(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload observeAreaTela'); 
-        }, 500);
+        }, 150);
     }
 }
 
@@ -1642,7 +1642,7 @@ function initReplaceSticknoteHome(TimeOut = 9000) {
         setTimeout(function(){ 
             initReplaceSticknoteHome(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initReplaceSticknoteHome'); 
-        }, 500);
+        }, 150);
     }
 }
 function initFullnameAtribuicao(TimeOut = 9000) {
@@ -1655,7 +1655,7 @@ function initFullnameAtribuicao(TimeOut = 9000) {
         setTimeout(function(){ 
             initFullnameAtribuicao(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initFullnameAtribuicao');  
-        }, 500);
+        }, 150);
     }
 }
 function initViewEspecifacaoProcesso(TimeOut = 9000) {
@@ -1668,7 +1668,7 @@ function initViewEspecifacaoProcesso(TimeOut = 9000) {
         setTimeout(function(){ 
             initViewEspecifacaoProcesso(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initViewEspecifacaoProcesso'); 
-        }, 500);
+        }, 150);
     }
 }
 function initFaviconNrProcesso(TimeOut = 9000) {
@@ -1681,7 +1681,7 @@ function initFaviconNrProcesso(TimeOut = 9000) {
         setTimeout(function(){ 
             initFaviconNrProcesso(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initFaviconNrProcesso'); 
-        }, 500);
+        }, 150);
     }
 }
 function initReloadModalLink(TimeOut = 9000) {
@@ -1692,7 +1692,7 @@ function initReloadModalLink(TimeOut = 9000) {
         setTimeout(function(){ 
             initReloadModalLink(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initReloadModalLink'); 
-        }, 500);
+        }, 150);
     }
 }
 function initReplaceNewIcons(TimeOut = 9000) {
@@ -1704,7 +1704,7 @@ function initReplaceNewIcons(TimeOut = 9000) {
         setTimeout(function(){ 
             initReplaceNewIcons(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initReplaceNewIcons => '+TimeOut); 
-        }, 500);
+        }, 150);
     }
 }
 function initObserveUrlChange(TimeOut = 9000) {
@@ -1715,7 +1715,7 @@ function initObserveUrlChange(TimeOut = 9000) {
         setTimeout(function(){ 
             initObserveUrlChange(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initObserveUrlChange => '+TimeOut); 
-        }, 500);
+        }, 150);
     }
 }
 function setObserveUrlChange() {
@@ -1813,7 +1813,7 @@ function initAddKanbanProc(type = storeGroupTablePro(), loop = 3, TimeOut = 9000
         setTimeout(function(){ 
             initAddKanbanProc(type, loop, TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initAddKanbanProc'); 
-        }, 500);
+        }, 150);
     }
 }
 function addKanbanProc(type = storeGroupTablePro(), loop = 3) {
@@ -2855,7 +2855,7 @@ function initControlePrazo(force = false, TimeOut = 9000) {
         setTimeout(function(){ 
             initControlePrazo(force, TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initControlePrazo'); 
-        }, 500);
+        }, 150);
     }
 }
 function getAllMarcadoresHome() {
@@ -2889,7 +2889,7 @@ function initAllMarcadoresHome(TimeOut = 9000) {
         setTimeout(function(){ 
             initAllMarcadoresHome(TimeOut - 100); 
             if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initAllMarcadoresHome'); 
-        }, 500);
+        }, 150);
     }
 }
 function initNaoVisualizadoPro() {
@@ -3141,6 +3141,8 @@ function initSeiPro() {
         storeVersionSEI();
         if (typeof checkDadosAcompEspecial !== 'undefined') checkDadosAcompEspecial();
         if (sessionStorage.getItem('configHost_Pro') === null && typeof getConfigHost !== 'undefined') getConfigHost();
+        // AMG: iniciar polling silencioso de novos processos
+        amgIniciarPolling();
 	} else if ( $("#ifrArvore").length > 0 ) {
         if (!checkHostLimit()) initDadosProcesso();
         initObserveUrlChange();
@@ -3163,4 +3165,103 @@ function initSeiPro() {
         });
     }
 }
+
+// ============================================================
+// AMG — Atualização silenciosa da lista de processos
+// Polling a cada 2 minutos: diff com lista atual, insere
+// novas linhas com highlight sem recarregar a página.
+// ============================================================
+var _amgPollingAtivo = false;
+var _amgPollingTimer = null;
+var _amgPollingHash = '';
+
+function amgGetHashLista() {
+    var ids = [];
+    $('#tblProcessosRecebidos tbody tr').each(function() {
+        var link = $(this).find('a[href*="acao=procedimento_trabalhar"]');
+        if (link.length) {
+            var id = getParamsUrlPro(link.attr('href')).id_procedimento;
+            if (id) ids.push(id);
+        }
+    });
+    return ids.join(',');
+}
+
+function amgPollingProcessos() {
+    if (_amgPollingAtivo) return;
+    // Só roda na página de controle de processos
+    if ($('#tblProcessosRecebidos').length === 0) return;
+    // Não roda se há agrupamento ativo (evita conflito visual)
+    if (storeGroupTablePro() && storeGroupTablePro() !== 'all') return;
+
+    _amgPollingAtivo = true;
+    var form = $('#frmProcedimentoControlar');
+    if (!form.length) { _amgPollingAtivo = false; return; }
+
+    var href = form.attr('action');
+    var param = {};
+    form.find('input[type=hidden]').each(function() {
+        if ($(this).attr('name') && $(this).attr('id') && $(this).attr('id').indexOf('hdn') !== -1) {
+            param[$(this).attr('name')] = $(this).val();
+        }
+    });
+    param['hdnRecebidosPaginaAtual'] = 1;
+
+    $.ajax({ method: 'POST', data: param, url: href, timeout: 15000 })
+        .done(function(html) {
+            try {
+                var $html = $(html);
+                var novasLinhas = [];
+                var idsAtuais = amgGetHashLista().split(',').filter(Boolean);
+
+                $html.find('#tblProcessosRecebidos tbody tr').each(function() {
+                    var link = $(this).find('a[href*="acao=procedimento_trabalhar"]');
+                    if (!link.length) return;
+                    var id = getParamsUrlPro(link.attr('href')).id_procedimento;
+                    if (id && idsAtuais.indexOf(String(id)) === -1) {
+                        novasLinhas.push($(this)[0].outerHTML);
+                    }
+                });
+
+                if (novasLinhas.length > 0) {
+                    var tbody = $('#tblProcessosRecebidos tbody');
+                    novasLinhas.reverse().forEach(function(html) {
+                        var tr = $(html).addClass('amg-proc-novo');
+                        tbody.prepend(tr);
+                        // Fade in suave
+                        tr.hide().fadeIn(400);
+                    });
+                    // Atualizar contador
+                    var totalAtual = parseInt($('#hdnRecebidosNroItens').val() || 0);
+                    var novoTotal = totalAtual + novasLinhas.length;
+                    $('#hdnRecebidosNroItens').val(novoTotal);
+                    $('#tblProcessosRecebidos caption.infraCaption').html(
+                        '<span>' + novoTotal + ' registros:</span>'
+                    );
+                    // Re-aplicar funcionalidades nas novas linhas
+                    if (checkConfigValue('gerenciarfavoritos') && typeof appendStarOnProcess === 'function') appendStarOnProcess();
+                    initViewEspecifacaoProcesso();
+                    // Toast de notificação
+                    amgToast('info', 'list', novasLinhas.length + ' novo(s) processo(s) recebido(s)');
+                }
+            } catch(e) {
+                console.warn('[AMG Polling] erro ao processar resposta:', e);
+            }
+        })
+        .fail(function() {
+            console.warn('[AMG Polling] falha na requisição');
+        })
+        .always(function() {
+            _amgPollingAtivo = false;
+        });
+}
+
+function amgIniciarPolling() {
+    if (_amgPollingTimer) clearInterval(_amgPollingTimer);
+    // Primeiro check: 2 minutos após carregamento
+    _amgPollingTimer = setInterval(function() {
+        amgPollingProcessos();
+    }, 2 * 60 * 1000);
+}
+
 $(document).ready(function () { initSeiPro() });

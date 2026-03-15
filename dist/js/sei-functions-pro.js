@@ -2685,18 +2685,33 @@ function updateDadosArvoreIframe(nameLink, idElement, value, ifrArvore, callback
     
 }
 function viewEspecifacaoProcesso() {
-    setTimeout(() => {
-        var tableProc = $('#tblProcessosRecebidos, #tblProcessosGerados, #tblProcessosDetalhado');
-            tableProc.find('.especifProc').remove();
-            if (typeof storeGroupTablePro() === 'undefined' || !storeGroupTablePro()) {
-                tableProc.find('a[href*="controlador.php?acao=procedimento_trabalhar"]').each(function(){
-                    var especifProc = extractTooltipToArray($(this).attr('onmouseover'));
-                        especifProc = (especifProc) ? especifProc[0] : false;
-                        if (especifProc) $(this).before('<div class="especifProc">'+especifProc+'</div>');
-                });
+    // AMG v1: sem setTimeout, sem piscar
+    // AMG v1.1: busca robusta via TD para funcionar no SEI4 (span wrapper)
+    var tableProc = $('#tblProcessosRecebidos, #tblProcessosGerados, #tblProcessosDetalhado');
+    var storeGroup = storeGroupTablePro();
+    if (typeof storeGroup === 'undefined' || !storeGroup) {
+        tableProc.find('a[href*="controlador.php?acao=procedimento_trabalhar"]').each(function(){
+            var especifProc = extractTooltipToArray($(this).attr('onmouseover'));
+                especifProc = (especifProc) ? especifProc[0] : false;
+            if (!especifProc) return;
+            // Busca robusta: procura no TD pai (funciona no SEI3 e SEI4)
+            var td = $(this).closest('td');
+            var existente = td.find('.especifProc');
+            if (existente.length > 0) {
+                // já existe — só atualiza se o texto mudou
+                if (existente.text() !== especifProc) existente.text(especifProc);
+            } else {
+                // novo — insere antes do link com transição suave
+                var div = $('<div class="especifProc especifProc-enter">').text(especifProc);
+                $(this).before(div);
+                div[0].getBoundingClientRect(); // força reflow para transição
+                div.addClass('especifProc-visible');
             }
-        // console.log(storeGroupTablePro());
-    }, 100);
+        });
+    } else {
+        // modo agrupado — limpa especificações
+        tableProc.find('.especifProc').remove();
+    }
 }
 function addNewItemSelect(_this) {
     if ($(_this).val().toString() == '0') {
@@ -6103,17 +6118,23 @@ function confirmaBoxPro(text, func, titBtn = 'OK', cancel = false, titBtnCancel 
         });
 }
 function alertaBoxPro(status, icon, text, func_ok = false) {
+    // AMG v1: erros e confirmações mantêm o dialog; sucessos viram toast
+    if (status === 'Sucess' && typeof func_ok !== 'function') {
+        amgToast('success', icon, text);
+        return;
+    }
+    // Erros e ações com callback mantêm o dialog original
     resetDialogBoxPro('alertBoxPro');
     alertBoxPro = $('#alertaBoxPro')
         .html('<strong class="alerta'+status+'Pro dialogBoxDiv"><i class="fas fa-'+icon+'" style="margin-right: 5px;"></i> '+text+'</strong>')
         .dialog({
             title: NAMESPACE_SPRO,
-        	width: 400,
-        	close: function() { 
+            width: 400,
+            close: function() {
                 alertBoxPro = false;
                 $('.alerta'+status+'Pro').html('');
-             },
-        	buttons: [{
+            },
+            buttons: [{
                 text: "OK",
                 class: "confirm",
                 click: function() {
@@ -6122,6 +6143,47 @@ function alertaBoxPro(status, icon, text, func_ok = false) {
                 }
             }]
         });
+}
+
+// AMG v1 — Toast nativo (substitui alertaBoxPro para sucessos)
+function amgToast(tipo, icon, texto, duracao) {
+    duracao = duracao || 3500;
+    var cores = {
+        success: { bg: 'var(--amg-accent, #1e8449)',      borda: 'var(--amg-accent-mid, #27ae60)' },
+        error:   { bg: 'var(--amg-danger, #c0392b)',      borda: '#e74c3c' },
+        info:    { bg: 'var(--amg-primary, #1a5276)',     borda: 'var(--amg-primary-mid, #2e86c1)' },
+        warning: { bg: 'var(--amg-warning, #e67e22)',     borda: '#f39c12' }
+    };
+    var cor = cores[tipo] || cores.info;
+    var id = 'amg-toast-' + Date.now();
+
+    if ($('#amg-toast-container').length === 0) {
+        $('body').append('<div id="amg-toast-container" style="position:fixed;bottom:20px;right:20px;z-index:9999999;display:flex;flex-direction:column;gap:8px;pointer-events:none;"></div>');
+    }
+
+    var toast = $(
+        '<div id="' + id + '" style="' +
+        'background:' + cor.bg + ';' +
+        'border-left:4px solid ' + cor.borda + ';' +
+        'color:#fff;padding:10px 14px;border-radius:6px;' +
+        'box-shadow:0 4px 12px rgba(0,0,0,0.25);' +
+        'font-size:11pt;display:flex;align-items:center;gap:8px;' +
+        'min-width:260px;max-width:360px;pointer-events:auto;' +
+        'opacity:0;transform:translateX(20px);transition:opacity 0.2s,transform 0.2s;">' +
+        '<i class="fas fa-' + icon + '" style="flex-shrink:0;font-size:1.1em;"></i>' +
+        '<span style="flex:1;line-height:1.4;">' + texto + '</span>' +
+        '<a onclick="document.getElementById(\'' + id + '\').remove();" style="cursor:pointer;opacity:0.7;margin-left:4px;color:#fff;font-size:14px;flex-shrink:0;">&#10005;</a>' +
+        '</div>'
+    );
+
+    $('#amg-toast-container').append(toast);
+    setTimeout(function() {
+        toast.css({ opacity: 1, transform: 'translateX(0)' });
+    }, 10);
+    setTimeout(function() {
+        toast.css({ opacity: 0, transform: 'translateX(20px)' });
+        setTimeout(function() { toast.remove(); }, 220);
+    }, duracao);
 }
 function openConfigBoxPro(html = '', func_open = false, func_close = false) {
     resetDialogBoxPro('configBoxPro');
@@ -12210,8 +12272,9 @@ if (verifyConfigValue('menususpenso')) {
     }
 }
 */
-function infraMenuSistemaEsquema() {
-    return false;
+function infraMenuSistemaEsquema(bolInicializar, tipo) {
+    // AMG v1: restaurado — delega para a implementação Pro em vez de retornar false
+    infraMenuSistemaEsquemaPro();
 }
 function infraMenuSistemaEsquemaPro() {
     if (!delayCrash) {

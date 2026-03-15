@@ -1,16 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "SEI Pro Lab",
-  "short_name": "SEI Pro Lab",
-  "description": "Adiciona ao Sistema Eletrônico de Informações (SEI) funções avançadas",
-  "version": "1.6.1",
-  "author": "Pedro Henrique Soares",
-  "homepage_url": "https://sei-pro.github.io/sei-pro",
+  "name": "SEI Amargosa",
+  "short_name": "SEI Amargosa",
+  "description": "Extensão do SEI para a Prefeitura Municipal de Amargosa — Bahia. Adiciona funções avançadas de gestão de processos com identidade visual do município.",
+  "version": "1.0.0",
+  "author": "Tarcio Rodrigues",
+  "homepage_url": "https://www.amargosa.ba.gov.br",
   "icons": {
-    "16": "icons/lab/icon-16.png",
-    "32": "icons/lab/icon-32.png",
-    "48": "icons/lab/icon-48.png",
-    "128": "icons/lab/icon-128.png"
+    "16": "icons/amargosa/icon-16.png",
+    "32": "icons/amargosa/icon-32.png",
+    "48": "icons/amargosa/icon-48.png",
+    "128": "icons/amargosa/icon-128.png"
   },
   "options_page": "html/options.html",
   "options_ui": {
@@ -307,7 +307,7 @@
     }
   ],
   "action": {
-    "default_title": "SEI Pro",
+    "default_title": "SEI Amargosa",
     "default_popup": "html/options.html"
   },
   "web_accessible_resources": [
@@ -366,7 +366,7 @@
         "js/sei-pro-visualizacao-chosen.js",
         "js/sei-pro-docs-lote.js",
         "js/sei-pro-ai.js",
-        "icons/lab/icon-32.png",
+        "icons/amargosa/icon-32.png",
         "css/sei-pro.css",
         "css/frappe-gantt.css",
         "css/jkanban.min.css",
