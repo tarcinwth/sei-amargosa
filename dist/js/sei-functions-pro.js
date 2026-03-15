@@ -8520,11 +8520,14 @@ function setCapaProcesso(loop = true) {
                 '')+
                 '         </div>'+
                 '      </div>'+
-                '</div>';
+                '</div>'+
 
     ifrVisualizacao.find('#capaProcessoPro').remove();
 
-    if (typeof prop !== 'undefined' && typeof id_procedimento !== 'undefined' && ifrArvore.find('#span'+id_procedimento).hasClass('infraArvoreNoSelecionado')) {
+    // FORÇADO: Sempre exibir a capa do processo (SEI Amargosa)
+    var deveExibirCapa = true;
+    
+    if (deveExibirCapa) {
         ifrVisualizacao.find('#divArvoreHtml').prepend(html);
         ifrVisualizacao.find(divInformacao).hide();
         if (isSEI_5) ifrVisualizacao.find('#divArvoreHtml').removeClass('d-flex');

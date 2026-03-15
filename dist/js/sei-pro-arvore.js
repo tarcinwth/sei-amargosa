@@ -10,7 +10,17 @@ var selectedItensPanelArvore = false;
 
 // AMG v1.3: popula selectedItensPanelArvore imediatamente sem depender de setToolbarDocs()
 (function() {
-    var _default = [["Anotações"],["Marcador"],["Acompanhamento Especial"],["Tipo de Procedimento"],["Assuntos"],["Interessados"],["Atribuição"],["Nível de Acesso"],["Observações"]];
+    // Limpar configuração antiga do localStorage para aplicar novas configurações
+    try {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('configViewFlashPanelArvorePro')) {
+            var stored = JSON.parse(localStorage.getItem('configViewFlashPanelArvorePro'));
+            if (stored.length > 3) {
+                localStorage.removeItem('configViewFlashPanelArvorePro');
+            }
+        }
+    } catch(e) {}
+    
+    var _default = [["Anotações"],["Atribuição"],["Especificação"]];
     try {
         if (typeof localStorageRestorePro === 'function') {
             var stored = localStorageRestorePro('configViewFlashPanelArvorePro');
@@ -80,7 +90,7 @@ function setToolbarDocs() {
     var selectedItensMenu = ( typeof localStorageRestorePro('configViewFlashMenuPro') !== 'undefined' && !$.isEmptyObject(localStorageRestorePro('configViewFlashMenuPro')) ) ? localStorageRestorePro('configViewFlashMenuPro') : [['Copiar n\u00FAmero do processo'],['Copiar link do processo'],['Enviar Documento Externo'],['A\u00E7\u00F5es em lote'],['Atribuir Processo'],['Add/Remover Urg\u00EAncia']];
     var selectedItensDocMenu = ( typeof localStorageRestorePro('configViewFlashDocMenuPro') !== 'undefined' && !$.isEmptyObject(localStorageRestorePro('configViewFlashDocMenuPro')) ) ? localStorageRestorePro('configViewFlashDocMenuPro') : [['Copiar n\u00FAmero SEI'],['Copiar nome do documento'],['Copiar link do documento'],['Duplicar documento'],['Copiar para...']];
     var selectedItensDocArvore = ( typeof localStorageRestorePro('configViewFlashDocArvorePro') !== 'undefined' && !$.isEmptyObject(localStorageRestorePro('configViewFlashDocArvorePro')) ) ? localStorageRestorePro('configViewFlashDocArvorePro') : [["Copiar n\u00FAmero SEI"],["Copiar link do documento"],["Duplicar documento"]];
-        selectedItensPanelArvore = ( typeof localStorageRestorePro('configViewFlashPanelArvorePro') !== 'undefined' && !$.isEmptyObject(localStorageRestorePro('configViewFlashPanelArvorePro')) ) ? localStorageRestorePro('configViewFlashPanelArvorePro') : [["Anota\u00E7\u00F5es"],["Marcador"],["Acompanhamento Especial"],["Tipo de Procedimento"],["Assuntos"],["Interessados"],["Atribui\u00E7\u00E3o"],["N\u00EDvel de Acesso"],["Observa\u00E7\u00F5es"]];
+        selectedItensPanelArvore = ( typeof localStorageRestorePro('configViewFlashPanelArvorePro') !== 'undefined' && !$.isEmptyObject(localStorageRestorePro('configViewFlashPanelArvorePro')) ) ? localStorageRestorePro('configViewFlashPanelArvorePro') : [["Anota\u00E7\u00F5es"],["Atribui\u00E7\u00E3o"],["Especifica\u00E7\u00E3o"]];
     
     var htmlToolbarProc =   '<div id="toolbar-options-proc" class="hidden">';
         if (getOptionsPro('optionsFlashMenu_menuproc') != 'disabled') {
@@ -2326,7 +2336,7 @@ function setDadosProcessoArvore(dadosProcessoPro = false) {
 
         var htmlTimelineAmg = getHtmlTimelineArvore();
         $('.panelDadosArvorePro').remove();
-        $('#frmArvore').append(htmlTimelineAmg+htmlBlocoInterno+htmlMarcador+htmlAcompEsp+htmlDescricao+htmlTipoProcedimento+htmlNivelAcesso+htmlInteressados+htmlAssuntos+htmlObservacoes);  
+        $('#frmArvore').append(htmlTimelineAmg+htmlDescricao+htmlResponsaveis+htmlAnotacoes);  
         if (typeof $(parent.document).find("#divIframeArvore").resizable !== 'undefined') parent.forceOnLoadBodyPage();  
         if (!dataMarcador && processoAberto) {
             getDataMarcadorProcesso();
@@ -2755,13 +2765,13 @@ $.each(selectedItensPanelArvore, function(i, arr) {
 
         // Usar encoding dinâmico para Anotações
         var anotacoesArray = flatSelectedItems.find(item => item.includes('Anota'));
-        if ($.inArray("Anota\u00E7\u00F5es", flatSelectedItems) !== -1 || $.inArray("Anota\u00E3\u00F5es", flatSelectedItems) !== -1 || $.inArray(anotacoesArray, flatSelectedItems) !== -1) getDadosAnotacao();
+        getDadosAnotacao();
 
         // console.log('getDadosAnotacao', $.inArray("Anota\u00E7\u00F5es",jmespath.search(selectedItensPanelArvore,"[]")) !== -1);
 
         if ($('#divRelacionados').text().trim() == '') $('#divRelacionados').hide();
     } else {
-        if (!$('.stickDadosArvore').length && ($.inArray("Anota\u00E7\u00F5es", flatSelectedItems) !== -1 || $.inArray("Anota\u00E3\u00F5es", flatSelectedItems) !== -1 || $.inArray(anotacoesArray, flatSelectedItems) !== -1)) getDadosAnotacao();
+        if (!$('.stickDadosArvore').length) getDadosAnotacao();
     }
 }
 function initStylePanelArvore(TimeOut = 9000) {
