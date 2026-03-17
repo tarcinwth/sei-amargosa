@@ -731,6 +731,9 @@ function observeUrlPage() {
     }
 }
 function initSlimPro() {
+    // AMG v1.6: não rodar na página de assinatura — remove botões do formulário
+    if (window.location.href.indexOf('documento_assinar') !== -1 ||
+        window.location.href.indexOf('sip/login.php') !== -1) { return; }
     var htmlSlimPro =   '       <div data-ref="infraAcaoBarraSistema" style="display: inline-block;float: right;margin:3px 10px 0 0">'+
                         '           <div class="onoffswitch" style="display:inline-block;transform:scale(0.7)" onmouseout="return infraTooltipOcultar();" onmouseover="return infraTooltipMostrar(\''+(localStorage.getItem('seiSlim') ? 'Desativar estilo avan\u00E7ado' : 'Ativar estilo avan\u00E7ado')+'\')">'+
                         '               <input type="checkbox" onchange="changeSlimPro(this)" name="onoffswitch" class="onoffswitch-checkbox" id="changeSlimPro" tabindex="0" '+(localStorage.getItem('seiSlim') ? 'checked' : '')+'>'+

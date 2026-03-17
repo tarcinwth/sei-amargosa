@@ -8403,7 +8403,12 @@ function setCapaProcesso(loop = true) {
     var ifrVisualizacao = isNewSEI && getSeiVersionPro() && compareVersionNumbers(getSeiVersionPro(),'4.1.0') >= 0 
                         ? $($ifrVisualizacao).contents().find($ifrArvoreHtml).contents()
                         : $($ifrVisualizacao).contents() 
-    var prop = (pullDadosProcessoSession()) ? pullDadosProcessoSession().propProcesso : dadosProcessoPro.propProcesso;
+    var prop = (pullDadosProcessoSession()) ? pullDadosProcessoSession().propProcesso : (typeof dadosProcessoPro !== 'undefined' ? dadosProcessoPro.propProcesso : undefined);
+    // AMG v1.6: não exibir capa se dados do processo ainda não estão disponíveis
+    if (typeof prop === 'undefined' || prop === null) {
+        if (loop) { setTimeout(function(){ setCapaProcesso(false); }, 1500); }
+        return;
+    }
     var id_procedimento = (typeof prop !== 'undefined' && typeof prop.hdnIdProcedimento !== 'undefined') ? prop.hdnIdProcedimento : getParamsUrlPro(window.location.href).id_protocolo;
         id_procedimento = (typeof id_procedimento === 'undefined') ? getParamsUrlPro($('#ifrArvore').attr('src')).id_procedimento : id_procedimento;
     var hipoteseLegal = (typeof prop !== 'undefined' && typeof prop.rdoNivelAcesso !== 'undefined' && prop.rdoNivelAcesso == '1') ? jmespath.search(prop.selHipoteseLegal_select, "[?id=='"+prop.selHipoteseLegal+"'] | [0].name") : null;
@@ -8471,22 +8476,20 @@ function setCapaProcesso(loop = true) {
                 '')+
                 '           </div>'+
                 '      </div>'+
+                (typeof prop !== 'undefined' && typeof prop.selAssuntos !== 'undefined' && prop.selAssuntos && prop.selAssuntos.length > 0 ?
                 '      <div class="field">'+
                 '         <div class="label txt_cinza"><i class="fas fa-bookmark azulColor iconDadosProcesso"></i>Assuntos:</div>'+
                 '         <div class="data">'+
-                (typeof prop !== 'undefined' && typeof prop.selAssuntos !== 'undefined' ? 
-                $.map(prop.selAssuntos,function(v){ return '<a class="newLink" style="cursor:pointer;" onclick="parent.copyTextThis(this)" onmouseover="return infraTooltipMostrar(\'Clique para copiar\');" onmouseout="return infraTooltipOcultar();">'+v+'</a>'; }).join('') : 
-                '')+
+                $.map(prop.selAssuntos,function(v){ return '<a class="newLink" style="cursor:pointer;" onclick="parent.copyTextThis(this)" onmouseover="return infraTooltipMostrar(\'Clique para copiar\');" onmouseout="return infraTooltipOcultar();">'+v+'</a>'; }).join('')+
                 '           </div>'+
-                '      </div>'+
+                '      </div>' : '')+
+                (typeof prop !== 'undefined' && typeof prop.selInteressadosProcedimento !== 'undefined' && prop.selInteressadosProcedimento && prop.selInteressadosProcedimento.length > 0 ?
                 '      <div class="field">'+
                 '         <div class="label txt_cinza"><i class="fas fa-users azulColor iconDadosProcesso"></i>Interessados:</div>'+
                 '         <div class="data">'+
-                (typeof prop !== 'undefined' && typeof prop.selInteressadosProcedimento !== 'undefined' ? 
-                $.map(prop.selInteressadosProcedimento,function(v){ return '<a class="newLink" style="cursor:pointer;" onclick="parent.copyTextThis(this)" onmouseover="return infraTooltipMostrar(\'Clique para copiar\');" onmouseout="return infraTooltipOcultar();">'+v+'</a>'; }).join('') : 
-                '')+
+                $.map(prop.selInteressadosProcedimento,function(v){ return '<a class="newLink" style="cursor:pointer;" onclick="parent.copyTextThis(this)" onmouseover="return infraTooltipMostrar(\'Clique para copiar\');" onmouseout="return infraTooltipOcultar();">'+v+'</a>'; }).join('')+
                 '           </div>'+
-                '      </div>'+
+                '      </div>' : '')+
                 '      <div class="field">'+
                 '         <div class="label txt_cinza"><i class="'+(dataNivelAcesso ? dataNivelAcesso.icon : 'fas fa-globe-americas')+' azulColor iconDadosProcesso"></i>N\u00EDvel de Acesso:</div>'+
                 '         <div class="data">'+
@@ -8511,41 +8514,56 @@ function setCapaProcesso(loop = true) {
                 '         </div>'+
                 '      </div>'+
                 '' : '')+
+                (typeof prop !== 'undefined' && typeof prop.txaObservacoes !== 'undefined' && prop.txaObservacoes && prop.txaObservacoes.toString().trim() !== '' ?
                 '      <div class="field">'+
                 '         <div class="label txt_cinza"><i class="fas fa-comment-dots azulColor iconDadosProcesso"></i>Observa\u00E7\u00F5es:</div>'+
                 '         <div class="data">'+
-                (typeof prop !== 'undefined' && typeof prop.txaObservacoes !== 'undefined' ? 
-                $.map(prop.txaObservacoes, function(v){ return '<div><a class="newLink" style="cursor:pointer;" onclick="parent.copyTextThis(this)" onmouseover="return infraTooltipMostrar(\'Clique para copiar\');" onmouseout="return infraTooltipOcultar();">'+v.unidade+': '+v.observacao+'</a></div>' }).join('') :
-                // '               <a class="newLink" style="cursor:pointer;" onclick="parent.copyTextThis(this)" onmouseover="return infraTooltipMostrar(\'Clique para copiar\');" onmouseout="return infraTooltipOcultar();">'+prop.txtDescricao+'</a>' : 
-                '')+
+                (typeof prop.txaObservacoes === 'string' ? prop.txaObservacoes : JSON.stringify(prop.txaObservacoes))+
                 '         </div>'+
-                '      </div>'+
-                '</div>'+
+                '      </div>' : '')+
+                '</div>';
 
-    ifrVisualizacao.find('#capaProcessoPro').remove();
+    // AMG v1.6: não renderizar capa sobre documentos/anexos abertos
+    // No SEI4: ifrConteudoVisualizacao > ifrVisualizacao(ifrArvoreHtml_) > conteúdo
+    // Verificar o src do iframe interno (ifrArvoreHtml) que muda ao abrir documentos
+    var _ifrInternSrc = '';
+    try {
+        // src do iframe externo
+        var _ifrExternSrc = $($ifrVisualizacao).attr('src') || '';
+        // src do iframe interno (onde o documento real é carregado)
+        _ifrInternSrc = $($ifrVisualizacao).contents().find($ifrArvoreHtml).attr('src') || '';
+        // Se o iframe interno aponta para um documento (tem id_documento ou processar_html), sair
+        if (_ifrExternSrc.indexOf('id_documento=') !== -1 ||
+            _ifrExternSrc.indexOf('acao=documento_visualizar') !== -1 ||
+            _ifrInternSrc.indexOf('id_documento=') !== -1 ||
+            _ifrInternSrc.indexOf('acao=arvore_processar_html') !== -1 ||
+            _ifrInternSrc.indexOf('acao=documento_visualizar') !== -1) {
+            return;
+        }
+        // Verificação adicional: se o iframe interno não tem #divArvoreHtml, é um documento
+        var _ifrContent = $($ifrVisualizacao).contents().find($ifrArvoreHtml).contents();
+        if (_ifrContent.find('#divArvoreHtml').length === 0 && _ifrContent.find('body').length > 0) {
+            return;
+        }
+    } catch(e) {}
 
-    // FORÇADO: Sempre exibir a capa do processo (SEI Amargosa)
-    var deveExibirCapa = true;
-    
-    if (deveExibirCapa) {
-        ifrVisualizacao.find('#divArvoreHtml').prepend(html);
-        ifrVisualizacao.find(divInformacao).hide();
-        if (isSEI_5) ifrVisualizacao.find('#divArvoreHtml').removeClass('d-flex');
-        replaceColorsIcons(ifrVisualizacao.find('#tagUserColorPro'));
-        if (typeof $().qrcode === 'function') {
-            ifrVisualizacao.find('.qrcapa').html('').qrcode({
-                render: 'image',
-                size: '150',
-                text: parent.url_host+'?acao=procedimento_trabalhar&id_procedimento='+id_procedimento
-            });
-        } else {
-            $.getScript(URL_SPRO+"js/lib/jquery-qrcode-0.18.0.min.js");
-        }
-        if (loop) {
-            setTimeout(function () {
-                setCapaProcesso(false);
-            },1500);
-        }
+    ifrVisualizacao.find('#divArvoreHtml').prepend(html);
+    ifrVisualizacao.find(divInformacao).hide();
+    if (isSEI_5) ifrVisualizacao.find('#divArvoreHtml').removeClass('d-flex');
+    replaceColorsIcons(ifrVisualizacao.find('#tagUserColorPro'));
+    if (typeof $().qrcode === 'function') {
+        ifrVisualizacao.find('.qrcapa').html('').qrcode({
+            render: 'image',
+            size: '150',
+            text: parent.url_host+'?acao=procedimento_trabalhar&id_procedimento='+id_procedimento
+        });
+    } else {
+        $.getScript(URL_SPRO+"js/lib/jquery-qrcode-0.18.0.min.js");
+    }
+    if (loop) {
+        setTimeout(function () {
+            setCapaProcesso(false);
+        }, 1500);
     }
 }
 function getHtmlMarcador(id_procedimento, processoAberto) {

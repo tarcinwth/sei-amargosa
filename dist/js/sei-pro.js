@@ -3173,18 +3173,28 @@ function initSeiPro() {
 // ============================================================
 var _amgPollingAtivo = false;
 var _amgPollingTimer = null;
-var _amgPollingHash = '';
+// Conjunto de IDs conhecidos — populado uma vez no carregamento e atualizado ao detectar novos
+var _amgIdsConhecidos = null;
 
-function amgGetHashLista() {
+function amgGetIdsVisiveis() {
+    // Retorna todos os IDs atualmente visíveis na tabela (qualquer página)
     var ids = [];
     $('#tblProcessosRecebidos tbody tr').each(function() {
         var link = $(this).find('a[href*="acao=procedimento_trabalhar"]');
         if (link.length) {
             var id = getParamsUrlPro(link.attr('href')).id_procedimento;
-            if (id) ids.push(id);
+            if (id) ids.push(String(id));
         }
     });
-    return ids.join(',');
+    return ids;
+}
+
+function amgInicializarIdsConhecidos() {
+    // Captura os IDs visíveis no carregamento inicial como linha de base
+    if (_amgIdsConhecidos === null) {
+        _amgIdsConhecidos = {};
+        amgGetIdsVisiveis().forEach(function(id) { _amgIdsConhecidos[id] = true; });
+    }
 }
 
 function amgPollingProcessos() {
@@ -3193,6 +3203,9 @@ function amgPollingProcessos() {
     if ($('#tblProcessosRecebidos').length === 0) return;
     // Não roda se há agrupamento ativo (evita conflito visual)
     if (storeGroupTablePro() && storeGroupTablePro() !== 'all') return;
+
+    // Garantir que a linha de base foi inicializada
+    amgInicializarIdsConhecidos();
 
     _amgPollingAtivo = true;
     var form = $('#frmProcedimentoControlar');
@@ -3205,6 +3218,7 @@ function amgPollingProcessos() {
             param[$(this).attr('name')] = $(this).val();
         }
     });
+    // Sempre busca página 1 do servidor (processos mais recentes)
     param['hdnRecebidosPaginaAtual'] = 1;
 
     $.ajax({ method: 'POST', data: param, url: href, timeout: 15000 })
@@ -3212,38 +3226,53 @@ function amgPollingProcessos() {
             try {
                 var $html = $(html);
                 var novasLinhas = [];
-                var idsAtuais = amgGetHashLista().split(',').filter(Boolean);
 
                 $html.find('#tblProcessosRecebidos tbody tr').each(function() {
                     var link = $(this).find('a[href*="acao=procedimento_trabalhar"]');
                     if (!link.length) return;
                     var id = getParamsUrlPro(link.attr('href')).id_procedimento;
-                    if (id && idsAtuais.indexOf(String(id)) === -1) {
-                        novasLinhas.push($(this)[0].outerHTML);
+                    if (!id) return;
+                    var idStr = String(id);
+                    // Só é "novo" se nunca apareceu antes (não está na linha de base)
+                    if (!_amgIdsConhecidos[idStr]) {
+                        novasLinhas.push({ id: idStr, html: $(this)[0].outerHTML });
                     }
                 });
 
                 if (novasLinhas.length > 0) {
-                    var tbody = $('#tblProcessosRecebidos tbody');
-                    novasLinhas.reverse().forEach(function(html) {
-                        var tr = $(html).addClass('amg-proc-novo');
-                        tbody.prepend(tr);
-                        // Fade in suave
-                        tr.hide().fadeIn(400);
+                    // Registrar os novos IDs como conhecidos imediatamente
+                    novasLinhas.forEach(function(item) {
+                        _amgIdsConhecidos[item.id] = true;
                     });
-                    // Atualizar contador
+
+                    // Só insere na tabela se o usuário estiver na página 1
+                    var paginaAtual = parseInt($('#hdnRecebidosPaginaAtual').val() || 1);
+                    if (paginaAtual === 1) {
+                        var tbody = $('#tblProcessosRecebidos tbody');
+                        novasLinhas.slice().reverse().forEach(function(item) {
+                            var tr = $(item.html).addClass('amg-proc-novo');
+                            tbody.prepend(tr);
+                            tr.hide().fadeIn(400);
+                        });
+                        // Re-aplicar funcionalidades nas novas linhas
+                        if (checkConfigValue('gerenciarfavoritos') && typeof appendStarOnProcess === 'function') appendStarOnProcess();
+                        initViewEspecifacaoProcesso();
+                    }
+
+                    // Atualizar contador independente da página atual
                     var totalAtual = parseInt($('#hdnRecebidosNroItens').val() || 0);
                     var novoTotal = totalAtual + novasLinhas.length;
                     $('#hdnRecebidosNroItens').val(novoTotal);
-                    $('#tblProcessosRecebidos caption.infraCaption').html(
-                        '<span>' + novoTotal + ' registros:</span>'
-                    );
-                    // Re-aplicar funcionalidades nas novas linhas
-                    if (checkConfigValue('gerenciarfavoritos') && typeof appendStarOnProcess === 'function') appendStarOnProcess();
-                    initViewEspecifacaoProcesso();
-                    // Toast de notificação
+                    if (paginaAtual === 1) {
+                        $('#tblProcessosRecebidos caption.infraCaption').html(
+                            '<span>' + novoTotal + ' registros:</span>'
+                        );
+                    }
+
+                    // Toast de notificação sempre (independente da página)
                     amgToast('info', 'list', novasLinhas.length + ' novo(s) processo(s) recebido(s)');
                 }
+                // Se novasLinhas.length === 0: nenhum novo processo, não faz nada
             } catch(e) {
                 console.warn('[AMG Polling] erro ao processar resposta:', e);
             }
@@ -3258,7 +3287,9 @@ function amgPollingProcessos() {
 
 function amgIniciarPolling() {
     if (_amgPollingTimer) clearInterval(_amgPollingTimer);
-    // Primeiro check: 2 minutos após carregamento
+    // Inicializar linha de base com os IDs visíveis agora
+    amgInicializarIdsConhecidos();
+    // Verificar a cada 2 minutos
     _amgPollingTimer = setInterval(function() {
         amgPollingProcessos();
     }, 2 * 60 * 1000);
