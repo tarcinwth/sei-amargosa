@@ -4,15 +4,33 @@ var isSEI_5 = isNewSEI && sessionStorage.getItem('versaoSei') && compareVersionN
 var frmEditor = isSEI_5 ? $('.infra-editor__editor-completo') : $('#frmEditor');
 var frmEditor5Exists = $('html script[charset="utf-8"]').last().html().includes('INFRA_EDITOR_CONFIG');
 
-$.getScript(getUrlExtension("js/lib/jquery-3.4.1.min.js"));
-$.getScript(getUrlExtension("js/lib/jmespath.min.js"));
-$.getScript(getUrlExtension("js/lib/purify.min.js"));
-$.getScript(getUrlExtension("js/lib/moment.min.js"));
-$.getScript(getUrlExtension("js/lib/moment-duration-format.min.js"));
-$.getScript(getUrlExtension("js/lib/crypto-js.min.js"));
-$.getScript(getUrlExtension("js/lib/diff2html.min.js"));
-$.getScript(getUrlExtension("js/sei-pro-docs-lote.js"));
-if (typeof loadFunctionsPro === 'undefined' || window.name != '') $.getScript(getUrlExtension("js/sei-functions-pro.js"));
+function loadScriptSafe(path, callback) {
+    var filename = path.split('/').pop().split('?')[0];
+    if ($('script[src*="' + filename + '"]').length > 0) {
+        if (callback) callback();
+        return;
+    }
+    $.getScript(path, callback);
+}
+
+if ($('script[src*="jquery"]').not('[src*="chrome-extension"]').length === 0) {
+    loadScriptSafe(getUrlExtension("js/lib/jquery-3.4.1.min.js"));
+}
+loadScriptSafe(getUrlExtension("js/lib/jmespath.min.js"));
+loadScriptSafe(getUrlExtension("js/lib/purify.min.js"));
+loadScriptSafe(getUrlExtension("js/lib/disable-amd.js"), function() {
+    loadScriptSafe(getUrlExtension("js/lib/moment.min.js"), function() {
+        loadScriptSafe(getUrlExtension("js/lib/moment-duration-format.min.js"), function() {
+            loadScriptSafe(getUrlExtension("js/lib/moment-weekday-calc.js"), function() {
+                loadScriptSafe(getUrlExtension("js/lib/restore-amd.js"));
+            });
+        });
+    });
+});
+loadScriptSafe(getUrlExtension("js/lib/crypto-js.min.js"));
+loadScriptSafe(getUrlExtension("js/lib/diff2html.min.js"));
+loadScriptSafe(getUrlExtension("js/sei-pro-docs-lote.js"));
+if (typeof loadFunctionsPro === 'undefined' || window.name != '') loadScriptSafe(getUrlExtension("js/sei-functions-pro.js"));
 
 function divIconsLoginPro() {
     var html_initLogin = '<div class="infraAcaoBarraSistema sheetsLoginPro" style="display: inline-block;">'
@@ -310,10 +328,10 @@ function loadScriptPro() {
         setTimeout(function () {
         	$(document).ready(function () {
                 loadConfigPro();
-                $.getScript(getUrlExtension("js/lib/moment.min.js"));
-                $.getScript(getUrlExtension("js/lib/jquery-qrcode-0.18.0.min.js"));
-                $.getScript(getUrlExtension("js/sei-pro-editor.js"));
-                $.getScript(getUrlExtension("js/sei-legis.js"));
+                loadScriptSafe(getUrlExtension("js/lib/moment.min.js"));
+                loadScriptSafe(getUrlExtension("js/lib/jquery-qrcode-0.18.0.min.js"));
+                loadScriptSafe(getUrlExtension("js/sei-pro-editor.js"));
+                loadScriptSafe(getUrlExtension("js/sei-legis.js"));
                 console.log('loadScriptPro-Editor');
                 loadFilesUI();
         	});
@@ -322,23 +340,22 @@ function loadScriptPro() {
         classBodyPro();
         loadFilesUI();
         loadFontIcons('head');
-        $.getScript(getUrlExtension("js/sei-pro.js"));
+        loadScriptSafe(getUrlExtension("js/sei-pro.js"));
 
         $(document).ready(function () {
             loadConfigPro();
-            if (typeof moment !== 'undefined' && typeof moment().isoAddWeekdaysFromSet === 'undefined') $.getScript(getUrlExtension("js/lib/moment-weekday-calc.js"));
-            // $.getScript(getUrlExtension("js/lib/moment-duration-format.min.js"));
-            if (typeof loadFavoritosPro === 'undefined') $.getScript(getUrlExtension("js/sei-pro-favoritos.js"));
-            if (typeof loadAtividadesPro === 'undefined') $.getScript(getUrlExtension("js/sei-pro-atividades.js"));
-            if (typeof loadProjetosPro === 'undefined') $.getScript(getUrlExtension("js/sei-pro-projetos.js"));
-            if (typeof loadPrescricoesPro === 'undefined') $.getScript(getUrlExtension("js/sei-pro-prescricoes.js"));
-            if (typeof Gantt === 'undefined') $.getScript(getUrlExtension("js/lib/frappe-gantt.js"));
-            if (typeof jKanban === 'undefined') $.getScript(getUrlExtension("js/lib/jkanban.min.js"));
-            if (typeof $().toolbar === 'undefined') $.getScript(getUrlExtension("js/lib/jquery.toolbar.min.js"));
-            if (typeof $().tagsInput === 'undefined') $.getScript(getUrlExtension("js/lib/jquery.tagsinput-revisited.js"));
-            if (typeof $.tablesorter === 'undefined') $.getScript(getUrlExtension("js/lib/jquery.tablesorter.combined.min.js"));
-            if (typeof Chart === 'undefined') $.getScript(getUrlExtension("js/lib/chart.min.js"));
-            if (typeof $().visible === 'undefined') $.getScript(getUrlExtension("js/lib/jquery-visible.min.js"));
+            if (typeof moment !== 'undefined' && typeof moment().isoAddWeekdaysFromSet === 'undefined') loadScriptSafe(getUrlExtension("js/lib/moment-weekday-calc.js"));
+            loadScriptSafe(getUrlExtension("js/sei-pro-favoritos.js"));
+            // loadScriptSafe(getUrlExtension("js/sei-pro-atividades.js"));
+            // loadScriptSafe(getUrlExtension("js/sei-pro-projetos.js"));
+            loadScriptSafe(getUrlExtension("js/sei-pro-prescricoes.js"));
+            // loadScriptSafe(getUrlExtension("js/lib/frappe-gantt.js"));
+            // loadScriptSafe(getUrlExtension("js/lib/jkanban.min.js"));
+            loadScriptSafe(getUrlExtension("js/lib/jquery.toolbar.min.js"));
+            loadScriptSafe(getUrlExtension("js/lib/jquery.tagsinput-revisited.js"));
+            loadScriptSafe(getUrlExtension("js/lib/jquery.tablesorter.combined.min.js"));
+            loadScriptSafe(getUrlExtension("js/lib/chart.min.js"));
+            loadScriptSafe(getUrlExtension("js/lib/jquery-visible.min.js"));
         });
     }
 }

@@ -315,7 +315,6 @@ function cleanConfigDataRecebimento() {
     localStorageStorePro('configDataRecebimentoPro', storeRecebimento);
 }
 function removeAllTags(forceFilter = false, n) {
-    $('#tblProcessosRecebidos, #tblProcessosGerados, #tblProcessosDetalhado').find('.especifProc').remove();
 	$('#divRecebidos table tbody').find('.tagintable').remove();
 	$('#divRecebidos table tbody tr').each(function(index){ 
 	    if ( $(this).hasClass('typeGerados') ) { 
@@ -813,12 +812,18 @@ function selectFilterTableHome() {
 }
 function initDadosProcesso(TimeOut = 9000) {
     if (TimeOut <= 0) { return; }
-    if (typeof getParamsUrlPro !== 'undefined' && typeof getDadosIframeProcessoPro !== 'undefined'  && typeof $("#ifrArvore").contents().find('#topmenu').find(`a[target="${ifrVisualizacao_}"]`).eq(0).attr('href') !== 'undefined' ) { 
+    var ifrArvore = $("#ifrArvore");
+    var hasLinks = false;
+    if (ifrArvore.length > 0) {
+        var contents = ifrArvore.contents();
+        if (contents.find('#divArvore a').length > 0 || contents.find('#topmenu a').length > 0) {
+            hasLinks = true;
+        }
+    }
+    if (typeof getParamsUrlPro !== 'undefined' && typeof getDadosIframeProcessoPro !== 'undefined' && hasLinks) { 
         var id_procedimento = getParamsUrlPro(window.location.href).id_procedimento;
-            id_procedimento = (typeof id_procedimento === 'undefined') ? getParamsUrlPro($('#ifrArvore').attr('src')).id_procedimento : id_procedimento;
+            id_procedimento = (typeof id_procedimento === 'undefined') ? getParamsUrlPro(ifrArvore.attr('src')).id_procedimento : id_procedimento;
             id_procedimento = (typeof id_procedimento === 'undefined') ? getParamsUrlPro(window.location.href).id_protocolo : id_procedimento;
-            // idProcedimento = (typeof idProcedimento !== 'undefined') ? idProcedimento : getParamsUrlPro($("#ifrArvore").contents().find('#topmenu').find(`a[target="${ifrVisualizacao_}"]`).eq(0).attr('href')).id_procedimento;
-            // console.log(id_procedimento, 'processo');
             getDadosIframeProcessoPro(id_procedimento, 'processo');
     } else {
         setTimeout(function(){ 
@@ -1165,22 +1170,7 @@ function initPanelFavorites(TimeOut = 9000) {
     }
 }
 function checkLoadConfigSheets(TimeOut = 9000) {
-    if (TimeOut <= 0) { return; }
-    if (typeof checkConfigValue !== 'undefined') { 
-        if (
-            (checkConfigValue('gerenciarprojetos') && typeof spreadsheetIdProjetos_Pro !== 'undefined' && spreadsheetIdProjetos_Pro !== false && spreadsheetIdProjetos_Pro !== 'undefined') ||
-            (checkConfigValue('gerenciarformularios') && typeof spreadsheetIdFormularios_Pro !== 'undefined' && spreadsheetIdFormularios_Pro !== false && spreadsheetIdFormularios_Pro !== 'undefined') ||
-            (checkConfigValue('sincronizarprocessos') && typeof spreadsheetIdSyncProcessos_Pro !== 'undefined' && spreadsheetIdSyncProcessos_Pro !== false && spreadsheetIdSyncProcessos_Pro !== 'undefined')
-        ){
-            handleClientLoadPro();
-            // console.log('handleClientLoadPro');
-        }
-    } else {
-        setTimeout(function(){ 
-            checkLoadConfigSheets(TimeOut - 100); 
-            if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload checkLoadConfigSheets'); 
-        }, 500);
-    }
+    return;
 }
 function orderDivPanel(html, idOrder, name) {
     if (typeof getParamsUrlPro(window.location.href).acao_pro === 'undefined') {
@@ -1531,12 +1521,6 @@ function setTableSorterHome() {
             }
 
             setTimeout(function(){ 
-                if ($('.filterTableProcessos').length == 0) {
-                    setTimeout(function(){ 
-                        if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload tableHomeDestroy *****');
-                        tableHomeDestroy(true);
-                    }, 1000);
-                }
                 var filterStore = (typeof tableHomePro[0] !== 'undefined' && typeof tableHomePro[0][0] !== 'undefined') ? $.tablesorter.storage(tableHomePro[0][0], 'tablesorter-filters') : [];
                 if (typeof filterStore !== 'undefined' && filterStore !== null && filterStore.length > 0) {
                     var filterUser = filterStore[3];
@@ -1575,8 +1559,9 @@ function forceTableHomeDestroy(Timeout = 3000) {
         force = (typeof filter !== 'undefined' && filter !== null && filter.length > 0 && rowFilter) ? true : force;
     });
     if (force && Timeout > 0 && $('#tblProcessosGerados').is(':visible')) {
-        tableHomeDestroy(true, Timeout-1000);
-        if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload forceTableHomeDestroy => '+TimeOut);
+        $.each(tableHomePro, function(i){
+            $(tableHomePro[i][0]).find('tr.tablesorter-filter-row').removeClass('hideme');
+        });
     }
 }
 function forceOnLoadBody() {
@@ -2933,7 +2918,14 @@ function loadIframeProcessUpload(idProcedimento, load_upload = true) {
     $(divComandos+' .iconUpload_new').addClass('iconLoading');
     
     $('#frmCheckerProcessoPro').attr('src', url).unbind().on('load', function(){
-        var ifrArvore = $('#frmCheckerProcessoPro').contents().find('#ifrArvore');
+        var doc = $('#frmCheckerProcessoPro').contents();
+        if (doc.find('#ifrVisualizacao').length === 0) {
+            $('<iframe id="ifrVisualizacao" name="ifrVisualizacao" style="display:none"></iframe>').appendTo(doc.find('body').length ? doc.find('body') : doc.find('html'));
+        }
+        if (doc.find('#ifrConteudoVisualizacao').length === 0) {
+            $('<iframe id="ifrConteudoVisualizacao" name="ifrConteudoVisualizacao" style="display:none"></iframe>').appendTo(doc.find('body').length ? doc.find('body') : doc.find('html'));
+        }
+        var ifrArvore = doc.find('#ifrArvore');
             contentW = ifrArvore[0].contentWindow;
             $(divComandos+' .iconUpload_new').removeClass('iconLoading');
             if (load_upload) {
@@ -3016,8 +3008,8 @@ function getUploadFilesInProcess() {
                             '       <span class="dz-progress">'+
                             '           <span class="dz-upload" data-dz-uploadprogress></span>'+
                             '       </span>'+
-                            '       <a id="anchorImgID" data-img="'+(parent.isNewSEI ? 'svg/documento_pdf.svg' : 'imagens/pdf.gif')+'" style="margin-left: -4px;" class="clipboard" title="Clique para copiar o n\u00FAmero do protocolo para a \u00E1rea de transfer\u00EAncia">'+
-                            '           <img class="dz-link-icon" src="/infra_css/'+(parent.isNewSEI ? 'svg/documento_pdf.svg' : 'imagens/pdf.gif')+'" align="absbottom" id="iconID">'+
+                            '       <a id="anchorImgID" data-img="imagens/pdf.gif" style="margin-left: -4px;" class="clipboard" title="Clique para copiar o n\u00FAmero do protocolo para a \u00E1rea de transfer\u00EAncia">'+
+                            '           <img class="dz-link-icon" src="/infra_css/imagens/pdf.gif" align="absbottom" id="iconID">'+
                             '       </a>'+
                             '       <span class="dz-progress-mark"><i class="fas fa-cog fa-spin" style="color: #017FFF; font-size: 10pt;"></i></span>'+
                             '       <a id="anchorID" target="'+ifrVisualizacao_+'" class="dz-filename">'+

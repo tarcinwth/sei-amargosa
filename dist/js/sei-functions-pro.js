@@ -2687,15 +2687,17 @@ function updateDadosArvoreIframe(nameLink, idElement, value, ifrArvore, callback
 function viewEspecifacaoProcesso() {
     setTimeout(() => {
         var tableProc = $('#tblProcessosRecebidos, #tblProcessosGerados, #tblProcessosDetalhado');
+        if (typeof storeGroupTablePro() === 'undefined' || !storeGroupTablePro()) {
+            tableProc.find('a[href*="controlador.php?acao=procedimento_trabalhar"]').each(function(){
+                var link = $(this);
+                if (link.prev('.especifProc').length > 0) return; // já existe, não pisca
+                var especifProc = extractTooltipToArray(link.attr('onmouseover'));
+                    especifProc = (especifProc) ? especifProc[0] : false;
+                    if (especifProc) link.before('<div class="especifProc">'+especifProc+'</div>');
+            });
+        } else {
             tableProc.find('.especifProc').remove();
-            if (typeof storeGroupTablePro() === 'undefined' || !storeGroupTablePro()) {
-                tableProc.find('a[href*="controlador.php?acao=procedimento_trabalhar"]').each(function(){
-                    var especifProc = extractTooltipToArray($(this).attr('onmouseover'));
-                        especifProc = (especifProc) ? especifProc[0] : false;
-                        if (especifProc) $(this).before('<div class="especifProc">'+especifProc+'</div>');
-                });
-            }
-        // console.log(storeGroupTablePro());
+        }
     }, 100);
 }
 function addNewItemSelect(_this) {
@@ -3180,28 +3182,7 @@ function saveListAcompanhamentoEspecial($html, force, end = true, append = false
     }
 }
 function checkDadosAcompEspecial(force = false) {
-    if (verifyConfigValue('reaberturaprogramada')) {
-        var lastCheck = getOptionsPro('lastcheck_AcompEsp');
-        if ( force ||
-                (
-                    verifyConfigValue('reaberturaprogramada_periodo') && 
-                    (
-                        (lastCheck && moment().add(-Math.abs(parseInt(getConfigValue('reaberturaprogramada_periodo'))), 'h') > moment(lastCheck, 'YYYY-MM-DD HH:mm:ss')) || 
-                        !lastCheck
-                    )
-                )
-            ) {
-            getListAcompanhamentoEspecial(force);
-            if (force) {
-                removeOptionsPro('hideDialogReaberturaProcesso');
-                if ($('body').hasClass('seiSlim')) {
-                    $(divComandos+' .iconReaberturaPro').addClass('iconLoading');
-                } else {
-                    setIconLoadinBtnSEI($('.iconReaberturaPro'),true);
-                }
-            }
-        }
-    }
+    return;
 }
 function goReaberturaProcesso(index = 0) {
     var listReabertura = checkReaberturaProcesso();
@@ -10989,6 +10970,7 @@ function confirmaDadosUrgencia(_this) {
 
 }
 function insertIconBatchActions() {
+    return;
     waitLoadPro($($ifrVisualizacao).contents(), '#divArvoreAcoes', 'a[href*="controlador.php?acao="]', appendIconBatchActions);
 }
 function appendIconBatchActions(loop = true) {
@@ -11035,6 +11017,7 @@ function initBoxAIActions(TimeOut = 9000) {
     }
 }
 function insertIconCompareDocs() {
+    return;
     waitLoadPro($($ifrVisualizacao).contents(), '#divArvoreAcoes', 'a[href*="controlador.php?acao="]', appendIconCompareDocs);
 }
 function appendIconCompareDocs(loop = true) {
@@ -11052,6 +11035,7 @@ function appendIconCompareDocs(loop = true) {
     }
 }
 function insertIconBatchDocs() {
+    return;
     waitLoadPro($($ifrVisualizacao).contents(), '#divArvoreAcoes', 'a[href*="controlador.php?acao="]', appendIconBatchDocs);
 }
 function appendIconBatchDocs(loop = true) {

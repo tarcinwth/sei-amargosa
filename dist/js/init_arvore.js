@@ -74,12 +74,27 @@ function loadStyleDesign() {
     }
 }
 loadStyleDesign();
+function loadScriptSafe(path, callback) {
+    var filename = path.split('/').pop().split('?')[0];
+    if ($('script[src*="' + filename + '"]').length > 0) {
+        if (callback) callback();
+        return;
+    }
+    $.getScript(path, callback);
+}
+
 loadFontIcons('head');
-if (typeof $().toolbar === 'undefined') $.getScript(getUrlExtension("js/lib/jquery.toolbar.min.js"));
-if (typeof jmespath === 'undefined') $.getScript(getUrlExtension("js/lib/jmespath.min.js"));
-if (typeof DOMPurify === 'undefined') $.getScript(getUrlExtension("js/lib/purify.min.js"));
-if (typeof Dropzone === 'undefined') $.getScript(getUrlExtension("js/lib/dropzone.min.js"));
-if (typeof moment === 'undefined') $.getScript(getUrlExtension("js/lib/moment.min.js"));
-if (typeof loadFunctionsPro === 'undefined') $.getScript(getUrlExtension("js/sei-functions-pro.js"));
-if (typeof loadSEIProArvore === 'undefined') $.getScript(getUrlExtension("js/sei-pro-arvore.js"));
+loadScriptSafe(getUrlExtension("js/lib/jquery.toolbar.min.js"));
+loadScriptSafe(getUrlExtension("js/lib/jmespath.min.js"));
+loadScriptSafe(getUrlExtension("js/lib/purify.min.js"));
+loadScriptSafe(getUrlExtension("js/lib/dropzone.min.js"));
+loadScriptSafe(getUrlExtension("js/lib/disable-amd.js"), function() {
+    loadScriptSafe(getUrlExtension("js/lib/moment.min.js"), function() {
+        loadScriptSafe(getUrlExtension("js/lib/restore-amd.js"));
+    });
+});
+
+loadScriptSafe(getUrlExtension("js/sei-functions-pro.js"), function() {
+    loadScriptSafe(getUrlExtension("js/sei-pro-arvore.js"));
+});
 

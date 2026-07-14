@@ -4389,3 +4389,586 @@ div#dialogBoxDocLote p {
     float: initial !important;
     padding: 5px 6px !important;
 }
+
+/* Custom minimalist styling for the process panels */
+.panelDadosArvorePro {
+    border-top: 1px solid #e2e8f0 !important;
+    padding: 12px 10px 12px 16px !important;
+    margin: 0 !important;
+    background: #ffffff;
+}
+
+.panelDadosArvorePro label.newLink {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: #64748b !important;
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 6px !important;
+}
+
+.panelDadosArvorePro label.newLink i.iconDadosProcesso {
+    font-size: 12px !important;
+    color: #475569 !important;
+    margin-right: 8px !important;
+}
+
+.panelDadosArvorePro .infoDadosArvore {
+    font-size: 13px !important;
+    color: #1e293b !important;
+    line-height: 1.5 !important;
+    padding-left: 20px !important;
+    min-height: auto !important;
+}
+
+.panelDadosArvorePro .infoDadosArvore a.newLink {
+    color: #0f172a !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+}
+
+.panelDadosArvorePro .infoDadosArvore a.newLink:hover {
+    color: #2563eb !important;
+}
+
+.panelDadosArvorePro label.newLink i.fa-chevron-down,
+.panelDadosArvorePro label.newLink i.fa-chevron-right {
+    color: #94a3b8 !important;
+    font-size: 10px !important;
+}
+
+/* ============================================================
+   SEI PRO | AMARGOSA — Design System v1.0
+   by Tarcio Rodrigues · SUFIN/SEAFI · Prefeitura de Amargosa–BA
+   ============================================================ */
+
+/* --- Import Inter Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- CSS Variables (Design Tokens) --- */
+:root {
+  --amg-navy:          #0f1f3d;
+  --amg-navy-mid:      #1a3260;
+  --amg-navy-light:    #2a4a85;
+  --amg-gold:          #f59e0b;
+  --amg-gold-light:    #fde68a;
+  --amg-gold-pale:     #fffbeb;
+  --amg-surface:       #f8fafc;
+  --amg-white:         #ffffff;
+  --amg-text:          #0f172a;
+  --amg-text-mid:      #334155;
+  --amg-muted:         #64748b;
+  --amg-border:        #e2e8f0;
+  --amg-border-mid:    #cbd5e1;
+  --amg-success:       #16a34a;
+  --amg-danger:        #dc2626;
+  --amg-radius-sm:     4px;
+  --amg-radius:        8px;
+  --amg-radius-lg:     12px;
+  --amg-shadow-sm:     0 1px 3px rgba(15,31,61,0.10);
+  --amg-shadow:        0 4px 16px rgba(15,31,61,0.14);
+  --amg-shadow-lg:     0 8px 32px rgba(15,31,61,0.18);
+  --amg-transition:    all 0.18s cubic-bezier(.4,0,.2,1);
+}
+
+/* --- Global Font Override --- */
+body, #divArvore, #frmArvore,
+#tblProcessosRecebidos, #tblProcessosGerados, #tblProcessosDetalhado,
+.panelDadosArvore, .panelDadosArvorePro, .newLink, .dialogBoxDiv {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !important;
+}
+
+/* ============================================================
+   PAINEL LATERAL DA ÁRVORE — Amargosa Identity
+   ============================================================ */
+
+/* Header do painel lateral principal */
+#divArvore {
+  background: var(--amg-surface) !important;
+}
+
+/* Estilo base dos painéis de dados */
+.panelDadosArvore {
+  border-top: 1px solid var(--amg-border) !important;
+  padding: 12px 14px 12px 16px !important;
+  margin: 0 !important;
+  background: var(--amg-white);
+  transition: var(--amg-transition);
+}
+
+.panelDadosArvore:first-of-type {
+  border-top: none !important;
+}
+
+/* Labels dos painéis */
+.panelDadosArvore label.newLink,
+.panelDadosArvorePro label.newLink {
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--amg-muted) !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 6px !important;
+  gap: 7px !important;
+}
+
+/* Ícones dos labels */
+.panelDadosArvore label.newLink i.iconDadosProcesso,
+.panelDadosArvorePro label.newLink i.iconDadosProcesso {
+  color: var(--amg-navy-mid) !important;
+  font-size: 11px !important;
+  width: 14px;
+  text-align: center;
+}
+
+/* Conteúdo dos painéis */
+.panelDadosArvore .infoDadosArvore,
+.panelDadosArvorePro .infoDadosArvore {
+  font-size: 12.5px !important;
+  color: var(--amg-text-mid) !important;
+  line-height: 1.55 !important;
+  padding-left: 22px !important;
+}
+
+.panelDadosArvore .infoDadosArvore a.newLink,
+.panelDadosArvorePro .infoDadosArvore a.newLink {
+  color: var(--amg-text) !important;
+  font-weight: 500 !important;
+  transition: var(--amg-transition);
+}
+
+.panelDadosArvore .infoDadosArvore a.newLink:hover {
+  color: var(--amg-navy) !important;
+}
+
+/* Consultar andamento — destaque navy */
+#divConsultarAndamento {
+  background: linear-gradient(135deg, var(--amg-navy) 0%, var(--amg-navy-mid) 100%) !important;
+  border-top: none !important;
+  border-radius: var(--amg-radius) var(--amg-radius) 0 0;
+  padding: 14px 16px !important;
+  margin: 0 !important;
+}
+
+#divConsultarAndamento a.newLink {
+  color: var(--amg-white) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#divConsultarAndamento a.newLink i {
+  color: var(--amg-gold) !important;
+  font-size: 13px !important;
+}
+
+#divConsultarAndamento a.newLink:hover {
+  color: var(--amg-gold-light) !important;
+}
+
+/* Badge do número do processo */
+.amg-processo-badge {
+  background: var(--amg-navy) !important;
+  border-bottom: 2px solid var(--amg-gold) !important;
+  padding: 10px 16px !important;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.amg-processo-badge .amg-nr-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--amg-gold) !important;
+  font-family: 'Inter', sans-serif;
+}
+
+.amg-processo-badge .amg-nr-value {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--amg-white) !important;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: var(--amg-transition);
+}
+
+.amg-processo-badge .amg-nr-value:hover {
+  color: var(--amg-gold-light) !important;
+}
+
+/* ============================================================
+   BARRA DE FERRAMENTAS E BOTÕES
+   ============================================================ */
+
+/* Micro-animação nos botões SEI */
+.newLink, a.botaoSEI {
+  transition: var(--amg-transition) !important;
+}
+
+a.botaoSEI:hover, a.newLink:hover {
+  transform: translateY(-1px);
+}
+
+/* Ícones da barra lateral — hover gold */
+#divConsultarAndamento a:hover i.iconDadosProcesso {
+  color: var(--amg-gold) !important;
+}
+
+/* newLink active / confirmação */
+a.newLink_confirm {
+  background: linear-gradient(135deg, var(--amg-navy) 0%, var(--amg-navy-mid) 100%) !important;
+  border: none !important;
+  box-shadow: var(--amg-shadow-sm) !important;
+}
+
+a.newLink_confirm:hover {
+  background: linear-gradient(135deg, var(--amg-navy-mid) 0%, var(--amg-navy-light) 100%) !important;
+  box-shadow: var(--amg-shadow) !important;
+}
+
+a.newLink_confirm span {
+  color: var(--amg-white) !important;
+}
+
+/* Badge contador gold */
+.newLink .fa-layers-counter {
+  background: var(--amg-gold) !important;
+  color: var(--amg-navy) !important;
+  font-weight: 700;
+}
+
+/* ============================================================
+   TABELA DE PROCESSOS — Home Page
+   ============================================================ */
+
+/* Header da tabela */
+#tblProcessosRecebidos thead th,
+#tblProcessosGerados thead th,
+#tblProcessosDetalhado thead th {
+  background: linear-gradient(180deg, var(--amg-navy) 0%, var(--amg-navy-mid) 100%) !important;
+  color: var(--amg-white) !important;
+  border-color: var(--amg-navy-mid) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  padding: 9px 8px !important;
+}
+
+/* Linhas alternadas */
+#tblProcessosRecebidos tbody tr:nth-child(even) td,
+#tblProcessosGerados tbody tr:nth-child(even) td,
+#tblProcessosDetalhado tbody tr:nth-child(even) td {
+  background-color: #f8fafc !important;
+}
+
+/* Hover de linha com borda esquerda dourada */
+#tblProcessosRecebidos tbody tr:hover td,
+#tblProcessosGerados tbody tr:hover td,
+#tblProcessosDetalhado tbody tr:hover td {
+  background-color: var(--amg-gold-pale) !important;
+}
+
+#tblProcessosRecebidos tbody tr:hover td:first-child,
+#tblProcessosGerados tbody tr:hover td:first-child,
+#tblProcessosDetalhado tbody tr:hover td:first-child {
+  border-left: 3px solid var(--amg-gold) !important;
+}
+
+/* Especificação dos processos — pill tag */
+.especifProc {
+  font-size: 10.5px !important;
+  color: var(--amg-muted) !important;
+  font-weight: 500 !important;
+  font-family: 'Inter', sans-serif !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 320px;
+  padding: 0 0 2px 1px !important;
+  display: block !important;
+  letter-spacing: 0.01em;
+}
+
+/* Caption da tabela */
+#tblProcessosRecebidos caption,
+#tblProcessosGerados caption,
+#tblProcessosDetalhado caption {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--amg-muted) !important;
+  letter-spacing: 0.03em;
+}
+
+/* ============================================================
+   MODAIS E DIÁLOGOS
+   ============================================================ */
+
+/* Cabeçalho do diálogo com navy */
+.ui-dialog .ui-dialog-titlebar {
+  background: linear-gradient(135deg, var(--amg-navy) 0%, var(--amg-navy-mid) 100%) !important;
+  border: none !important;
+  border-radius: var(--amg-radius) var(--amg-radius) 0 0 !important;
+  padding: 12px 16px !important;
+}
+
+.ui-dialog .ui-dialog-title {
+  color: var(--amg-white) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+  color: var(--amg-gold-light) !important;
+  opacity: 0.85;
+}
+
+.ui-dialog .ui-dialog-titlebar-close:hover {
+  opacity: 1;
+  color: var(--amg-gold) !important;
+}
+
+/* Corpo do diálogo */
+.ui-dialog .ui-dialog-content {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12.5px !important;
+  color: var(--amg-text-mid) !important;
+  padding: 18px 20px !important;
+}
+
+/* Botões do diálogo */
+.ui-dialog .ui-dialog-buttonpane {
+  border-top: 1px solid var(--amg-border) !important;
+  background: var(--amg-surface) !important;
+  padding: 10px 16px !important;
+}
+
+.ui-dialog .ui-button.confirm,
+.ui-dialog .ui-button[class*="confirm"] {
+  background: linear-gradient(135deg, var(--amg-gold) 0%, #d97706 100%) !important;
+  color: var(--amg-navy) !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: var(--amg-radius-sm) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  box-shadow: var(--amg-shadow-sm) !important;
+  transition: var(--amg-transition) !important;
+}
+
+.ui-dialog .ui-button.confirm:hover {
+  box-shadow: var(--amg-shadow) !important;
+  transform: translateY(-1px);
+}
+
+.ui-dialog .ui-button:not(.confirm) {
+  background: var(--amg-white) !important;
+  color: var(--amg-text-mid) !important;
+  border: 1px solid var(--amg-border-mid) !important;
+  border-radius: var(--amg-radius-sm) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+}
+
+/* ============================================================
+   ÁREA DE UPLOAD EM LOTE (Dropzone)
+   ============================================================ */
+
+.dz-infoupload.dz-infoupload-home {
+  border: 2px dashed var(--amg-navy-mid) !important;
+  border-radius: var(--amg-radius-lg) !important;
+  background: var(--amg-surface) !important;
+  transition: var(--amg-transition) !important;
+}
+
+.dz-infoupload.dz-infoupload-home:hover,
+.dz-drag-hover .dz-infoupload.dz-infoupload-home {
+  border-color: var(--amg-gold) !important;
+  background: var(--amg-gold-pale) !important;
+}
+
+.dz-infoupload .text {
+  color: var(--amg-muted) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12.5px !important;
+}
+
+.dz-infoupload:hover .text {
+  color: var(--amg-navy) !important;
+}
+
+/* Preview de arquivo no dropzone */
+.dz-preview .dz-filename span {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  color: var(--amg-text-mid) !important;
+}
+
+.dz-preview .dz-progress .dz-upload {
+  background: linear-gradient(90deg, var(--amg-navy-mid), var(--amg-gold)) !important;
+  border-radius: 4px !important;
+}
+
+/* ============================================================
+   PAINEL DE INFORMAÇÕES DO PROCESSO (Custom)
+   ============================================================ */
+
+.panelDadosArvorePro {
+  border-top: 1px solid var(--amg-border) !important;
+  padding: 12px 14px 12px 16px !important;
+  margin: 0 !important;
+  background: var(--amg-white);
+}
+
+.panelDadosArvorePro label.newLink {
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--amg-muted) !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 6px !important;
+  gap: 7px !important;
+}
+
+.panelDadosArvorePro label.newLink i.iconDadosProcesso {
+  color: var(--amg-navy-mid) !important;
+  font-size: 11px !important;
+}
+
+.panelDadosArvorePro .infoDadosArvore {
+  font-size: 12.5px !important;
+  color: var(--amg-text-mid) !important;
+  line-height: 1.55 !important;
+  padding-left: 22px !important;
+  min-height: auto !important;
+}
+
+.panelDadosArvorePro .infoDadosArvore a.newLink {
+  color: var(--amg-text) !important;
+  font-weight: 500 !important;
+}
+
+.panelDadosArvorePro .infoDadosArvore a.newLink:hover {
+  color: var(--amg-navy) !important;
+}
+
+/* Chevrons */
+.panelDadosArvorePro label.newLink i.fa-chevron-down,
+.panelDadosArvorePro label.newLink i.fa-chevron-right,
+.panelDadosArvore label.newLink i.fa-chevron-down,
+.panelDadosArvore label.newLink i.fa-chevron-right {
+  color: var(--amg-border-mid) !important;
+  font-size: 10px !important;
+  margin-left: auto;
+  margin-right: 4px;
+}
+
+/* ============================================================
+   ASSINATURA — SEI PRO | Amargosa
+   ============================================================ */
+
+.amg-assinatura {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px 12px;
+  gap: 6px;
+  border-top: 1px solid var(--amg-border);
+  background: var(--amg-white);
+  margin-top: auto;
+}
+
+.amg-assinatura-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--amg-muted);
+  text-align: center;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+.amg-assinatura-text strong {
+  color: var(--amg-navy);
+  font-weight: 700;
+}
+
+.amg-assinatura-dot {
+  color: var(--amg-gold);
+  font-size: 8px;
+}
+
+/* ============================================================
+   ALERTAS INTERNOS DA EXTENSÃO
+   ============================================================ */
+
+.alertaSucessPro {
+  border-left: 3px solid var(--amg-success) !important;
+  background: #f0fdf4 !important;
+  border-radius: 0 var(--amg-radius-sm) var(--amg-radius-sm) 0 !important;
+}
+
+.alertaErrorPro {
+  border-left: 3px solid var(--amg-danger) !important;
+  background: #fef2f2 !important;
+  border-radius: 0 var(--amg-radius-sm) var(--amg-radius-sm) 0 !important;
+}
+
+.alertaAttencionPro {
+  border-left: 3px solid var(--amg-gold) !important;
+  background: var(--amg-gold-pale) !important;
+  border-radius: 0 var(--amg-radius-sm) var(--amg-radius-sm) 0 !important;
+}
+
+/* ============================================================
+   FILTROS E AGRUPAMENTOS — Home Page
+   ============================================================ */
+
+#newFiltro {
+  font-family: 'Inter', sans-serif !important;
+}
+
+#newFiltro select.groupTable,
+#newFiltro select.selectPro {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  border: 1px solid var(--amg-border-mid) !important;
+  border-radius: var(--amg-radius-sm) !important;
+  color: var(--amg-text-mid) !important;
+  transition: var(--amg-transition) !important;
+}
+
+#newFiltro select.groupTable:focus,
+#newFiltro select.selectPro:focus {
+  border-color: var(--amg-navy) !important;
+  outline: 2px solid rgba(15,31,61,0.12) !important;
+}
+
+/* Upload panel list items */
+#uploadListPro .dz-preview {
+  border: 1px solid var(--amg-border) !important;
+  border-radius: var(--amg-radius) !important;
+  background: var(--amg-white) !important;
+  box-shadow: var(--amg-shadow-sm) !important;
+  transition: var(--amg-transition) !important;
+}
+
+#uploadListPro .dz-preview:hover {
+  box-shadow: var(--amg-shadow) !important;
+}

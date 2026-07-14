@@ -3,9 +3,18 @@ var isNewSEI = $('#divInfraSidebarMenu ul#infraMenu').length ? true : false;
 var isSEI_5 = isNewSEI && sessionStorage.getItem('versaoSei') && compareVersionNumbers_initall(sessionStorage.getItem('versaoSei'),'5') >= 0 ? true : false;
 var frmEditor = isSEI_5 ? $('.infra-editor__editor-completo') : $('#frmEditor');
 
+function loadScriptSafe(path, callback) {
+    var filename = path.split('/').pop().split('?')[0];
+    if ($('script[src*="' + filename + '"]').length > 0) {
+        if (callback) callback();
+        return;
+    }
+    $.getScript(path, callback);
+}
+
 if (!frmEditor.length 
     // && (!isNewSEI || (isNewSEI && typeof loadFunctionsPro === 'undefined'))
-) $.getScript(getUrlExtension("js/sei-functions-pro.js"));
+) loadScriptSafe(getUrlExtension("js/sei-functions-pro.js"));
 
 function getUrlExtension(url) {
     if (typeof browser === "undefined") {
@@ -136,13 +145,19 @@ function loadScriptProAll() {
     loadFilesUI();
 	if (!frmEditor.length) {
         loadFontIcons('head');
-        if (typeof jmespath === 'undefined') $.getScript(getUrlExtension("js/lib/jmespath.min.js"));
-        if (typeof DOMPurify === 'undefined') $.getScript(getUrlExtension("js/lib/purify.min.js"));
-        if (typeof moment === 'undefined') $.getScript(getUrlExtension("js/lib/moment.min.js"));
-        if (typeof $.tablesorter === 'undefined') $.getScript(getUrlExtension("js/lib/jquery.tablesorter.combined.min.js"));
-        if (typeof $().chosen === 'undefined') $.getScript(getUrlExtension("js/lib/chosen.jquery.min.js"));
-        if (typeof Favico === 'undefined') $.getScript(getUrlExtension("js/lib/favico-0.3.10.min.js"));
-        if (typeof loadSEIProAll === 'undefined') $.getScript(getUrlExtension("js/sei-pro-all.js"));
+        loadScriptSafe(getUrlExtension("js/lib/jmespath.min.js"));
+        loadScriptSafe(getUrlExtension("js/lib/purify.min.js"));
+
+        loadScriptSafe(getUrlExtension("js/lib/disable-amd.js"), function() {
+            loadScriptSafe(getUrlExtension("js/lib/moment.min.js"), function() {
+                loadScriptSafe(getUrlExtension("js/lib/restore-amd.js"));
+            });
+        });
+
+        loadScriptSafe(getUrlExtension("js/lib/jquery.tablesorter.combined.min.js"));
+        loadScriptSafe(getUrlExtension("js/lib/chosen.jquery.min.js"));
+        loadScriptSafe(getUrlExtension("js/lib/favico-0.3.10.min.js"));
+        loadScriptSafe(getUrlExtension("js/sei-pro-all.js"));
     }
 }
 if (getManifestExtension().short_name == 'SPro') {

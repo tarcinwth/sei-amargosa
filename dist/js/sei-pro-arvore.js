@@ -1269,13 +1269,65 @@ function submitUploadArvore(htmlAnexo, queuedFiles, mode, result, arrayDropzone,
 
             param.selSerie = selSerie;
             param.hdnIdSerie = selSerie;
-            param.rdoNivelAcesso = (form.find('input[name="rdoNivelAcesso"]:checked').length > 0) 
+            var selectedNivel = (form.find('input[name="rdoNivelAcesso"]:checked').length > 0) 
                 ? form.find('input[name="rdoNivelAcesso"]:checked').val() 
                 : valueNivelAcesso;
+            if (selectedNivel === '0' && form.find('input[name="rdoNivelAcesso"][value="0"]:disabled').length > 0) {
+                selectedNivel = form.find('input[name="rdoNivelAcesso"]:not(:disabled):checked').val() || 
+                                form.find('input[name="rdoNivelAcesso"]:not(:disabled)').first().val() || "1";
+            }
+            param.rdoNivelAcesso = selectedNivel;
             param.hdnStaNivelAcessoLocal = param.rdoNivelAcesso; //
             param.rdoFormato = (parent.parent.checkConfigValue('newdocformat') && parent.parent.getConfigValue('newdocformat') && parent.parent.getConfigValue('newdocformat').indexOf('digitalizado') !== -1) ? "D": "N";
             param.hdnFlagDocumentoCadastro = "2";
-            param.hdnIdHipoteseLegal = (valueSigilo) ? valueSigilo[0] : param.selHipoteseLegal;
+
+            var selectedHypothesis = (valueSigilo) ? valueSigilo[0] : param.selHipoteseLegal;
+            if ((param.rdoNivelAcesso === '1' || param.rdoNivelAcesso === '2') && (!selectedHypothesis || selectedHypothesis === '')) {
+                var processNivelDesc = '';
+                var pDados = null;
+                if (typeof parent !== 'undefined' && parent.dadosProcessoPro && parent.dadosProcessoPro.propProcesso) {
+                    pDados = parent.dadosProcessoPro.propProcesso;
+                } else if (typeof parent !== 'undefined' && typeof parent.parent !== 'undefined' && parent.parent.dadosProcessoPro && parent.parent.dadosProcessoPro.propProcesso) {
+                    pDados = parent.parent.dadosProcessoPro.propProcesso;
+                }
+                if (pDados && pDados.rdoNivelAcesso) {
+                    processNivelDesc = pDados.rdoNivelAcesso.toLowerCase();
+                }
+                
+                if (processNivelDesc !== '') {
+                    form.find('#selHipoteseLegal option').each(function() {
+                        var optText = $(this).text().toLowerCase();
+                        var val = $(this).val();
+                        if (val !== '' && (processNivelDesc.indexOf(optText) !== -1 || optText.indexOf(processNivelDesc) !== -1)) {
+                            selectedHypothesis = val;
+                            return false;
+                        }
+                    });
+                    
+                    if (!selectedHypothesis) {
+                        var keywords = ["pessoal", "lgpd", "segredo", "justiça", "fiscal", "comercial"];
+                        for (var k = 0; k < keywords.length; k++) {
+                            if (processNivelDesc.indexOf(keywords[k]) !== -1) {
+                                form.find('#selHipoteseLegal option').each(function() {
+                                    var optText = $(this).text().toLowerCase();
+                                    if (optText.indexOf(keywords[k]) !== -1) {
+                                        selectedHypothesis = $(this).val();
+                                        return false;
+                                    }
+                                });
+                                if (selectedHypothesis) break;
+                            }
+                        }
+                    }
+                }
+                
+                if (!selectedHypothesis) {
+                    selectedHypothesis = form.find('#selHipoteseLegal option').filter(function() {
+                        return $(this).val() !== '';
+                    }).first().val() || '';
+                }
+            }
+            param.hdnIdHipoteseLegal = selectedHypothesis;
             param.selHipoteseLegal = param.hdnIdHipoteseLegal;
             param.selTipoConferencia = (parent.parent.checkConfigValue('newdocformat') && parent.parent.getConfigValue('newdocformat') && parent.parent.getConfigValue('newdocformat').indexOf('digitalizado') !== -1 && parent.parent.getConfigValue('newdocformat').indexOf('_') !== -1) ? parent.parent.getConfigValue('newdocformat').split('_')[1] : "";
             param.hdnIdTipoConferencia = param.selTipoConferencia;
@@ -1415,20 +1467,87 @@ function initDadosProcessoArvoreSession() {
     }
 }
 function initDadosProcessoArvore(TimeOut = 1000) {
-    if (TimeOut <= 0 || (!isSEI_5 && parent.window.name != '') || (isSEI_5 && parent.window.name != 'autopreenchersenha')) { 
-        if ($('#ifrArvore').length > 0) {
-            getLisDocsProcessoPro();
-        }
+    if (TimeOut <= 0) { 
         return; 
     }
-    if (typeof jmespath !== 'undefined' && typeof parent.dadosProcessoPro !== 'undefined' && typeof parent.dadosProcessoPro.propProcesso !== 'undefined' && typeof getOptionsPro !== 'undefined') {
-        setDadosProcessoArvore();
+    if (typeof jmespath !== 'undefined' && typeof getOptionsPro !== 'undefined') {
+        if (typeof parent.dadosProcessoPro !== 'undefined' && typeof parent.dadosProcessoPro.propProcesso !== 'undefined') {
+            setDadosProcessoArvore();
+        } else {
+            scrapeProcessoLocal();
+        }
     } else {
         setTimeout(function(){ 
             initDadosProcessoArvore(TimeOut - 100); 
-            if(typeof verifyConfigValue !== 'undefined' && verifyConfigValue('debugpage'))console.log('Reload initDadosProcessoArvore => '+TimeOut); 
         }, 500);
     }
+}
+
+function scrapeProcessoLocal() {
+    var match = window.location.href.match(/[?&](id_procedimento|id_protocolo)=([^&]+)/);
+    var id_procedimento = match ? match[2] : null;
+    if (!id_procedimento) return;
+
+    var href = jmespath.search(arrayLinksArvore, "[?name=='Consultar/Alterar Processo'].url | [0]");
+    if (!href) {
+        href = jmespath.search(arrayLinksArvore, "[?name=='Consultar Processo'].url | [0]");
+    }
+    if (!href) {
+        href = 'controlador.php?acao=procedimento_consultar&id_procedimento=' + id_procedimento;
+    }
+
+    $.ajax({
+        url: href,
+        dataType: 'text'
+    }).done(function (html) {
+        var $html = $(html);
+        var prop = {};
+        
+        var txtDescricao = $html.find('#txtDescricao').val() || $html.find('#lblDescricao').text() || '';
+        prop.txtDescricao = txtDescricao.trim();
+        
+        var tipoProcedimento = $html.find('#lblTipoProcedimento').text() || $html.find('#selTipoProcedimento option:selected').text() || '';
+        prop.selTipoProcedimento = tipoProcedimento.trim();
+        
+        var nivelAcesso = $html.find('input[name=rdoNivelAcesso]:checked').next('label').text() || $html.find('#lblNivelAcesso').text() || '';
+        prop.rdoNivelAcesso = nivelAcesso.trim();
+        
+        var interessados = [];
+        $html.find('#selInteressadosProcedimento option, #lblInteressados').each(function() {
+            var txt = $(this).text().trim();
+            if (txt) interessados.push(txt);
+        });
+        prop.selInteressadosProcedimento = interessados;
+        
+        var assuntos = [];
+        $html.find('#selAssuntos option, #lblAssuntos').each(function() {
+            var txt = $(this).text().trim();
+            if (txt) assuntos.push(txt);
+        });
+        prop.selAssuntos = assuntos;
+        prop.selAssuntos_select = assuntos;
+        
+        var observacoes = [];
+        var txtObs = $html.find('#txaObservacoes').val() || '';
+        if (txtObs) {
+            observacoes.push({ unidade: 'Minha Unidade', observacao: txtObs.trim() });
+        }
+        $html.find('#divObservacoesOutras tbody tr').each(function() {
+            var tdUnidade = $(this).find('td').eq(0).text().trim();
+            var tdObs = $(this).find('td').eq(1).text().trim();
+            if (tdUnidade && tdObs) {
+                observacoes.push({ unidade: tdUnidade, observacao: tdObs });
+            }
+        });
+        prop.txaObservacoes = observacoes;
+
+        if (typeof parent.dadosProcessoPro === 'undefined') {
+            parent.dadosProcessoPro = {};
+        }
+        parent.dadosProcessoPro.propProcesso = prop;
+
+        setDadosProcessoArvore({ propProcesso: prop });
+    });
 }
 function sticknoteUpdate(this_, value, type, priority = false, mode = 'insert') {
     var _this = $(this_);
@@ -2137,8 +2256,31 @@ function setDadosProcessoArvore(dadosProcessoPro = false) {
                                 '</div>';
             htmlObservacoes = ($.inArray("Observa\u00E7\u00F5es",jmespath.search(selectedItensPanelArvore,"[]")) !== -1) ? htmlObservacoes : '';
 
+        var nrProcesso = '';
+        var matchTitle = parent.document.title.match(/\d+\.\d+\/\d+-\d+/);
+        if (matchTitle) {
+            nrProcesso = matchTitle[0];
+        } else {
+            $('a').each(function() {
+                var txt = $(this).text().trim();
+                if (/\d+\.\d+\/\d+-\d+/.test(txt)) {
+                    nrProcesso = txt;
+                    return false;
+                }
+            });
+        }
+        var htmlNumeroProcesso = '<div class="panelDadosArvorePro panelDadosArvore" data-type="numero_processo">'+
+                                 '   <label class="newLink" style="margin-bottom: 10px; display: block;">'+
+                                 '      <i class="fas fa-hashtag azulColor iconDadosProcesso"></i>'+
+                                 '      Processo:'+
+                                 '   </label>'+
+                                 '   <div class="infoDadosArvore" style="position: relative; min-height: auto; padding-bottom: 10px;">'+
+                                 '       <a class="newLink" style="cursor:pointer; font-weight: bold;" onclick="parent.copyTextThis(this)" onmouseover="return infraTooltipMostrar(\'Clique para copiar\');" onmouseout="return infraTooltipOcultar();">'+nrProcesso+'</a>'+
+                                 '   </div>'+
+                                 '</div>';
+
         $('.panelDadosArvorePro').remove();
-        $('#frmArvore').append(htmlBlocoInterno+htmlMarcador+htmlAcompEsp+htmlDescricao+htmlTipoProcedimento+htmlNivelAcesso+htmlInteressados+htmlAssuntos+htmlObservacoes);  
+        $('#frmArvore').append(htmlNumeroProcesso+htmlBlocoInterno+htmlMarcador+htmlDescricao+htmlInteressados+htmlAssuntos+htmlObservacoes);  
         if (typeof $(parent.document).find("#divIframeArvore").resizable !== 'undefined') parent.forceOnLoadBodyPage();  
         if (!dataMarcador && processoAberto) {
             getDataMarcadorProcesso();
@@ -2178,7 +2320,7 @@ function getDataMarcadorProcesso() {
     }
 }
 function initAtividadesProcesso(TimeOut = 9000) {
-    if (TimeOut <= 0 || (!isSEI_5 && parent.window.name != '') || (isSEI_5 && parent.window.name != 'autopreenchersenha')) { return; }
+    if (TimeOut <= 0) { return; }
     if (
         typeof parent.arrayConfigAtividades !== 'undefined' && 
         typeof parent.arrayConfigAtividades.perfil !== 'undefined'
@@ -2346,6 +2488,17 @@ function stylePanelArvore() {
 
         $('#frmArvore').append(htmlAtividades+htmlResponsaveis+disableQuery);
 
+        // Assinatura SEI PRO | Amargosa
+        if ($('.amg-assinatura').length === 0) {
+            var htmlAssinatura = '<div class="amg-assinatura">' +
+                '<div class="amg-assinatura-text">' +
+                    '<strong>SEI PRO</strong> <span class="amg-assinatura-dot">&#9632;</span> Amargosa – BA<br>' +
+                    '<span>Tarcio Rodrigues · SUFIN / SEAFI</span>' +
+                '</div>' +
+                '</div>';
+            $('#frmArvore').append(htmlAssinatura);
+        }
+
         initDadosProcessoArvore();
         initDadosProcessoArvoreSession();
 
@@ -2370,8 +2523,7 @@ function stylePanelArvore() {
     }
 }
 function initStylePanelArvore(TimeOut = 9000) {
-
-    if (TimeOut <= 0 || (!isSEI_5 && parent.window.name != '') || (isSEI_5 && parent.window.name != 'autopreenchersenha')) { return; }
+    if (TimeOut <= 0) { return; }
     if (
         typeof getOptionsPro !== 'undefined' && selectedItensPanelArvore && 
         selectedItensPanelArvore.length && 
@@ -2409,7 +2561,7 @@ function breakDocTwoLines() {
     });
 }
 function initBreakDocTwoLines(TimeOut = 9000) {
-    if (TimeOut <= 0 || (!isSEI_5 && parent.window.name != '') || (isSEI_5 && parent.window.name != 'autopreenchersenha')) { return; }
+    if (TimeOut <= 0) { return; }
     if (typeof resizeArvoreMaxWidth !== 'undefined') {
         breakDocTwoLines();
     } else {
