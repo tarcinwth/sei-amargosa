@@ -1,26 +1,17 @@
 # SEI PRO | Amargosa ![SEI Pro](/img/icon-32.png)
 
-Fork personalizado do SEI Pro para a Prefeitura de Amargosa, com identidade visual própria, melhorias de interface e recursos orientados à rotina administrativa.
+Fork do SEI Pro adaptado para uso na Prefeitura de Amargosa. A ideia desta versão é manter as funções principais da extensão original e ajustar a parte visual e técnica para deixar o uso diário mais consistente.
 
-Esta versão preserva o núcleo do SEI Pro original e adiciona personalizações para oferecer uma experiência mais fluida, mais organizada e mais alinhada ao contexto local do SEI.
+Esta versão mantém o núcleo do SEI Pro e inclui mudanças em branding, interface e estrutura da extensão.
 
-**Compatível com o ambiente do SEI utilizado na Prefeitura de Amargosa e com versões recentes do SEI**
+## Mudanças concretas desta versão
 
-## Principais melhorias desta versão
-
-- Branding e identidade visual: novo nome, logo, ícones e página de configurações adaptados à marca Amargosa.
-- Experiência mais fluida: interface refinada, estilos mais limpos e navegação mais consistente no ambiente do SEI.
-- Recursos orientados à rotina administrativa: painéis e funcionalidades voltados à organização de processos, visualização de informações e aceleração de tarefas frequentes.
-- Compatibilidade e estabilidade: ajustes técnicos no carregamento de scripts e na estrutura da extensão para uma experiência mais confiável.
-- Produtividade local: ferramentas de agrupamento, histórico, controle de prazos, documentos em lote, sigilo, comparação e automações já presentes no ecossistema do SEI Pro, mas adaptadas ao contexto da prefeitura.
-
-## O que mudou em relação ao SEI Pro original
-
-- A fork passou a ter identidade própria, com nome, logo e apresentação visual adaptados à Prefeitura de Amargosa.
-- A interface da extensão foi personalizada para ficar mais organizada, com destaque para a página de configurações e os elementos de navegação.
-- O código foi ajustado em pontos estratégicos de inicialização e personalização da experiência do SEI, favorecendo uma base mais estável e mais simples de manter.
-- A versão Amargosa preserva o núcleo funcional do projeto original, mas organiza melhor a experiência para uso institucional e rotinas administrativas.
-- O foco da fork é entregar uma solução mais alinhada ao contexto local, com melhor presença visual e maior clareza na usabilidade.
+- Troca do ícone principal da extensão para a logo do projeto Amargosa.
+- Atualização da página de configurações para exibir a nova identidade visual.
+- Ajustes no manifesto da extensão para apontar para os novos ícones e recursos.
+- Revisão de scripts de inicialização e integração, com mudanças em arquivos como init.js, init_all.js, init_arvore.js e sei-functions-pro.js.
+- Atualização de estilos e assets usados pela interface da extensão.
+- Manutenção das funções principais do SEI Pro, com foco em uso contínuo e rotina administrativa.
 
 ## Como começar?
 
