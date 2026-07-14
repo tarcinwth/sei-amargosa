@@ -1,24 +1,33 @@
-# Bem vindo ao SEI Pro ![SEI Pro](/img/icon-32.png)
+# SEI PRO | Amargosa ![SEI Pro](/img/icon-32.png)
 
-**SEI Pro!** adiciona ao [Sistema Eletrônico de Informações (SEI)](https://softwarepublico.gov.br/social/sei) diversas funções avançadas na página inicial e no editor de textos:
+Fork personalizado do SEI Pro para a Prefeitura de Amargosa, com identidade visual própria, melhorias de interface e recursos orientados à rotina administrativa.
 
-**Compatível com a versão 4.0 do SEI**
+Esta versão preserva o núcleo do SEI Pro original e adiciona personalizações para oferecer uma experiência mais fluida, mais organizada e mais alinhada ao contexto local do SEI.
+
+**Compatível com o ambiente do SEI utilizado na Prefeitura de Amargosa e com versões recentes do SEI**
+
+## Principais melhorias desta versão
+
+- Branding e identidade visual: novo nome, logo, ícones e página de configurações adaptados à marca Amargosa.
+- Experiência mais fluida: interface refinada, estilos mais limpos e navegação mais consistente no ambiente do SEI.
+- Recursos orientados à rotina administrativa: painéis e funcionalidades voltados à organização de processos, visualização de informações e aceleração de tarefas frequentes.
+- Compatibilidade e estabilidade: ajustes técnicos no carregamento de scripts e na estrutura da extensão para uma experiência mais confiável.
+- Produtividade local: ferramentas de agrupamento, histórico, controle de prazos, documentos em lote, sigilo, comparação e automações já presentes no ecossistema do SEI Pro, mas adaptadas ao contexto da prefeitura.
+
+## O que mudou em relação ao SEI Pro original
+
+- A fork passou a ter identidade própria, com nome, logo e apresentação visual adaptados à Prefeitura de Amargosa.
+- A interface da extensão foi personalizada para ficar mais organizada, com destaque para a página de configurações e os elementos de navegação.
+- O código foi ajustado em pontos estratégicos de inicialização e personalização da experiência do SEI, favorecendo uma base mais estável e mais simples de manter.
+- A versão Amargosa preserva o núcleo funcional do projeto original, mas organiza melhor a experiência para uso institucional e rotinas administrativas.
+- O foco da fork é entregar uma solução mais alinhada ao contexto local, com melhor presença visual e maior clareza na usabilidade.
 
 ## Como começar?
 
-Instale a extensão para seu navegador preferido:
+Para usar esta versão, clone o repositório e carregue a pasta dist como extensão no navegador:
 
-<img src="https://edent.github.io/SuperTinyIcons/images/svg/chrome.svg" width="24" title="Chrome"> Google Chrome em:
-
-> [https://chrome.google.com/webstore/detail/sei-pro/pdbbapplhjopafpgidbgceccbbmehcjj](https://chrome.google.com/webstore/detail/sei-pro/pdbbapplhjopafpgidbgceccbbmehcjj)
-
-<img src="https://edent.github.io/SuperTinyIcons/images/svg/edge.svg" width="24" title="Edge"> Microsoft Edge em:
-
-> [https://microsoftedge.microsoft.com/addons/detail/sei-pro/gkhfbbbminanojfklpfmloaglckmlfne](https://microsoftedge.microsoft.com/addons/detail/sei-pro/gkhfbbbminanojfklpfmloaglckmlfne)
-
-<img src="https://edent.github.io/SuperTinyIcons/images/svg/firefox.svg" width="24" title="Firefox"> Mozilla Firefox em:
-
-> [https://addons.mozilla.org/pt-BR/firefox/addon/sei-pro/](https://addons.mozilla.org/pt-BR/firefox/addon/sei-pro/)
+- Google Chrome e Microsoft Edge: ative a opção de "Carregar extensão sem compactação" nas configurações de extensões.
+- Firefox: utilize o modo de depuração para carregar a extensão temporariamente.
 
 ## Funcionalidades disponíveis
 
@@ -98,12 +107,11 @@ Você ainda pode [Desativar funções da extensão](./pages/DESATIVARFUNCOES.md)
 
 ## Encontrou um erro?
 
-Caso deseja reportar um erro, acesse [Issue](https://github.com/pedrohsoaresadv/sei-pro/issues) no [Projeto GitHub](https://github.com/pedrohsoaresadv/sei-pro/) e adicione sua requisição.
+Caso queira reportar um problema, acesse as [Issues do repositório](https://github.com/tarcinwth/sei-amargosa/issues) e descreva a situação com detalhes.
 
 ## Deseja contribuir?
 
-Envie sua sugestão de nova funcionalidade em [https://seipro.changecrab.com/suggestions](https://seipro.changecrab.com/suggestions)
-Vote nas sugestões que mais queria ver no SEI Pro!
+Sugestões, melhorias e ajustes podem ser enviados pelo repositório oficial da fork em [https://github.com/tarcinwth/sei-amargosa](https://github.com/tarcinwth/sei-amargosa).
 
 ## SEI Pro no ParticiPEN
 
