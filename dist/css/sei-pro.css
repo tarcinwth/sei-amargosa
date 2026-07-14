@@ -4971,4 +4971,403 @@ a.newLink_confirm span {
 
 #uploadListPro .dz-preview:hover {
   box-shadow: var(--amg-shadow) !important;
-}
+}
+
+/* ============================================================
+   SEI PRO | AMARGOSA — UI/UX Enhancement Pack v1.1
+   ============================================================ */
+
+/* --- Scrollbars elegantes (WebKit) --- */
+#frmArvore::-webkit-scrollbar,
+#divArvore::-webkit-scrollbar,
+.ui-dialog-content::-webkit-scrollbar {
+  width: 5px;
+}
+#frmArvore::-webkit-scrollbar-track,
+#divArvore::-webkit-scrollbar-track {
+  background: var(--amg-surface);
+}
+#frmArvore::-webkit-scrollbar-thumb,
+#divArvore::-webkit-scrollbar-thumb {
+  background: var(--amg-border-mid);
+  border-radius: 10px;
+}
+#frmArvore::-webkit-scrollbar-thumb:hover,
+#divArvore::-webkit-scrollbar-thumb:hover {
+  background: var(--amg-muted);
+}
+
+/* --- Animação de entrada dos painéis --- */
+@keyframes amg-fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.panelDadosArvore,
+.panelDadosArvorePro,
+.amg-processo-badge,
+.amg-assinatura {
+  animation: amg-fadeSlideIn 0.22s cubic-bezier(.4,0,.2,1) both;
+}
+
+/* --- infoAlerta — badge "não atribuído" estilizado --- */
+span.infoAlerta {
+  display: inline-block;
+  font-size: 9px !important;
+  font-weight: 600 !important;
+  color: var(--amg-gold) !important;
+  background: var(--amg-gold-pale) !important;
+  border: 1px solid var(--amg-gold-light) !important;
+  padding: 1px 6px !important;
+  border-radius: 20px !important;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+  margin-left: 4px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- tagState — estado de etiqueta (chip) --- */
+span.tagState {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  background: var(--amg-surface) !important;
+  color: var(--amg-text-mid) !important;
+  border: 1px solid var(--amg-border-mid) !important;
+  padding: 2px 8px !important;
+  border-radius: 20px !important;
+  letter-spacing: 0.03em;
+}
+
+/* --- Linha de processo urgente — destaque âmbar --- */
+tr.urgentePro > td:first-child {
+  border-left: 3px solid var(--amg-gold) !important;
+}
+
+tr.urgentePro a[href*="procedimento_trabalhar"] {
+  font-weight: 700 !important;
+  color: var(--amg-navy) !important;
+}
+
+/* --- Tag group headers na tabela --- */
+tr.tagintable.tableHeader th {
+  background: linear-gradient(180deg, #f1f5f9 0%, #e8eef5 100%) !important;
+  color: var(--amg-navy) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  border-left: 3px solid var(--amg-navy-mid) !important;
+  padding: 8px 12px !important;
+}
+
+/* --- Barra de seleção em lote (processosProActions) --- */
+#processosProActions {
+  font-family: 'Inter', sans-serif !important;
+  background: linear-gradient(135deg, var(--amg-navy) 0%, var(--amg-navy-mid) 100%) !important;
+  border-radius: var(--amg-radius) !important;
+  padding: 10px 16px !important;
+  margin: 8px 0 !important;
+  box-shadow: var(--amg-shadow) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  animation: amg-fadeSlideIn 0.2s ease both;
+}
+
+#processosProActions .btn,
+#processosProActions a.newLink {
+  background: rgba(255,255,255,0.12) !important;
+  border: 1px solid rgba(255,255,255,0.20) !important;
+  color: var(--amg-white) !important;
+  border-radius: var(--amg-radius-sm) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 5px 12px !important;
+  transition: var(--amg-transition) !important;
+  letter-spacing: 0.02em;
+}
+
+#processosProActions .btn:hover,
+#processosProActions a.newLink:hover {
+  background: rgba(255,255,255,0.24) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+}
+
+#processosProActions .btn i,
+#processosProActions a.newLink i {
+  color: var(--amg-gold) !important;
+}
+
+/* --- FilterTable Home (busca rápida por tipo, responsável, etc.) --- */
+#filterTableHome,
+select#filterTableHome {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  border: 1px solid var(--amg-border-mid) !important;
+  border-radius: var(--amg-radius-sm) !important;
+  padding: 5px 8px !important;
+  color: var(--amg-text-mid) !important;
+  transition: var(--amg-transition) !important;
+}
+
+#filterTableHome:focus {
+  border-color: var(--amg-navy) !important;
+  box-shadow: 0 0 0 3px rgba(15,31,61,0.10) !important;
+  outline: none !important;
+}
+
+/* --- Links ativos de filtro da tabela --- */
+a.newLink.filterTableProcessos.newLink_active,
+a.newLink.filterIfraTable.newLink_active {
+  background: var(--amg-navy) !important;
+  color: var(--amg-white) !important;
+  border-radius: var(--amg-radius-sm) !important;
+}
+
+a.newLink.filterTableProcessos.newLink_active i,
+a.newLink.filterIfraTable.newLink_active i {
+  color: var(--amg-gold) !important;
+}
+
+/* --- newLink_confirm — botões de ação confirmada --- */
+a.newLink_confirm,
+a.newLink_confirm:hover {
+  background: linear-gradient(135deg, var(--amg-navy) 0%, var(--amg-navy-mid) 100%) !important;
+  color: var(--amg-white) !important;
+  border-radius: var(--amg-radius-sm) !important;
+  box-shadow: var(--amg-shadow-sm) !important;
+}
+
+a.newLink_confirm i,
+a.newLink_confirm:hover i {
+  color: var(--amg-gold) !important;
+}
+
+/* --- botaoSEI — botões grandes do SEI --- */
+.botaoSEI.newLink {
+  transition: var(--amg-transition) !important;
+}
+.botaoSEI.newLink:hover {
+  filter: brightness(1.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* --- seiProForm — formulários internos dos modais --- */
+.seiProForm {
+  font-family: 'Inter', sans-serif !important;
+}
+
+.seiProForm label {
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  color: var(--amg-muted) !important;
+  letter-spacing: 0.03em;
+}
+
+.seiProForm select,
+.seiProForm input[type="text"],
+.seiProForm input[type="date"],
+.seiProForm input[type="time"],
+.seiProForm input[type="email"],
+.seiProForm input[type="password"],
+.seiProForm input[type="number"],
+.seiProForm textarea {
+  font-family: 'Inter', sans-serif !important;
+  border: 1px solid var(--amg-border-mid) !important;
+  border-radius: var(--amg-radius-sm) !important;
+  color: var(--amg-text-mid) !important;
+  transition: var(--amg-transition) !important;
+  font-size: 12px !important;
+}
+
+.seiProForm select:focus,
+.seiProForm input:focus,
+.seiProForm textarea:focus {
+  border-color: var(--amg-navy) !important;
+  box-shadow: 0 0 0 3px rgba(15,31,61,0.10) !important;
+  outline: none !important;
+}
+
+.seiProForm .error {
+  background: #fef2f2 !important;
+  color: var(--amg-danger) !important;
+  border-color: var(--amg-danger) !important;
+}
+
+/* --- Painel de favoritos --- */
+.tableFavoritos caption,
+.tableFavoritos th.tituloControle {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: var(--amg-muted) !important;
+  letter-spacing: 0.04em !important;
+}
+
+.tableFavoritos .newLink .fa-layers-counter {
+  background: var(--amg-gold) !important;
+  color: var(--amg-navy) !important;
+}
+
+/* --- Checkbox redesenhado nas tabelas --- */
+input.infraCheckbox[type="checkbox"] {
+  accent-color: var(--amg-navy) !important;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* --- Bloqueio de consultas extras — destaque navy --- */
+#divConsultaExtras {
+  border-top: 1px solid var(--amg-border) !important;
+  padding: 10px 16px !important;
+  margin-top: 4px !important;
+}
+
+#divConsultaExtras a.newLink {
+  font-size: 11px !important;
+  color: var(--amg-muted) !important;
+  font-weight: 500 !important;
+}
+
+#divConsultaExtras a.newLink i {
+  color: var(--amg-gold) !important;
+}
+
+/* --- Tooltips de acesso a processos --- */
+div[class*="infraTooltip"],
+#infraTooltipDiv {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11.5px !important;
+  border-radius: var(--amg-radius-sm) !important;
+  box-shadow: var(--amg-shadow) !important;
+  border: 1px solid var(--amg-border) !important;
+}
+
+/* --- Marcadores / Tags — badges coloridos --- */
+.novoMarcador {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  border-radius: 20px !important;
+  padding: 2px 8px !important;
+  letter-spacing: 0.03em;
+}
+
+/* --- Chip de prazo (controle de prazo) --- */
+.infoPrazoPro,
+span[class*="prazo"] {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  border-radius: 20px !important;
+  padding: 2px 7px !important;
+  letter-spacing: 0.02em;
+}
+
+/* --- Caption da tabela com contagem de registros --- */
+caption.infraCaption {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  color: var(--amg-muted) !important;
+  letter-spacing: 0.03em;
+}
+
+caption.infraCaption span {
+  font-weight: 600 !important;
+  color: var(--amg-text-mid) !important;
+}
+
+/* --- Loading / spinner --- */
+.loadingSheet {
+  font-family: 'Inter', sans-serif !important;
+  color: var(--amg-muted) !important;
+}
+
+/* --- Barra de ações do documento (topmenu) --- */
+.newSEI #iconsActions .newLink {
+  transition: var(--amg-transition) !important;
+}
+
+.newSEI #iconsActions .newLink:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.1) !important;
+}
+
+.newSEI #iconsActions .newLink .fa-layers-counter {
+  background: var(--amg-gold) !important;
+  color: var(--amg-navy) !important;
+  font-size: 1.5em;
+}
+
+/* --- Anotação sticky note --- */
+.stickDadosArvore {
+  font-family: 'Inter', sans-serif !important;
+  border-radius: var(--amg-radius) !important;
+  border: 1px solid var(--amg-border) !important;
+  box-shadow: var(--amg-shadow-sm) !important;
+  font-size: 12px !important;
+  color: var(--amg-text-mid) !important;
+  padding: 10px 14px !important;
+}
+
+/* --- Newlink selected (seleção azul → navy) --- */
+.newLink_selected {
+  background-color: var(--amg-navy) !important;
+}
+
+.newLink_selected,
+.newLink_selected i {
+  color: var(--amg-white) !important;
+}
+
+/* --- NewLink active (cinza → navy suave) --- */
+.newLink_active {
+  background-color: var(--amg-surface) !important;
+  color: var(--amg-navy) !important;
+}
+
+.newLink_active i {
+  color: var(--amg-navy) !important;
+}
+
+/* --- Relacionados / processos parciais --- */
+.divRelacionadosParcial a.newLink {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  color: var(--amg-text-mid) !important;
+  transition: var(--amg-transition) !important;
+}
+
+.divRelacionadosParcial a.newLink:hover {
+  color: var(--amg-navy) !important;
+}
+
+.divRelacionadosParcial .iconStatusProcesso {
+  color: var(--amg-muted) !important;
+  margin-right: 5px !important;
+}
+
+/* --- Fundo geral do SEI na página de processo --- */
+.newSEI body,
+.newSEI #divInfraAreaTela {
+  background: var(--amg-surface) !important;
+}
+
+/* --- Responsive ajuste na home --- */
+@media (max-width: 1024px) {
+  #tblProcessosRecebidos thead th,
+  #tblProcessosGerados thead th {
+    font-size: 10px !important;
+    padding: 7px 5px !important;
+  }
+
+  .especifProc {
+    max-width: 200px !important;
+  }
+}
+

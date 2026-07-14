@@ -2492,8 +2492,8 @@ function stylePanelArvore() {
         if ($('.amg-assinatura').length === 0) {
             var htmlAssinatura = '<div class="amg-assinatura">' +
                 '<div class="amg-assinatura-text">' +
-                    '<strong>SEI PRO</strong> <span class="amg-assinatura-dot">&#9632;</span> Amargosa – BA<br>' +
-                    '<span>Tarcio Rodrigues · SUFIN / SEAFI</span>' +
+                    '<strong>SEI PRO</strong> <span class="amg-assinatura-dot">&#9632;</span> Amargosa &ndash; BA<br>' +
+                    '<span>Tarcio Rodrigues &middot; SUFIN / SEAFI</span>' +
                 '</div>' +
                 '</div>';
             $('#frmArvore').append(htmlAssinatura);

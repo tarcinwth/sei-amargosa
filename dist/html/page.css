@@ -99,21 +99,6 @@ body {
   font-size: 15px;
 }
 
-/* Badge dourado após o nome */
-.panel.heading h1::after {
-  content: 'Amargosa';
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--amg-navy);
-  background: var(--amg-gold);
-  padding: 2px 8px;
-  border-radius: 20px;
-  margin-left: 8px;
-  vertical-align: middle;
-}
-
 /* Barra dourada na base do header */
 .panel.heading::after {
   content: '';
