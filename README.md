@@ -6,7 +6,7 @@
 
 **Extensão Chrome para o Sistema Eletrônico de Informações — Prefeitura Municipal de Amargosa, BA**
 
-[![Versão](https://img.shields.io/badge/versão-3.0.0-0f1f3d?style=for-the-badge&logo=googlechrome&logoColor=f59e0b)](https://github.com/tarcinwth/sei-amargosa)
+[![Versão](https://img.shields.io/badge/versão-3.5.0-0f1f3d?style=for-the-badge&logo=googlechrome&logoColor=f59e0b)](https://github.com/tarcinwth/sei-amargosa)
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Manifest%20V3-f59e0b?style=for-the-badge&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/mv3/)
 [![Licença](https://img.shields.io/badge/licença-MIT-22c55e?style=for-the-badge)](LICENSE)
 [![Governo](https://img.shields.io/badge/Prefeitura-Amargosa%20·%20BA-0f1f3d?style=for-the-badge&logo=gov.br&logoColor=f59e0b)](https://amargosa.ba.gov.br)
