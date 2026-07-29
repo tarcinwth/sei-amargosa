@@ -5370,4 +5370,126 @@ caption.infraCaption span {
     max-width: 200px !important;
   }
 }
+
+/* ============================================================
+   DUPLICAÇÃO EM LOTE DE PROCESSOS — Amargosa Design System
+   ============================================================ */
+.amg-duplicar-box {
+  background: #ffffff !important;
+  border: 1px solid var(--amg-border, #e2e8f0) !important;
+  border-left: 4px solid var(--amg-gold, #f59e0b) !important;
+  border-radius: var(--amg-radius, 8px) !important;
+  box-shadow: var(--amg-shadow-sm, 0 1px 3px rgba(15,31,61,0.10)) !important;
+  padding: 16px 20px !important;
+  margin: 15px 0 20px 0 !important;
+  font-family: 'Inter', sans-serif !important;
+  animation: amg-fadeSlideIn 0.22s cubic-bezier(.4,0,.2,1) both;
+}
+
+.amg-duplicar-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 14px !important;
+}
+
+.amg-duplicar-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.amg-duplicar-title i {
+  font-size: 20px !important;
+  color: var(--amg-navy, #0f1f3d) !important;
+  background: var(--amg-gold-pale, #fffbeb) !important;
+  padding: 10px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--amg-gold-light, #fde68a) !important;
+}
+
+.amg-duplicar-title strong {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: var(--amg-navy, #0f1f3d) !important;
+  display: block !important;
+  letter-spacing: 0.01em !important;
+}
+
+.amg-duplicar-title span {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--amg-gold, #f59e0b) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
+
+.amg-duplicar-controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  background: var(--amg-surface, #f8fafc) !important;
+  padding: 8px 14px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--amg-border, #e2e8f0) !important;
+}
+
+.amg-duplicar-controls label {
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: var(--amg-text-mid, #334155) !important;
+  margin: 0 !important;
+}
+
+.amg-input-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.amg-input-wrapper input[type="number"] {
+  width: 75px !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  color: var(--amg-navy, #0f1f3d) !important;
+  padding: 5px 8px !important;
+  border: 1.5px solid var(--amg-border-mid, #cbd5e1) !important;
+  border-radius: 6px !important;
+  background: #ffffff !important;
+  outline: none !important;
+  transition: var(--amg-transition, all 0.18s ease) !important;
+}
+
+.amg-input-wrapper input[type="number"]:focus {
+  border-color: var(--amg-navy, #0f1f3d) !important;
+  box-shadow: 0 0 0 3px rgba(15,31,61,0.12) !important;
+}
+
+.amg-unit-label {
+  font-size: 12px !important;
+  color: var(--amg-muted, #64748b) !important;
+  font-weight: 500 !important;
+}
+
+.amg-duplicar-badge {
+  margin-top: 12px !important;
+  padding: 10px 14px !important;
+  background: var(--amg-gold-pale, #fffbeb) !important;
+  border-radius: 6px !important;
+  border: 1px solid var(--amg-gold-light, #fde68a) !important;
+  font-size: 12px !important;
+  color: var(--amg-text-mid, #334155) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.amg-duplicar-badge i {
+  color: var(--amg-gold, #f59e0b) !important;
+  font-size: 14px !important;
+}
+
 

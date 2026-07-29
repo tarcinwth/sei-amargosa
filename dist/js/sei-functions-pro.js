@@ -10801,6 +10801,7 @@ function checkPageVisualizacao() {
 
     waitLoadPro(ifrV, '#frmDocumentoCadastro', "label#lblPublico", setNewDocDefault);
     waitLoadPro(ifrV, '#frmProcedimentoCadastro', "#divInfraBarraComandosSuperior", setHtmlProtocoloAlterar);
+    waitLoadPro(ifrV, 'form[action*="procedimento_duplicar"], #frmProcedimentoDuplicar', "button, input, select, #btnSalvar, #btnDuplicar", function() { initProcedimentoDuplicar(ifrV); });
     waitLoadPro(ifrV, '#frmAtividadeListar[action*="acao=procedimento_enviar"]', infraBarraComandos, getActionsOnSendProcess);
     waitLoadPro(ifrV, '#frmProcedimentoHistorico[action*="acao=procedimento_consultar_historico"]', ".infraAreaTabela", initTablePaginacaoHistorico);
     waitLoadPro(ifrV, 'form', "select", replaceSelectAllVisualizacao);
@@ -10931,6 +10932,214 @@ function setNewProcDefault() {
 function formControlerAlterarDocumento(ifrVisualizacao) {
     ifrVisualizacao.find('#frmDocumentoCadastro').attr('onsubmit', 'return OnSubmitForm();parent.confirmaDadosUrgencia(this);');
 }
+
+function initProcedimentoDuplicar(targetContext) {
+    var ctx = targetContext || $(document);
+    var form = ctx.find('form[action*="procedimento_duplicar"], #frmProcedimentoDuplicar').first();
+    if (!form.length && window.location.href.indexOf('acao=procedimento_duplicar') !== -1) {
+        form = ctx.find('form').first();
+    }
+    if (!form.length) return;
+
+    if (ctx.find('#amgBoxDuplicarLote').length > 0) return;
+
+    var htmlBox = '<div id="amgBoxDuplicarLote" class="amg-duplicar-box">' +
+        '  <div class="amg-duplicar-header">' +
+        '    <div class="amg-duplicar-title">' +
+        '      <i class="fas fa-copy"></i>' +
+        '      <div>' +
+        '        <strong>Duplica&ccedil;&atilde;o em Lote de Processos</strong>' +
+        '        <span>SEI PRO | Amargosa</span>' +
+        '      </div>' +
+        '    </div>' +
+        '    <div class="amg-duplicar-controls">' +
+        '      <label for="amgQtdProcessos">Quantidade total de processos:</label>' +
+        '      <div class="amg-input-wrapper">' +
+        '        <input type="number" id="amgQtdProcessos" name="amgQtdProcessos" value="2" min="1" max="100" />' +
+        '        <span class="amg-unit-label">unidade(s)</span>' +
+        '      </div>' +
+        '    </div>' +
+        '  </div>' +
+        '  <div id="amgDuplicarInfoBadge" class="amg-duplicar-badge">' +
+        '    <i class="fas fa-info-circle"></i>' +
+        '    <span id="amgDuplicarCalcText">Ser&aacute; gerada <strong>1 nova c&oacute;pia</strong> + 1 processo m&atilde;e = <strong>2 processos no total</strong>.</span>' +
+        '  </div>' +
+        '</div>';
+
+    if (form.find('#divInfraBarraComandosSuperior').length) {
+        form.find('#divInfraBarraComandosSuperior').after(htmlBox);
+    } else if (form.find('.infraBarraComandos').length) {
+        form.find('.infraBarraComandos').first().after(htmlBox);
+    } else {
+        form.prepend(htmlBox);
+    }
+
+    function updateCalcText() {
+        var inputVal = parseInt(ctx.find('#amgQtdProcessos').val());
+        if (isNaN(inputVal) || inputVal < 1) inputVal = 1;
+        var copias = inputVal - 1;
+        var txt = '';
+        if (copias === 0) {
+            txt = 'Apenas o <strong>processo m&atilde;e</strong> ser&aacute; mantido. (Nenhuma c&oacute;pia nova ser&aacute; gerada).';
+        } else if (copias === 1) {
+            txt = 'Ser&aacute; gerada <strong>1 nova c&oacute;pia</strong> + 1 processo m&atilde;e = <strong>2 processos no total</strong>.';
+        } else {
+            txt = 'Ser&atilde;o geradas <strong>' + copias + ' novas c&oacute;pias</strong> + 1 processo m&atilde;e = <strong>' + inputVal + ' processos no total</strong>.';
+        }
+        ctx.find('#amgDuplicarCalcText').html(txt);
+    }
+
+    ctx.find('#amgQtdProcessos').on('input change keyup', updateCalcText);
+
+    form.on('submit', function(e) {
+        var inputVal = parseInt(ctx.find('#amgQtdProcessos').val());
+        if (isNaN(inputVal) || inputVal < 1) inputVal = 1;
+        var copias = inputVal - 1;
+
+        if (copias > 1) {
+            e.preventDefault();
+            e.stopPropagation();
+            executeDuplicarProcessoLote(form, inputVal, ctx);
+            return false;
+        }
+    });
+
+    ctx.find('#btnSalvar, #btnDuplicar, button[name="btnSalvar"], button[value*="Salvar"], button[value*="Duplicar"]').on('click', function(e) {
+        var inputVal = parseInt(ctx.find('#amgQtdProcessos').val());
+        if (isNaN(inputVal) || inputVal < 1) inputVal = 1;
+        var copias = inputVal - 1;
+
+        if (copias > 1) {
+            e.preventDefault();
+            e.stopPropagation();
+            executeDuplicarProcessoLote(form, inputVal, ctx);
+            return false;
+        }
+    });
+}
+
+function executeDuplicarProcessoLote(form, totalCount, ctx) {
+    var totalCopies = totalCount - 1;
+    var formUrl = form.attr('action') || window.location.href;
+    var formData = form.serialize();
+    var isCancelled = false;
+
+    $('#amgModalDuplicarLote').remove();
+
+    var modalHtml = '<div id="amgModalDuplicarLote" class="amg-modal-overlay" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 31, 61, 0.7); backdrop-filter: blur(4px); z-index: 999999; display: flex; align-items: center; justify-content: center;">' +
+        '  <div style="background: #ffffff; width: 540px; max-width: 92%; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid #cbd5e1; overflow: hidden; font-family: \'Inter\', sans-serif;">' +
+        '      <div style="background: linear-gradient(135deg, #0f1f3d 0%, #1a3260 100%); padding: 16px 20px; color: #ffffff; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #f59e0b;">' +
+        '          <div style="display: flex; align-items: center; gap: 10px;">' +
+        '              <i class="fas fa-copy" style="color: #f59e0b; font-size: 18px;"></i>' +
+        '              <strong style="font-size: 14px; letter-spacing: 0.02em;">SEI PRO | Duplica&ccedil;&atilde;o em Lote</strong>' +
+        '          </div>' +
+        '      </div>' +
+        '      <div style="padding: 20px 24px;">' +
+        '          <div id="amgProgressStatus" style="font-size: 13px; font-weight: 600; color: #0f1f3d; margin-bottom: 12px;">' +
+        '              Iniciando duplica&ccedil;&atilde;o de <strong>' + totalCopies + ' c&oacute;pias</strong> (Total: ' + totalCount + ' processos)...' +
+        '          </div>' +
+        '          <div style="background: #e2e8f0; height: 10px; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">' +
+        '              <div id="amgProgressBar" style="background: linear-gradient(90deg, #1a3260, #f59e0b); height: 100%; width: 0%; transition: width 0.3s ease;"></div>' +
+        '          </div>' +
+        '          <div style="max-height: 220px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px; background: #f8fafc;">' +
+        '              <ul id="amgListGerados" style="list-style: none; margin: 0; padding: 0; font-size: 12.5px; color: #334155; line-height: 1.8;">' +
+        '              </ul>' +
+        '          </div>' +
+        '      </div>' +
+        '      <div id="amgModalFooter" style="background: #f1f5f9; padding: 12px 20px; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; gap: 10px;">' +
+        '          <button id="amgBtnCancelarLote" type="button" style="padding: 8px 18px; background: #cbd5e1; color: #1e293b; border: none; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer;">Cancelar</button>' +
+        '          <button id="amgBtnConcluirLote" type="button" style="display: none; padding: 8px 18px; background: #f59e0b; color: #0f1f3d; border: none; border-radius: 6px; font-weight: 700; font-size: 12px; cursor: pointer;">Concluir e Atualizar</button>' +
+        '      </div>' +
+        '  </div>' +
+        '</div>';
+
+    $('body').append(modalHtml);
+
+    $('#amgBtnCancelarLote').on('click', function() {
+        isCancelled = true;
+        $('#amgProgressStatus').html('<span style="color: #dc2626;"><i class="fas fa-ban"></i> Opera&ccedil;&atilde;o cancelada pelo usu&aacute;rio.</span>');
+        $(this).hide();
+        $('#amgBtnConcluirLote').show();
+    });
+
+    var createdProcesses = [];
+    var i = 1;
+
+    function processNextCopy() {
+        if (i > totalCopies || isCancelled) {
+            if (!isCancelled) {
+                $('#amgProgressBar').css({'width': '100%', 'background': '#16a34a'});
+                $('#amgProgressStatus').html('<i class="fas fa-check-circle" style="color: #16a34a;"></i> <strong>Conclu&iacute;do!</strong> ' + createdProcesses.length + ' de ' + totalCopies + ' c&oacute;pia(s) gerada(s) com sucesso. (Total: ' + (createdProcesses.length + 1) + ' processos com o m&atilde;e)');
+            }
+            $('#amgBtnCancelarLote').hide();
+            $('#amgBtnConcluirLote').show().off('click').on('click', function() {
+                $('#amgModalDuplicarLote').remove();
+                if (window.parent && window.parent.location && window.parent !== window) {
+                    window.parent.location.reload();
+                } else {
+                    window.location.reload();
+                }
+            });
+            return;
+        }
+
+        $('#amgProgressStatus').html('Gerando c&oacute;pia <strong>' + i + ' de ' + totalCopies + '</strong>... (Aguarde)');
+        var percent = Math.round(((i - 1) / totalCopies) * 100);
+        $('#amgProgressBar').css('width', percent + '%');
+
+        $.ajax({
+            type: 'POST',
+            url: formUrl,
+            data: formData,
+            dataType: 'html'
+        }).done(function(responseText) {
+            var $res = $(responseText);
+            var procNr = '';
+            var procId = '';
+
+            var linkTrabalhar = $res.find('a[href*="procedimento_trabalhar"]').first();
+            if (linkTrabalhar.length) {
+                procNr = linkTrabalhar.text().trim();
+                var matchId = linkTrabalhar.attr('href').match(/id_procedimento=(\d+)/);
+                if (matchId) procId = matchId[1];
+            }
+
+            if (!procNr) {
+                var matchNr = responseText.match(/\d{4,7}\.\d{4,8}\/\d{4}-\d{2}/);
+                if (matchNr) procNr = matchNr[0];
+            }
+
+            if (!procNr) {
+                procNr = 'C&oacute;pia ' + i;
+            }
+
+            var itemHtml = '';
+            if (procId) {
+                var procUrl = 'controlador.php?acao=procedimento_trabalhar&id_procedimento=' + procId;
+                itemHtml = '<li style="margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between;"><span style="display: flex; align-items: center; gap: 6px;"><i class="fas fa-check-circle" style="color: #16a34a;"></i> <strong>C&oacute;pia #' + i + ':</strong> Processo ' + procNr + '</span> <a href="' + procUrl + '" target="_blank" style="color: #0f1f3d; font-weight: 600; text-decoration: underline; font-size: 11.5px;"><i class="fas fa-external-link-alt" style="color: #f59e0b; font-size: 10px;"></i> Abrir</a></li>';
+                createdProcesses.push({ nr: procNr, id: procId, url: procUrl });
+            } else {
+                itemHtml = '<li style="margin-bottom: 6px;"><i class="fas fa-check-circle" style="color: #16a34a; margin-right: 6px;"></i> <strong>C&oacute;pia #' + i + ':</strong> Processo ' + procNr + '</li>';
+                createdProcesses.push({ nr: procNr });
+            }
+
+            $('#amgListGerados').append(itemHtml);
+            var listEl = $('#amgListGerados').parent();
+            listEl.scrollTop(listEl[0].scrollHeight);
+
+            i++;
+            setTimeout(processNextCopy, 300);
+        }).fail(function(err) {
+            console.error('Erro ao duplicar cópia ' + i, err);
+            $('#amgListGerados').append('<li style="color: #dc2626; margin-bottom: 6px;"><i class="fas fa-exclamation-triangle"></i> Falha ao criar a c&oacute;pia #' + i + '</li>');
+            i++;
+            setTimeout(processNextCopy, 300);
+        });
+    }
+
+    processNextCopy();
+}
+
 function confirmaDadosUrgencia(_this) {
     if (delayCrash) return false;
         delayCrash = true;
@@ -12665,6 +12874,9 @@ function loadScriptPro() {
             loadScriptVisualizacaoPro();
             loadScriptArvorePro();
             checkMenuSEIPro();
+            if (window.location.href.indexOf('acao=procedimento_duplicar') !== -1 || $('form[action*="procedimento_duplicar"]').length > 0 || $('#frmProcedimentoDuplicar').length > 0) {
+                initProcedimentoDuplicar($(document));
+            }
         });
     }
 }

@@ -76,6 +76,7 @@ Desenvolvida como um fork personalizado do [SEI Pro Lab](https://sei-pro.github.
 | 5 | 🌳 **Árvore de Documentos** | Árvore aprimorada com badge inline do processo e painéis laterais contextuais | ✅ |
 | 6 | ⚙️ **Configurações Redesenhadas** | Página de configurações com header marinho, botão salvar âmbar, fonte Inter e abas fluidas | ✅ |
 | 7 | ✍️ **Assinatura do Autor** | Assinatura institucional exibida na sidebar: *SEI PRO ■ Amargosa – BA \| Tarcio Rodrigues · SUFIN / SEAFI* | ✅ |
+| 8 | 📋 **Duplicação em Lote** | Duplicação múltipla de processos com controle de quantidade total (processo mãe + cópias), progresso em tempo real e links diretos | ✅ |
 
 ---
 
