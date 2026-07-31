@@ -7,10 +7,10 @@
   "author": "Tarcio Rodrigues — SUFIN/SEAFI — Prefeitura de Amargosa",
   "homepage_url": "https://sei-pro.github.io/sei-pro",
   "icons": {
-    "16": "icons/seipro_amargosa_icon_1783988284426.png",
-    "32": "icons/seipro_amargosa_icon_1783988284426.png",
-    "48": "icons/seipro_amargosa_icon_1783988284426.png",
-    "128": "icons/seipro_amargosa_icon_1783988284426.png"
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
   },
   "options_page": "html/options.html",
   "options_ui": {
@@ -343,7 +343,7 @@
         "js/sei-legis.js",
         "js/sei-pro-visualizacao-chosen.js",
         "js/sei-pro-docs-lote.js",
-        "icons/seipro_amargosa_icon_1783988284426.png",
+        "icons/icon-32.png",
         "css/sei-pro.css",
         "css/dropzone.min.css",
         "css/jquery-ui.css",
