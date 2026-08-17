@@ -11022,6 +11022,10 @@ function executeDuplicarProcessoLote(form, totalCount, ctx) {
     var totalCopies = totalCount - 1;
     var formUrl = form.attr('action') || window.location.href;
     var formData = form.serialize();
+    var submitBtn = ctx.find('#btnSalvar, #btnDuplicar, button[name*="Salvar"], button[name*="Duplicar"], button[name*="sbm"], input[type="submit"]').first();
+    if (submitBtn.length && submitBtn.attr('name') && formData.indexOf(encodeURIComponent(submitBtn.attr('name')) + '=') === -1) {
+        formData += (formData ? '&' : '') + encodeURIComponent(submitBtn.attr('name')) + '=' + encodeURIComponent(submitBtn.val() || 'Salvar');
+    }
     var isCancelled = false;
 
     $('#amgModalDuplicarLote').remove();
